@@ -1,0 +1,93 @@
+
+<html>
+	<head>
+		<script type="text/javascript" src="http://underscorejs.org/underscore.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="scripts/functions.js"></script>
+		<link rel="stylesheet" type="text/css" href="main.css">
+
+		<script type="text/javascript">
+			var num_rows = 1;
+			$(function (){
+				$('.beg_balance .cash').html('90000');
+				$('.beg_balance .acounts_receivable').html('25000');
+				$('.beg_balance .equipment').html('10000');
+				$('.beg_balance .accounts_payable').html('90000');
+				$('.beg_balance .commons_stock').html('50000');
+				$('.beg_balance .commons_stock').html('80000');
+				$('.beg_balance .revenue').html('70000');
+				$('.beg_balance .expenses').html('40000');
+				$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
+			})
+
+			function add_row(){
+				num_rows++;
+				$('#calculations').append(function(){
+					var html = $('#calculations .row:first').html();
+					return '<div id="'+ num_rows +'" class="row">'+ html +'</div>';
+				});
+				$('.add_row').html('&nbsp;');
+				$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
+				$('.row div.add_row').append(function(){
+					return '<span class="num">'+ $(this).parent().attr('id') + '</span>';
+				});
+
+
+			}
+			$(window).bind('beforeunload', function(){
+				return 'Leaving this page will wipe all your data.';
+			})
+			function add() {
+				$('.row .cash').each(function (index, value){
+					console.log((value));
+				})
+			}	
+		</script>
+
+	</head>
+	<body>
+		<div id="calculations">
+			<div id="legends">
+				<div class="title" >Cash</div>
+				<div class="title">Accounts Receivable</div>
+				<div class="title">Equipment</div>
+				<div class="title">Accounts Payable</div>
+				<div class="title">Common Stock</div>
+				<div class="title">Revenue</div>
+				<div class="title">Expenses</div>
+			</div>
+			<div class="beg_balance">
+				<div class="beg_balance_title">Begining Balance:</div>
+				<div class="cash" ></div>
+				<div class="acounts_receivable"></div>
+				<div class="equipment"></div>
+				<div class="accounts_payable"></div>
+				<div class="commons_stock"></div>
+				<div class="revenue"></div>
+				<div class="expenses"></div>
+			</div>
+
+			<div id="1" class="row">
+				<div class="add_row"></div>
+				<div class="cash"><input type="text"></div>
+				<div class="acounts_receivable"><input type="text"></div>
+				<div class="equipment"><input type="text"></div>
+				<div class="accounts_payable"><input type="text"></div>
+				<div class="commons_stock"><input type="text"></div>
+				<div class="revenue"><input type="text"></div>
+				<div class="expenses"><input type="text"></div>
+			</div>
+		</div>
+		<div class ="last_row">
+			<div class="last_row_title">Total</div>
+			<button class="total_me" onClick="javascript:add()">Total Me</button>
+			<div class="cash">90</div>
+			<div class="acounts_receivable">100</div>
+			<div class="equipment">89</div>
+			<div class="accounts_payable">10</div>
+			<div class="commons_stock">5</div>
+			<div class="revenue">100</div>
+			<div class="expenses">2</div>
+		</div>
+	</body>
+</html>

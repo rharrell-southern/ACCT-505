@@ -1,0 +1,44 @@
+div.beg_balance div, 
+div.row div {
+	float: left;
+	padding-left: 10px;
+	width:120px;
+	
+}
+div.beg_balance {
+	float: none;
+	clear:both;
+}
+.beg_balance_title, .last_row_title {
+	font-size: 15px;
+	font-weight: bolder;
+}
+
+.row {
+	clear:both;
+}
+input {
+	width: 110px;
+}
+.num {
+	float:right;
+}
+#legends {
+	margin-left:120px;
+}
+#legends .title  {
+	float: left;
+	padding-left: 20px;
+	width:110px;
+	font-size: 12px;
+}
+div.last_row {
+	clear: both;
+	margin-left: 10px;
+	padding-top: 10px;
+}
+div.last_row div {
+	float: left;
+	padding-left:10px;
+	width: 120px;
+}
