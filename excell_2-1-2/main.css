@@ -1,0 +1,71 @@
+#wrapper {
+	width:920px;
+	font-size: 13px;
+}
+div.beg_balance div, 
+div.row div {
+	float: left;
+	padding-left: 10px;
+	width:100px;
+	
+}
+div.beg_balance {
+	float: none;
+	clear:both;
+}
+.beg_balance_title, .last_row_title {
+	font-weight: bolder;
+}
+
+.row {
+	clear:both;
+}
+input {
+	width: 90px;
+}
+.num {
+	float:right;
+}
+#legends {
+	margin-left:100px;
+}
+#legends .title  {
+	float: left;
+	padding-left: 20px;
+	width:90px;
+}
+div.last_row {
+	clear: both;
+	margin-left: 32px;
+	padding-top: 10px;
+}
+div.last_row div {
+	float: left;
+	padding-left:10px;
+	width: 78px;
+}
+div.last_row div.sign {
+	width:20px !important;
+	padding:0px;
+	text-align: center;
+	display: none;
+}
+div.last_row_totals {
+	clear:both;
+	padding-top:10px;
+	text-align: center;
+}
+
+.bad {
+	font-weight: bold;
+	background-color: #FFCCCC;
+	border:1px solid #660000;
+	color: #660000;
+}
+
+.good {
+	font-weight: bold;
+	background-color: #CCFFCC;
+	border:1px solid #006600;
+	color: #006600;
+}
