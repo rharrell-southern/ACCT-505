@@ -1,43 +1,41 @@
 
 <html>
 	<head>
-		<script type="text/javascript" src="http://underscorejs.org/underscore.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script type="text/javascript" src="scripts/functions.js"></script>
 		<link rel="stylesheet" type="text/css" href="main.css">
 
 		<script type="text/javascript">
 			// Set parameters
 			function loadArray(){
 				myArray = new Array();
-				myArray[0] = 0;
-				myArray[1] = 5000;
-				myArray[2] = 45000;
-				myArray[3] = 11750;
-				myArray[4] = 120000;
-				myArray[5] = 10000;
-				myArray[6] = 15750;
-				myArray[7] = 0;
-				myArray[8] = 0;
+				myArray[0] = 129000;
+				myArray[1] = 15000;
+				myArray[2] = 2000;
+				myArray[3] = 80000;
+				myArray[4] = 52000;
+				myArray[5] = 200000;
+				myArray[6] = 35000;
+				myArray[7] = 46000;
+				myArray[8] = 15000;
 				return myArray; 
 			}
 
-			var targetTotal = 126000;
+			var targetTotal = 226000;
 
 
 			// Begin Code
 			var columns = {0:'.cash',1:'.acounts_receivable',2:'.supplies',3:'.equipment',4:'.accounts_payable',5:'.commons_stock',6:'.revenue',7:'.expenses',8:'.dividends'};
 			var num_rows = 1;
 			$(function (){
-				/*$('.beg_balance .cash').html('50000');
-				$('.beg_balance .acounts_receivable').html('20000');
-				$('.beg_balance .supplies').html('20000');
-				$('.beg_balance .equipment').html('10000');
-				$('.beg_balance .accounts_payable').html('10000');
-				$('.beg_balance .commons_stock').html('70000');
-				$('.beg_balance .revenue').html('0');
-				$('.beg_balance .expenses').html('0');
-				$('.beg_balance .dividends').html('0');*/
+				// $('.beg_balance .cash').html('50000');
+				// $('.beg_balance .acounts_receivable').html('20000');
+				// $('.beg_balance .supplies').html('20000');
+				// $('.beg_balance .equipment').html('10000');
+				// $('.beg_balance .accounts_payable').html('10000');
+				// $('.beg_balance .commons_stock').html('70000');
+				// $('.beg_balance .revenue').html('0');
+				// $('.beg_balance .expenses').html('0');
+				// $('.beg_balance .dividends').html('0');
 				$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
 
 				$('input').live("focusout", function(){
@@ -63,7 +61,7 @@
 				return 'Leaving this page will wipe all your data.';
 			})
 			function addCol(column) {
-				rowTotal = parseFloat($('.beg_balance ' +column).html());
+				rowTotal = 0;
 				$('.row '+ column +' input').each(function(){
 					var value = parseFloat($(this).val())
 					if(value){
@@ -76,11 +74,13 @@
 
 			function calculations(){
 
-				//var eColumnVal = loadArray();
+				var eColumnVal = loadArray();
 				
-				/*var values = new Array();
+				var values = new Array();
 				$.each(columns,function(i,n){
 					values[i] = parseFloat(addCol(n));
+					console.log(values[i]);
+					console.log(addCol(n));
 					if(values[i] == eColumnVal[i]) {
 						$('.last_row ' + n).removeClass('bad');
 						$('.last_row ' + n).addClass('good');
@@ -89,10 +89,10 @@
 						$('.last_row ' + n).addClass('bad');
 
 					}
-				})*/
+				})
 
-				var totalLeft = values[0] + values[1] + values[2];
-				var totalRight = values[3] + values[4] + values[5] - values[6];
+				var totalLeft = values[0] + values[1] + values[2] + values[3];
+				var totalRight = values[4] + values[5] + ( values[6] - values[7] - values[8] );
 				$('.last_row_totals .total_left').html(totalLeft);
 				$('.last_row_totals .total_right').html(totalRight);
 				if(totalLeft == targetTotal && totalLeft == totalRight) {
@@ -119,9 +119,9 @@
 		<div id="wrapper">
 			<div id="calculations">
 				<div id="legends">
-					<div class="title" >Cash</div>
+					<div class="title">Cash</div>
 					<div class="title">Accounts Receivable</div>
-					<div class= "title">Supplies</div>
+					<div class="title">Supplies</div>
 					<div class="title">Equipment</div>
 					<div class="title">Accounts Payable</div>
 					<div class="title">Common Stock</div>
@@ -129,17 +129,18 @@
 					<div class="title">Expenses</div>
 					<div class="title">Dividends</div>
 				</div>
-				<div class="beg_balance">
+				<!-- <div class="beg_balance">
 					<div class="beg_balance_title">Begining Balance:</div>
 					<div class="cash" ></div>
 					<div class="acounts_receivable"></div>
-					<div class="supplies">
+					<div class="supplies"></div>
 					<div class="equipment"></div>
 					<div class="accounts_payable"></div>
 					<div class="commons_stock"></div>
 					<div class="revenue"></div>
 					<div class="expenses"></div>
-				</div>
+					<div class="dividends"></div>
+				</div> -->
 
 				<div id="1" class="row">
 					<div class="add_row"></div>
@@ -158,13 +159,13 @@
 				<div class="last_row_title">&nbsp;</div>  
 				<div class="cash"></div> <div class="sign">+</div> 
 				<div class="acounts_receivable"></div> <div class="sign">+</div>
-				<div class="supplies"><input type="text"></div>
+				<div class="supplies"></div><div class="sign">+</div>
 				<div class="equipment"></div> <div class="sign">=</div>
 				<div class="accounts_payable"></div> <div class="sign">+</div>
 				<div class="commons_stock"></div> <div class="sign">+</div>
 				<div class="revenue"></div> <div class="sign">-</div>
-				<div class="expenses"></div>
-				<div class="dividends"><input type="text"></div>
+				<div class="expenses"></div><div class="sign">-</div>
+				<div class="dividends"></div>
 			</div>
 			<div class ="last_row_totals">
 				<span class="total_left"></span> = 
