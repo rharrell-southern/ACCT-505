@@ -24,6 +24,8 @@
 		solution[5] = [0,0,0,0];
 		solution[6] = [1,5,0,0];
 
+		var num_rows = 1;
+
 		$(function() {
 
 			//Generate options
@@ -34,23 +36,48 @@
 				}
 			}
 
+			$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
+
+			$('input').live("focusout", function(){
+				calculations();
+			});	
 		});
+
+		
+		function add_row(){
+			num_rows++;
+			$('#calculations').append(function(){
+				var html = $('#calculations .row:first').html();
+				return '<div id="'+ num_rows +'" class="row">'+ html +'</div>';
+			});
+			$('.add_row').html('&nbsp;');
+			$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
+			$('.row div.add_row').append(function(){
+				return '<span class="num">'+ $(this).parent().attr('id') + '</span>';
+			});
+		}
+		$(window).bind('beforeunload', function(){
+			return 'Leaving this page will wipe all your data.';
+		})
 		</script>
 
 	<body>
-		<div id = "AcDebit" class="0">
-			<select class="0">
-				<option>Choose a type</option>
-			</select>
-			<select class="1">
-				<option>Choose an Account</option>
-			</select>
-			<select class="2">
-				<option>Choose an Effect</option>
-			</select>
-			<select class="3">
-				<option>Choose a Balance</option>
-			</select>
+		<div id="calculations">
+			<div class="row" id="1">
+				<div class="add_row"></div>
+				<select class="0">
+					<option>Choose a type</option>
+				</select>
+				<select class="1">
+					<option>Choose an Account</option>
+				</select>
+				<select class="2">
+					<option>Choose an Effect</option>
+				</select>
+				<select class="3">
+					<option>Choose a Balance</option>
+				</select>
+			</div>
 		</div>
 			
 	</body>
