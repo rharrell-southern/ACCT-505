@@ -5,7 +5,9 @@
 		<link rel="stylesheet" type="text/css" href="main.css">
 
 		<script type="text/javascript">
+
 			// Set parameters
+
 			function loadArray(){
 				myArray = new Array();
 				myArray[0] = 129000;
@@ -20,27 +22,59 @@
 				return myArray; 
 			}
 
+			var columns = {
+				0:'.cash',
+				1:'.acounts_receivable',
+				2:'.supplies',
+				3:'.equipment',
+				4:'.accounts_payable',
+				5:'.commons_stock',
+				6:'.revenue',
+				7:'.expenses',
+				8:'.dividends'
+			};
+
+			var hasBegBal = false;
+
+			function setBegBal() {
+				$('.beg_balance .cash').html('50000');
+				$('.beg_balance .acounts_receivable').html('20000');
+				$('.beg_balance .supplies').html('20000');
+				$('.beg_balance .equipment').html('10000');
+				$('.beg_balance .accounts_payable').html('10000');
+				$('.beg_balance .commons_stock').html('70000');
+				$('.beg_balance .revenue').html('0');
+				$('.beg_balance .expenses').html('0');
+				$('.beg_balance .dividends').html('0');
+			};
+
 			var targetTotal = 226000;
 
 
 			// Begin Code
-			var columns = {0:'.cash',1:'.acounts_receivable',2:'.supplies',3:'.equipment',4:'.accounts_payable',5:'.commons_stock',6:'.revenue',7:'.expenses',8:'.dividends'};
+			
 			var num_rows = 1;
 			$(function (){
-				// $('.beg_balance .cash').html('50000');
-				// $('.beg_balance .acounts_receivable').html('20000');
-				// $('.beg_balance .supplies').html('20000');
-				// $('.beg_balance .equipment').html('10000');
-				// $('.beg_balance .accounts_payable').html('10000');
-				// $('.beg_balance .commons_stock').html('70000');
-				// $('.beg_balance .revenue').html('0');
-				// $('.beg_balance .expenses').html('0');
-				// $('.beg_balance .dividends').html('0');
+
+				if(hasBegBal) {
+					setBegBal();
+				}
+
 				$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
 
 				$('input').live("focusout", function(){
 					calculations();
 				});
+				$('input').live("keypress", function(e){
+					if (e.which !== 0) {
+        				var typedChar = String.fromCharCode(e.which);
+        				if (typedChar != '-' && typedChar != '(' && typedChar != ')' && typedChar != '.' && typedChar != '0') {
+        					if(!parseFloat(typedChar)) {
+	        					e.preventDefault();
+        					}
+        				}
+        			}
+   				});
 
 			})
 			function add_row(){
@@ -63,9 +97,10 @@
 			function addCol(column) {
 				rowTotal = 0;
 				$('.row '+ column +' input').each(function(){
-					var value = parseFloat($(this).val())
+					var value = $(this).val().replace("(","-");
+					value=value.replace(")","");
 					if(value){
-						rowTotal += parseFloat($(this).val());
+						rowTotal += parseFloat(value);
 					}
 				});
 			    $('.last_row ' + column).html(rowTotal);
@@ -79,8 +114,7 @@
 				var values = new Array();
 				$.each(columns,function(i,n){
 					values[i] = parseFloat(addCol(n));
-					console.log(values[i]);
-					console.log(addCol(n));
+					
 					if(values[i] == eColumnVal[i]) {
 						$('.last_row ' + n).removeClass('bad');
 						$('.last_row ' + n).addClass('good');
@@ -110,6 +144,16 @@
 					$('.last_row_totals .total_right').addClass('bad');
 				}
 				$('.sign').css('display','block');
+
+			
+
+				function checkVal(value){
+					if(parseFloat(value)== ParseInt(value) && !isNan(value)){
+						return true;
+					}else{
+						return false;
+					}
+				}
 
 			}	
 		</script>
