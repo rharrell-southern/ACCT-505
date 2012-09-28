@@ -1,0 +1,57 @@
+
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="main.css">
+
+		<script type="text/javascript">
+		var select = new Array();
+
+		// Set values for select boxes
+		select[0] = ["Asset","Stockholders' Equity","Liabilities"];
+		select[1] = ["Cash","Equipment","Supplies","Accounts Receivable","Advertising Expense","Dividends Paid"];
+		select[2] = ["Increase","Decrease"];
+		select[3] = ["Debit", "Credit"];
+
+
+		// Set solution tables
+		var solution = new Array();
+		solution[0] = [0,0,0,0];
+		solution[1] = [0,1,0,0];
+		solution[2] = [0,2,0,0];
+		solution[3] = [0,3,0,0];
+		solution[4] = [1,4,0,0];
+		solution[5] = [0,0,0,0];
+		solution[6] = [1,5,0,0];
+
+		$(function() {
+
+			//Generate options
+			for(var i = 0; i<select.length;i++) {
+				for (var j = 0;j<select[i].length;j++){
+					var html = '<option value="' + j + '">' + select[i][j] + '</option>';
+					$('select.'+i).append(html);
+				}
+			}
+
+		});
+		</script>
+
+	<body>
+		<div id = "AcDebit" class="0">
+			<select class="0">
+				<option>Choose a type</option>
+			</select>
+			<select class="1">
+				<option>Choose an Account</option>
+			</select>
+			<select class="2">
+				<option>Choose an Effect</option>
+			</select>
+			<select class="3">
+				<option>Choose a Balance</option>
+			</select>
+		</div>
+			
+	</body>
+</html>
