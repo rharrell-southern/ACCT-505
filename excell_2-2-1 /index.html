@@ -1,0 +1,205 @@
+
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="main.css">
+
+		<script type="text/javascript">
+
+			// Set parameters
+
+			function loadArray(){
+				myArray = new Array();
+				myArray[0] = 28500;
+				myArray[1] = 7700
+				myArray[2] = 25600;
+				myArray[3] = 7200;
+				myArray[4] = 2000;
+				myArray[5] = 55000;
+				myArray[6] = 12000;
+				myArray[7] = 0;
+				return myArray; 
+			}
+
+			var columns = {
+				0:'.cash',
+				1:'.acounts_receivable',
+				2:'.inventory',
+				3:'.equipment',
+				4:'.accounts_payable',
+				5:'.commons_stock',
+				6:'.revenue',
+				7:'.expenses'
+				
+			};
+
+			var hasBegBal = true;
+
+			function setBegBal() {
+				$('.beg_balance .cash').html('35000');
+				$('.beg_balance .acounts_receivable').html('4200');
+				$('.beg_balance .inventory').html('15600');
+				$('.beg_balance .equipment').html('2200');
+				$('.beg_balance .accounts_payable').html('2000');
+				$('.beg_balance .commons_stock').html('55000');
+				$('.beg_balance .revenue').html('0');
+				$('.beg_balance .expenses').html('0');
+				
+			};
+
+			var targetTotal = 69000;
+
+
+			// Begin Code
+			
+			var num_rows = 1;
+			$(function (){
+
+				if(hasBegBal) {
+					setBegBal();
+				}
+
+				$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
+
+				$('input').live("focusout", function(){
+					calculations();
+				});
+				$('input').live("keypress", function(e){
+					if (e.which !== 0) {
+        				var typedChar = String.fromCharCode(e.which);
+        				if (typedChar != '-' && typedChar != '(' && typedChar != ')' && typedChar != '.' && typedChar != '0') {
+        					if(!parseFloat(typedChar)) {
+	        					e.preventDefault();
+        					}
+        				}
+        			}
+   				});
+
+			})
+			function add_row(){
+				num_rows++;
+				$('#calculations').append(function(){
+					var html = $('#calculations .row:first').html();
+					return '<div id="'+ num_rows +'" class="row">'+ html +'</div>';
+				});
+				$('.add_row').html('&nbsp;');
+				$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
+				$('.row div.add_row').append(function(){
+					return '<span class="num">'+ $(this).parent().attr('id') + '</span>';
+				});
+
+
+			}
+			$(window).bind('beforeunload', function(){
+				return 'Leaving this page will wipe all your data.';
+			})
+			function addCol(column) {
+				rowTotal = 0;
+				$('.row '+ column +' input').each(function(){
+					var value = $(this).val().replace("(","-");
+					value=value.replace(")","");
+					if(value){
+						rowTotal += parseFloat(value);
+					}
+				});
+			    $('.last_row ' + column).html(rowTotal);
+			    return rowTotal;
+			}
+
+			function calculations(){
+
+				var eColumnVal = loadArray();
+				
+				var values = new Array();
+				$.each(columns,function(i,n){
+					values[i] = parseFloat(addCol(n));
+					
+					if(values[i] == eColumnVal[i]) {
+						$('.last_row ' + n).removeClass('bad');
+						$('.last_row ' + n).addClass('good');
+					} else {
+						$('.last_row ' + n).removeClass('good');
+						$('.last_row ' + n).addClass('bad');
+
+					}
+				})
+
+				var totalLeft = values[0] + values[1] + values[2] + values[3];
+				var totalRight = values[4] + values[5] + values[6] - values[7];
+				$('.last_row_totals .total_left').html(totalLeft);
+				$('.last_row_totals .total_right').html(totalRight);
+				if(totalLeft == targetTotal && totalLeft == totalRight) {
+					$('.last_row_totals .total_left').removeClass('bad');
+					$('.last_row_totals .total_left').addClass('good');
+				} else {
+					$('.last_row_totals .total_left').removeClass('good');
+					$('.last_row_totals .total_left').addClass('bad');
+				}
+				if(totalRight == targetTotal && totalLeft == totalRight) {
+					$('.last_row_totals .total_right').removeClass('bad');
+					$('.last_row_totals .total_right').addClass('good');
+				} else {
+					$('.last_row_totals .total_right').removeClass('good');
+					$('.last_row_totals .total_right').addClass('bad');
+				}
+				$('.sign').css('display','block');
+
+			}	
+		</script>
+
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="calculations">
+				<div id="legends">
+					<div class="title" >Cash</div>
+					<div class="title">Accounts Receivable</div>
+					<div class="title">Inventory</div>
+					<div class="title">Equipment</div>
+					<div class="title">Accounts Payable</div>
+					<div class="title">Common Stock</div>
+					<div class="title">Revenue</div>
+					<div class="title">Expenses</div>
+				</div>
+				<div class="beg_balance">
+					<div class="beg_balance_title">Begining Balance:</div>
+					<div class="cash" ></div>
+					<div class="acounts_receivable"></div>
+					<div class="inventory"></div>
+					<div class="equipment"></div>
+					<div class="accounts_payable"></div>
+					<div class="commons_stock"></div>
+					<div class="revenue"></div>
+					<div class="expenses"></div>
+				</div>
+
+				<div id="1" class="row">
+					<div class="add_row"></div>
+					<div class="cash"><input type="text"></div>
+					<div class="acounts_receivable"><input type="text"></div>
+					<div class="inventory"><input type="text"></div>
+					<div class="equipment"><input type="text"></div>
+					<div class="accounts_payable"><input type="text"></div>
+					<div class="commons_stock"><input type="text"></div>
+					<div class="revenue"><input type="text"></div>
+					<div class="expenses"><input type="text"></div>
+				</div>
+			</div>
+			<div class ="last_row">
+				<div class="last_row_title">&nbsp;</div>  
+				<div class="cash"></div> <div class="sign">+</div> 
+				<div class="acounts_receivable"></div> <div class="sign">+</div>
+				<div class="inventory"></div> <div class="sign">+</div>
+				<div class="equipment"></div> <div class="sign">=</div>
+				<div class="accounts_payable"></div> <div class="sign">+</div>
+				<div class="commons_stock"></div> <div class="sign">+</div>
+				<div class="revenue"></div> <div class="sign">-</div>
+				<div class="expenses"></div>
+			</div>
+			<div class ="last_row_totals">
+				<span class="total_left"></span> = 
+				<span class="total_right"></span>
+			</div>
+		</div>
+	</body>
+</html>
