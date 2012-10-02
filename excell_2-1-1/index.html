@@ -1,4 +1,3 @@
-
 <html>
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -8,6 +7,7 @@
 
 			// Set parameters
 
+			// Correct Answers
 			function loadArray(){
 				myArray = new Array();
 				myArray[0] = 76000;
@@ -20,6 +20,7 @@
 				return myArray; 
 			}
 
+			// Column names
 			var columns = {
 				0:'.cash',
 				1:'.acounts_receivable',
@@ -31,6 +32,7 @@
 				
 			};
 
+			// Begining Balances
 			var hasBegBal = true;
 
 			function setBegBal() {
@@ -44,6 +46,7 @@
 				
 			};
 
+			// Spreadsheet Totals
 			var targetTotal = 126000;
 
 
@@ -92,6 +95,9 @@
 			})
 			function addCol(column) {
 				rowTotal = 0;
+				if (hasBegBal) {
+					rowTotal += parseFloat($('.beg_balance div'+ column).html());
+				}
 				$('.row '+ column +' input').each(function(){
 					var value = $(this).val().replace("(","-");
 					value=value.replace(")","");
@@ -139,77 +145,90 @@
 					$('.last_row_totals .total_right').removeClass('good');
 					$('.last_row_totals .total_right').addClass('bad');
 				}
-				$('.sign').css('display','block');
+				$('.sign').css('visibility','visible');
 
 			}	
 		</script>
 
 	</head>
 	<body>
-		<h1>Supplemental Exercise 2.1.1</h1>
-		<h2>Freeport Company</h2>
-<br />
-<p>The Freeport Company entered into these transactions during the month of February of the current year.</p>
-<br />
-<ol>
-	<li>Purchased computers for office use for $35,000 from Stewart Computer Company on account.</li>
-	<li>Paid $5,000 cash for February rent on warehouse facility.</li>
-	<li>Received $15,000 cash from customers for contracts billed in January.</li>
-	<li>Provided consulting services to Temple Pharmaceuticals for $10,000 cash.</li>
-	<li>Paid Northern Electric $9,000 cash for electric usage in February.</li>
-	<li>Stockholders invested an additional $50,000 in the business in exchange for common stock of the company.</li>
-	<li>Paid Steward Computer Company for the computers purchased in (1) above.</li>
-	<li>Incurred advertising expense for February of $1,750 on account.</li>
-</ol>
-<br />
-<p>Instructions: Using the following tabular analysis, show the effect of each transaction on the accounting equation.</p>
+		<div id="content">
+			<div id="question">
+				<h1>Supplemental Exercise 2.1.1</h1>
+				<h2>Freeport Company</h2>
+				<br />
+				<p>The Freeport Company entered into these transactions during the month of February of the current year.</p>
+				<br />
+				<ol>
+					<li>Purchased computers for office use for $35,000 from Stewart Computer Company on account.</li>
+					<li>Paid $5,000 cash for February rent on warehouse facility.</li>
+					<li>Received $15,000 cash from customers for contracts billed in January.</li>
+					<li>Provided consulting services to Temple Pharmaceuticals for $10,000 cash.</li>
+					<li>Paid Northern Electric $9,000 cash for electric usage in February.</li>
+					<li>Stockholders invested an additional $50,000 in the business in exchange for common stock of the company.</li>
+					<li>Paid Steward Computer Company for the computers purchased in (1) above.</li>
+					<li>Incurred advertising expense for February of $1,750 on account.</li>
+				</ol>
+				<br />
+				<p><strong>Instructions:</strong> Using the following tabular analysis, show the effect of each transaction on the accounting equation.</p>
+			</div>
+			<div id="wrapper">
+				<div id="calculations">
+					<div id="categories">
+						<div></div>
+						<div id="assets">Assets</div>
+						<div class="signs">=</div>
+						<div id="liabilities">Liabilities</div>
+						<div class="signs">+</div>
+						<div id="equity">Stockholders' Equity</div>
+					</div>
+					<div id="legends">
+						<div class="title"><strong>Transactions:</strong></div>
+						<div class="title" >Cash</div>
+						<div class="title">Accounts Receivable</div>
+						<div class="title">Equipment</div>
+						<div class="title">Accounts Payable</div>
+						<div class="title">Common Stock</div>
+						<div class="title">Revenue</div>
+						<div class="title">Expenses</div>
+					</div>
+					<div class="beg_balance">
+						<div class="beg_balance_title">Beg. Bal.:</div>
+						<div class="cash" ></div>
+						<div class="acounts_receivable"></div>
+						<div class="equipment"></div>
+						<div class="accounts_payable"></div>
+						<div class="commons_stock"></div>
+						<div class="revenue"></div>
+						<div class="expenses"></div>
+					</div>
 
-		<div id="wrapper">
-			<div id="calculations">
-				<div id="legends">
-					<div class="title" >Cash</div>
-					<div class="title">Accounts Receivable</div>
-					<div class="title">Equipment</div>
-					<div class="title">Accounts Payable</div>
-					<div class="title">Common Stock</div>
-					<div class="title">Revenue</div>
-					<div class="title">Expenses</div>
+					<div id="1" class="row">
+						<div class="add_row"></div>
+						<div class="cash"><input type="text"></div>
+						<div class="acounts_receivable"><input type="text"></div>
+						<div class="equipment"><input type="text"></div>
+						<div class="accounts_payable"><input type="text"></div>
+						<div class="commons_stock"><input type="text"></div>
+						<div class="revenue"><input type="text"></div>
+						<div class="expenses"><input type="text"></div>
+					</div>
+					<div style="clear:both;"></div>
 				</div>
-				<div class="beg_balance">
-					<div class="beg_balance_title">Begining Balance:</div>
-					<div class="cash" ></div>
-					<div class="acounts_receivable"></div>
-					<div class="equipment"></div>
-					<div class="accounts_payable"></div>
-					<div class="commons_stock"></div>
-					<div class="revenue"></div>
+				<div class ="last_row">
+					<div class="last_row_title">&nbsp;</div>  
+					<div class="cash"></div> <div class="sign">+</div> 
+					<div class="acounts_receivable"></div> <div class="sign">+</div>
+					<div class="equipment"></div> <div class="sign">=</div>
+					<div class="accounts_payable"></div> <div class="sign">+</div>
+					<div class="commons_stock"></div> <div class="sign">+</div>
+					<div class="revenue"></div> <div class="sign">-</div>
 					<div class="expenses"></div>
 				</div>
-
-				<div id="1" class="row">
-					<div class="add_row"></div>
-					<div class="cash"><input type="text"></div>
-					<div class="acounts_receivable"><input type="text"></div>
-					<div class="equipment"><input type="text"></div>
-					<div class="accounts_payable"><input type="text"></div>
-					<div class="commons_stock"><input type="text"></div>
-					<div class="revenue"><input type="text"></div>
-					<div class="expenses"><input type="text"></div>
+				<div class ="last_row_totals">
+					<span class="total_left"></span> <span class="sign"> = </span> 
+					<span class="total_right"></span>
 				</div>
-			</div>
-			<div class ="last_row">
-				<div class="last_row_title">&nbsp;</div>  
-				<div class="cash"></div> <div class="sign">+</div> 
-				<div class="acounts_receivable"></div> <div class="sign">+</div>
-				<div class="equipment"></div> <div class="sign">=</div>
-				<div class="accounts_payable"></div> <div class="sign">+</div>
-				<div class="commons_stock"></div> <div class="sign">+</div>
-				<div class="revenue"></div> <div class="sign">-</div>
-				<div class="expenses"></div>
-			</div>
-			<div class ="last_row_totals">
-				<span class="total_left"></span> = 
-				<span class="total_right"></span>
 			</div>
 		</div>
 	</body>
