@@ -4,6 +4,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="main.css">
 
+		<title> Supplemental 2.1.2 - Hayes Delivery Franchise</title>
 		<script type="text/javascript">
 
 			// Set parameters
@@ -143,7 +144,7 @@
 					$('.last_row_totals .total_right').removeClass('good');
 					$('.last_row_totals .total_right').addClass('bad');
 				}
-				$('.sign').css('display','block');
+				$('.sign').css('visibility','visible');
 
 			
 
@@ -159,61 +160,87 @@
 		</script>
 
 	</head>
-	<body>
-		<div id="wrapper">
-			<div id="calculations">
-				<div id="legends">
-					<div class="title">Cash</div>
-					<div class="title">Accounts Receivable</div>
-					<div class="title">Supplies</div>
-					<div class="title">Equipment</div>
-					<div class="title">Accounts Payable</div>
-					<div class="title">Common Stock</div>
-					<div class="title">Revenue</div>
-					<div class="title">Expenses</div>
-					<div class="title">Dividends</div>
-				</div>
-				<!-- <div class="beg_balance">
-					<div class="beg_balance_title">Begining Balance:</div>
-					<div class="cash" ></div>
-					<div class="acounts_receivable"></div>
-					<div class="supplies"></div>
-					<div class="equipment"></div>
-					<div class="accounts_payable"></div>
-					<div class="commons_stock"></div>
-					<div class="revenue"></div>
-					<div class="expenses"></div>
-					<div class="dividends"></div>
-				</div> -->
+	<body><div id="content">
+			<div id="question">
+				<h1>Supplemental Exercise 2.1.2</h1>
+				<h2>Hayes Delivery Franchise</h2>
+				<p>The current year is the first year that Hayes has owned and operated a  delivery service franchise. Hayes had the following transactions during its  first year of operations.</p>
+				<ol>
+				  <li>Issued shares of common stock to investors in  exchange for $200,000 cash.</li>
+				  <li>Borrowed $50,000 from its bank.</li>
+				  <li>Purchased a delivery truck for $80,000 cash.</li>
+				  <li>Received $20,000 for delivery services.</li>
+				  <li>Purchased supplies on account for $2,000.</li>
+				  <li>Paid annual rent for office space of $6,000.</li>
+				  <li>Made deliveries for which is has not yet been  paid (on account) totaling $15,000.</li>
+				  <li>Paid salaries of $40,000 to employees.</li>
+				  <li>Paid a dividend to shareholders of $15,000.</li>
+				</ol>
+				<p>&nbsp;</p>
+				<p><strong>Instructions:</strong> Using the  following tabular analysis, show the effect of each transaction  on the accounting equation.</p>
+			</div>
+			<div id="wrapper">
+				<div id="calculations">
+					<div id="categories">
+						<div></div>
+						<div id="assets">Assets</div>
+						<div class="signs">=</div>
+						<div id="liabilities">Liabilities</div>
+						<div class="signs">+</div>
+						<div id="equity">Stockholders' Equity</div>
+					</div>
+					<div id="legends">
+						<div class="title"><strong>Transactions:</strong></div>
+						<div class="title">Cash</div>
+						<div class="title signs">+</div>
+						<div class="title">Accounts Receivable</div>
+						<div class="title signs">+</div>
+						<div class="title">Supplies</div>
+						<div class="title signs">+</div>
+						<div class="title">Equipment</div>
+						<div class="title signs">=</div>
+						<div class="title">Accounts Payable</div>
+						<div class="title signs">+</div>
+						<div class="title">Common Stock</div>
+						<div class="title signs">+</div>
+						<div class="title span">Retained Earnings</div>
+						<div class="title sub">Revenue</div>
+						<div class="title signs sub">-</div>
+						<div class="title sub">Expenses</div>
+						<div class="title signs sub">-</div>
+						<div class="title sub">Dividends</div>
+					</div>
 
-				<div id="1" class="row">
-					<div class="add_row"></div>
-					<div class="cash"><input type="text"></div>
-					<div class="acounts_receivable"><input type="text"></div>
-					<div class="supplies"><input type="text"></div>
-					<div class="equipment"><input type="text"></div>
-					<div class="accounts_payable"><input type="text"></div>
-					<div class="commons_stock"><input type="text"></div>
-					<div class="revenue"><input type="text"></div>
-					<div class="expenses"><input type="text"></div>
-					<div class="dividends"><input type="text"></div>
+					<div id="1" class="row">
+						<div class="add_row"></div>
+						<div class="cash"><input type="text"></div>
+						<div class="acounts_receivable"><input type="text"></div>
+						<div class="supplies"><input type="text"></div>
+						<div class="equipment"><input type="text"></div>
+						<div class="accounts_payable"><input type="text"></div>
+						<div class="commons_stock"><input type="text"></div>
+						<div class="revenue"><input type="text"></div>
+						<div class="expenses"><input type="text"></div>
+						<div class="dividends"><input type="text"></div>
+					</div>
 				</div>
-			</div>
-			<div class ="last_row">
-				<div class="last_row_title">&nbsp;</div>  
-				<div class="cash"></div> <div class="sign">+</div> 
-				<div class="acounts_receivable"></div> <div class="sign">+</div>
-				<div class="supplies"></div><div class="sign">+</div>
-				<div class="equipment"></div> <div class="sign">=</div>
-				<div class="accounts_payable"></div> <div class="sign">+</div>
-				<div class="commons_stock"></div> <div class="sign">+</div>
-				<div class="revenue"></div> <div class="sign">-</div>
-				<div class="expenses"></div><div class="sign">-</div>
-				<div class="dividends"></div>
-			</div>
-			<div class ="last_row_totals">
-				<span class="total_left"></span> = 
-				<span class="total_right"></span>
+				<div class ="last_row">
+					<div class="last_row_title">&nbsp;</div>  
+					<div class="cash"></div> <div class="sign">+</div> 
+					<div class="acounts_receivable"></div> <div class="sign">+</div>
+					<div class="supplies"></div><div class="sign">+</div>
+					<div class="equipment"></div> <div class="sign">=</div>
+					<div class="accounts_payable"></div> <div class="sign">+</div>
+					<div class="commons_stock"></div> <div class="sign">+</div>
+					<div class="revenue"></div> <div class="sign">-</div>
+					<div class="expenses"></div><div class="sign">-</div>
+					<div class="dividends"></div>
+				</div>
+				<div class ="last_row_totals">
+					<span class="total_left"></span> 
+					<span class="sign">=</span> 
+					<span class="total_right"></span>
+				</div>
 			</div>
 		</div>
 	</body>

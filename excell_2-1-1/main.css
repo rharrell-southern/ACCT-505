@@ -37,16 +37,16 @@ input {
 	font-weight: bold;
 }
 #categories div.signs{
-	width:25px;
+	width:20px;
 }
 #categories div#assets {
-	width:318px;
+	width:322px;
 }
 #categories div#liabilities {
-	width:84px;
+	width:89px;
 }
 #categories div#equity {
-	width:320px;
+	width:321px;
 	border-right:1px solid #666;
 }
 .row,
@@ -65,10 +65,26 @@ div.row div {
 	border-right: 0px;
 	height: 20px;
 }
+#legends .title:first-child {
+	width: 90px;
+}
+#legends .title:nth-child(2){
+	width:80px;
+}
+#legends .title:last-child {
+	width:79px;
+}
 #legends .title {
 	height: 40px;
+	width:69px;
 	border-bottom:0px;
 	background-color:lightgreen;
+	text-align: center;
+}
+#legends .signs {
+	padding:3px 0px;
+	width:20px;
+	text-align: center;
 }
 #legends .title:last-child,
 div.beg_balance div:last-child ,
