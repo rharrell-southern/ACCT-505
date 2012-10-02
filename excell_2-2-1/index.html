@@ -3,7 +3,7 @@
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="main.css">
-
+		<title> Supplemental 2.2.1 - Powell Company, Inc.</title>
 		<script type="text/javascript">
 
 			// Set parameters
@@ -95,6 +95,9 @@
 			})
 			function addCol(column) {
 				rowTotal = 0;
+				if (hasBegBal) {
+					rowTotal += parseFloat($('.beg_balance div'+ column).html());
+				}
 				$('.row '+ column +' input').each(function(){
 					var value = $(this).val().replace("(","-");
 					value=value.replace(")","");
@@ -142,63 +145,97 @@
 					$('.last_row_totals .total_right').removeClass('good');
 					$('.last_row_totals .total_right').addClass('bad');
 				}
-				$('.sign').css('display','block');
+				$('.sign').css('visibility','visible');
 
 			}	
 		</script>
 
 	</head>
 	<body>
-		<div id="wrapper">
-			<div id="calculations">
-				<div id="legends">
-					<div class="title" >Cash</div>
-					<div class="title">Accounts Receivable</div>
-					<div class="title">Inventory</div>
-					<div class="title">Equipment</div>
-					<div class="title">Accounts Payable</div>
-					<div class="title">Common Stock</div>
-					<div class="title">Revenue</div>
-					<div class="title">Expenses</div>
+		<div id="content">
+			<div id="question">
+				<h1>Supplemental Exercise 2.2.1</h1>
+				<h2>Powell Company, Inc.</h2>
+				<p>The Powell Company had the following transactions during the current  month.</p>
+				<ol>
+				  <li>Earned $12,000 for services provided. $3,000 was  received in cash, the remainder is on account.</li>
+				  <li>Purchased $5,000 of office furniture. $500 cash  was paid at the time of the purchase, the remaining balance is on account.</li>
+				  <li>Purchased $10,000 of inventory items from  wholesaler. $1,000 was paid at the time of deliver, the balance is on account.</li>
+				  <li>Collected $5,500 of the receivables from (1)  above.</li>
+				  <li>Paid the balance due on the office furniture  from (2) above</li>
+				  <li>Paid the balance due on the inventory purchase  in (3) above.</li>
+				</ol>
+				<p>&nbsp;</p>
+				<p><strong>Instructions:</strong> Show the  effects of the previous transactions on the accounting equation using the  following format.</p>
+			</div>
+			<div id="wrapper">
+				<div id="calculations">
+					<div id="categories">
+						<div></div>
+						<div id="assets">Assets</div>
+						<div class="signs">=</div>
+						<div id="liabilities">Liabilities</div>
+						<div class="signs">+</div>
+						<div id="equity">Stockholders' Equity</div>
+					</div>
+					<div id="legends">
+						<div class="title"><strong>Transactions:</strong></div>
+						<div class="title" >Cash</div>
+						<div class="title signs">+</div>
+						<div class="title">Accounts Receivable</div>
+						<div class="title signs">+</div>
+						<div class="title">Inventory</div>
+						<div class="title signs">+</div>
+						<div class="title">Equipment</div>
+						<div class="title signs">=</div>
+						<div class="title">Accounts Payable</div>
+						<div class="title signs">+</div>
+						<div class="title">Common Stock</div>
+						<div class="title signs">+</div>
+						<div class="title">Revenue</div>
+						<div class="title signs">+</div>
+						<div class="title">Expenses</div>
+					</div>
+					<div class="beg_balance">
+						<div class="beg_balance_title">Beg. Bal.:</div>
+						<div class="cash" ></div>
+						<div class="acounts_receivable"></div>
+						<div class="inventory"></div>
+						<div class="equipment"></div>
+						<div class="accounts_payable"></div>
+						<div class="commons_stock"></div>
+						<div class="revenue"></div>
+						<div class="expenses"></div>
+					</div>
+
+					<div id="1" class="row">
+						<div class="add_row"></div>
+						<div class="cash"><input type="text"></div>
+						<div class="acounts_receivable"><input type="text"></div>
+						<div class="inventory"><input type="text"></div>
+						<div class="equipment"><input type="text"></div>
+						<div class="accounts_payable"><input type="text"></div>
+						<div class="commons_stock"><input type="text"></div>
+						<div class="revenue"><input type="text"></div>
+						<div class="expenses"><input type="text"></div>
+					</div>
 				</div>
-				<div class="beg_balance">
-					<div class="beg_balance_title">Begining Balance:</div>
-					<div class="cash" ></div>
-					<div class="acounts_receivable"></div>
-					<div class="inventory"></div>
-					<div class="equipment"></div>
-					<div class="accounts_payable"></div>
-					<div class="commons_stock"></div>
-					<div class="revenue"></div>
+				<div class ="last_row">
+					<div class="last_row_title">&nbsp;</div>  
+					<div class="cash"></div> <div class="sign">+</div> 
+					<div class="acounts_receivable"></div> <div class="sign">+</div>
+					<div class="inventory"></div> <div class="sign">+</div>
+					<div class="equipment"></div> <div class="sign">=</div>
+					<div class="accounts_payable"></div> <div class="sign">+</div>
+					<div class="commons_stock"></div> <div class="sign">+</div>
+					<div class="revenue"></div> <div class="sign">-</div>
 					<div class="expenses"></div>
 				</div>
-
-				<div id="1" class="row">
-					<div class="add_row"></div>
-					<div class="cash"><input type="text"></div>
-					<div class="acounts_receivable"><input type="text"></div>
-					<div class="inventory"><input type="text"></div>
-					<div class="equipment"><input type="text"></div>
-					<div class="accounts_payable"><input type="text"></div>
-					<div class="commons_stock"><input type="text"></div>
-					<div class="revenue"><input type="text"></div>
-					<div class="expenses"><input type="text"></div>
+				<div class ="last_row_totals">
+					<span class="total_left"></span>
+					<span class="sign">=</span> 
+					<span class="total_right"></span>
 				</div>
-			</div>
-			<div class ="last_row">
-				<div class="last_row_title">&nbsp;</div>  
-				<div class="cash"></div> <div class="sign">+</div> 
-				<div class="acounts_receivable"></div> <div class="sign">+</div>
-				<div class="inventory"></div> <div class="sign">+</div>
-				<div class="equipment"></div> <div class="sign">=</div>
-				<div class="accounts_payable"></div> <div class="sign">+</div>
-				<div class="commons_stock"></div> <div class="sign">+</div>
-				<div class="revenue"></div> <div class="sign">-</div>
-				<div class="expenses"></div>
-			</div>
-			<div class ="last_row_totals">
-				<span class="total_left"></span> = 
-				<span class="total_right"></span>
 			</div>
 		</div>
 	</body>
