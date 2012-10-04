@@ -69,3 +69,9 @@ div.last_row_totals {
 	border:1px solid #006600;
 	color: #006600;
 }
+
+.line {
+	height:25px;
+	padding:2px;
+    border-left:1px solid black;
+}
