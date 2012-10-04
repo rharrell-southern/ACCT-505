@@ -3,6 +3,7 @@ body {
 	background-color: #999;
 }
 #question {
+	width:880px;
 	padding:20px;
 }
 #content {
@@ -12,9 +13,15 @@ body {
 	margin:0px auto;
 }
 #wrapper {
+	width:919px;
+	overflow: auto;
+	margin:0px auto;
+	padding:25px 0px;
+	border:1px dashed #666;
+}
+#outer_calc {
 	width:890px;
 	margin:0px auto;
-	padding-bottom:25px;
 }
 .beg_balance_title, .last_row_title {
 	font-weight: bolder;
@@ -139,4 +146,19 @@ div.last_row_totals {
 	background-color: #CCFFCC;
 	border:1px solid #006600;
 	color: #006600;
+}
+
+@media print {
+
+	#content {
+	}
+	#wrapper {
+		border:0px;
+	}
+	#outer_calc {
+	}
+	#question input, 
+	button {
+		display: none;
+	}
 }

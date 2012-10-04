@@ -3,18 +3,26 @@ body {
 	background-color: #999;
 }
 #question {
+	width:880px;
 	padding:20px;
 }
 #content {
-	width:1200px;
+	width:920px;
 	font-size: 13px;
 	background-color: #FFF;
 	margin:0px auto;
 }
 #wrapper {
+	width:919px;
+	overflow: auto;
+	margin:0px auto;
+	padding:25px 0px;
+	border:1px dashed #666;
+}
+#outer_calc {
 	width:1111px;
 	margin:0px auto;
-	padding-bottom:25px;
+	padding:20px;
 }
 .beg_balance_title, .last_row_title {
 	font-weight: bolder;
@@ -56,7 +64,7 @@ input {
 	clear:both;
 }
 #legends .title,
-div.beg_balance div ,
+div.beg_balance div,
 div.row div {
 	float: left;
 	padding:3px 10px;
@@ -147,4 +155,21 @@ div.last_row_totals {
 	background-color: #CCFFCC;
 	border:1px solid #006600;
 	color: #006600;
+}
+@media print {
+
+	#content {
+		width:1221px;
+	}
+	#wrapper {
+		width:1221px;
+		border:0px;
+	}
+	#outer_calc {
+		width:1111px;
+	}
+	#question input, 
+	button {
+		display: none;
+	}
 }
