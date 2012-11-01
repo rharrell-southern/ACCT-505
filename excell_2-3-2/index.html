@@ -11,13 +11,13 @@
 		<script>
 		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense");
 		var num_rows = 1;
-		// Set values for select boxes
+
 
 			function add_row(){
 
 				num_rows++;
-				$('.row').append(function(){
-					var html = $('.row:first').html();
+				$('#container').append(function(){
+					var html = $('#container div.row:first').html();
 					return '<div id="'+ num_rows +'" class="row">'+ html +'</div>';
 				});
 				$('.add_row').html('&nbsp;');
@@ -25,53 +25,56 @@
 				$('.row div.add_row').append(function(){
 					return '<span class="num">'+ $(this).parent().attr('id') + '</span>';
 				});
+
+				$('.date_1').datepicker();
 			}
 
 			$(function(){
-				$('#date_1').datepicker();
+				$('.date_1').datepicker();
+					
+				
 
 				//Generate options
 				for(var i = 0; i<options.length;i++) {
 					
 					var html = '<option>' + options[i] + '</option>';
-					alert(options[i]);
 					$('select').append(html);
 				}
 
 				$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
 
-
-				
 			});
 
 		</script>
 	</head>
 
 	<body>
-		<div id="1" class="row">
-			<div class="add_row"></div>
-			<div id="date_excell">
-				<input type="text" class="span2" value="02-16-2012" id="date_1" >
+		<div id="container">
+			<div id="1" class="row">
+				<div class="add_row"></div>
+				<div id="date_excell">
+					<input type="text" value="02-16-2012" class="date_1" >
+				</div>
+
+				<div id="description">
+					<select>
+						<option>Choose a description</option>
+					</select>
+
+					<select>
+						<option>Choose a description</option>
+					</select>
+				</div>
+
+				<div id="debit">
+					$<input type="text">
+				</div>
+
+				<div id="credit">
+					$<input type="text">
+				</div>
+
 			</div>
-
-			<div id="description">
-				<select>
-					<option>Choose a description</option>
-				</select>
-
-				<select>
-					<option>Choose a description</option>
-				</select>
-			</div>
-
-			<div id="debit">
-
-			</div>
-
-			<div id="credit">
-
-			</div>
-
 		</div>
 
 	</body>

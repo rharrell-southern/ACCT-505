@@ -14,3 +14,7 @@ body{
 #description {
 	
 }
+
+input[type="text"]{
+	width:60px;
+}
