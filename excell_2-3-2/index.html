@@ -12,6 +12,16 @@
 		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense");
 		var num_rows = 1;
 
+		// Column names
+			var columns = {
+				0:'.date_1',
+				1:'.description_1',
+				2:'.description_2',
+				3:'.amount'
+				
+			};
+
+
 		// Set solution tables
 		var solution = new Array();
 		solution[0] = ['0',0,0,0];
@@ -38,6 +48,27 @@
 			$('.date_1').datepicker();
 		}
 
+		function loop(column) {
+			
+			$('.row '+ column ).each(function(i,n){
+				if(column == ".description_1" || column== ".description_2") {
+					var e = n.options[n.selectedIndex]
+					alert(e.text);
+				}else{
+					alert(n.value);
+				}
+				
+			});
+		    
+		}
+
+		function calculations(){
+			$.each(columns,function(i,n){
+				loop(n);
+			})
+		}
+
+
 		$(function(){
 			$('.date_1').datepicker();
 				
@@ -51,6 +82,15 @@
 			}
 
 			$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
+
+			$('input').live("focusout", function(){
+				calculations();
+			});
+
+			$('select').live("focusout", function(){
+				calculations();
+			});
+
 
 		});
 
@@ -66,17 +106,17 @@
 				</div>
 
 				<div id="description">
-					<select>
-						<option>Choose a description</option>
+					<select class="description_1">
+						<option >Choose a description</option>
 					</select>
 					<br />
-					<select>
-						<option>Choose a description</option>
+					<select class="description_2">
+						<option >Choose a description</option>
 					</select>
 				</div>
 
 				<div id="values">
-					$<input type="text">
+					$<input class="amount" type="text">
 					<br />
 					$<input type="text">
 				</div>
