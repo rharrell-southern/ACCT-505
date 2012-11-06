@@ -12,38 +12,47 @@
 		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense");
 		var num_rows = 1;
 
+		// Set solution tables
+		var solution = new Array();
+		solution[0] = ['0',0,0,0];
+		solution[1] = [0,1,0,0];
+		solution[2] = [0,2,0,0];
+		solution[3] = [0,3,0,0];
+		solution[4] = [1,4,0,0];
+		solution[5] = [0,0,0,0];
+		solution[6] = [1,5,0,0];
 
-			function add_row(){
+		function add_row(){
 
-				num_rows++;
-				$('#container').append(function(){
-					var html = $('#container div.row:first').html();
-					return '<div id="'+ num_rows +'" class="row">'+ html +'</div>';
-				});
-				$('.add_row').html('&nbsp;');
-				$('.row:last div.add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
-				$('.row div.add_row').append(function(){
-					return '<span class="num">'+ $(this).parent().attr('id') + '</span>';
-				});
+			num_rows++;
+			$('#container').append(function(){
+				var html = $('#container div.row:first').html();
+				return '<div id="'+ num_rows +'" class="row">'+ html +'</div>';
+			});
+			$('.add_row').html('&nbsp;');
+			$('.row:last div.add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
+			$('.row div.add_row').append(function(){
+				return '<span class="num">'+ $(this).parent().attr('id') + '</span>';
+			});
 
-				$('.date_1').datepicker();
+			$('.date_1').datepicker();
+		}
+
+		$(function(){
+			$('.date_1').datepicker();
+				
+			
+
+			//Generate options
+			for(var i = 0; i<options.length;i++) {
+				
+				var html = '<option>' + options[i] + '</option>';
+				$('select').append(html);
 			}
 
-			$(function(){
-				$('.date_1').datepicker();
-					
-				
+			$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
 
-				//Generate options
-				for(var i = 0; i<options.length;i++) {
-					
-					var html = '<option>' + options[i] + '</option>';
-					$('select').append(html);
-				}
-
-				$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
-
-			});
+		});
 
 		</script>
 	</head>
@@ -53,7 +62,7 @@
 			<div id="1" class="row">
 				<div class="add_row"></div>
 				<div id="trans_date">
-					<input type="text" value="02-16-2012" class="date_1" >
+					<input type="text" value="02/16/2012" class="date_1" >
 				</div>
 
 				<div id="description">
