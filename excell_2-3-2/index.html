@@ -25,13 +25,13 @@
 
 		// Set solution tables
 		var solution = new Array();
-		solution[0] = ['01/04/2012','Accounts Payable','Cash','900'];
-		solution[1] = [0,1,0,0];
-		solution[2] = [0,2,0,0];
-		solution[3] = [0,3,0,0];
-		solution[4] = [1,4,0,0];
-		solution[5] = [0,0,0,0];
-		solution[6] = [1,5,0,0];
+		solution[0] = ['01/04/2012',options[1],options[0],900];
+		solution[1] = ['01/07/2012',options[2],options[3],8300];
+		solution[2] = ['01/08/2012',options[4],options[1],725];
+		solution[3] = ['01/09/2012',options[5],options[0],1600];
+		solution[4] = ['01/17/2012',options[6],options[0],680];
+		solution[5] = ['01/22/2012',options[8],options[1],800];
+		solution[6] = ['01/29/2012',options[7],options[0],1800];
 
 		function add_row(){
 
@@ -47,38 +47,58 @@
 			});
 
 			$('.date_1').datepicker();
+
+			for(var i = 0; i < 4;i++) {
+				$('#'+ num_rows +'.row select.' + i).removeClass('bad');
+				$('#'+ num_rows +'.row select.' + i).removeClass('good');
+				$('#'+ num_rows +'.row input.' + i).removeClass('bad');
+				$('#'+ num_rows +'.row input.' + i).removeClass('good');
+			}
 		}
 
-		function compare(column) {
+
+		function compare (){
+			console.log('Compare!' + solution.length);
+			for(i = 0; i < solution.length; i++){
+
+				console.log(i);
+				$('#'+ (i+1) +'.row select option:selected').each(function (x,val){
+					x++;
+					console.log(solution[i][x] + " = " + val.value);
+					if(solution[i][x] == val.value){
+						$('#'+ (i+1) +'.row select.' + x).removeClass('bad');
+						$('#'+ (i+1) +'.row select.' + x).addClass('good');
+					} else {
+						$('#'+ (i+1) +'.row select.' + x).removeClass('good');
+						$('#'+ (i+1) +'.row select.' + x).addClass('bad');
+					}
+				});
+				$('#'+ (i+1) +'.row input').each(function (x,val){
+					if (x > 0) {
+						n = 3;
+					} else {
+						n = x;
+					}
+					console.log(solution[i][n] + " = " + $(val).val());
+					if(solution[i][n] == $(val).val()){
+						$('#'+ (i+1) +'.row input.' + x).removeClass('bad');
+						$('#'+ (i+1) +'.row input.' + x).addClass('good');
+					} else {
+						$('#'+ (i+1) +'.row input.' + x).removeClass('good');
+						$('#'+ (i+1) +'.row input.' + x).addClass('bad');
+					}
+				});
+			}
 			
-			$('.row '+ column ).each(function(i,n){
-				for(x=0;x < solution.length;x++){
-					if(column == ".description_1" || column== ".description_2") {
-						var e = n.options[n.selectedIndex]
-						if(solution[i][x] == e.text){console.log(true);}
-						else{console.log(false);}
-					}else{
-						if(solution[i][x] == n.value){console.log(true);}
-						else{console.log(false);}
-					}	
-				
-				}
-				
-			});
-		    
-		}
-
-		function calculations(){
-			$.each(columns,function(i,n){
-				compare(n);
-			})
 		}
 
 
 		$(function(){
 			$('.date_1').datepicker();
 				
-			
+			$(window).bind('beforeunload', function(){
+				return 'Leaving this page will wipe all your data.';
+			});
 
 			//Generate options
 			for(var i = 0; i<options.length;i++) {
@@ -90,11 +110,11 @@
 			$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
 
 			$('input').live("focusout", function(){
-				calculations();
+				compare();
 			});
 
 			$('select').live("focusout", function(){
-				calculations();
+				compare();
 			});
 
 
@@ -104,31 +124,39 @@
 	</head>
 
 	<body>
+	<div id="content">
+		<div id ="legends">
+			<div id ="date" class="title">Date</div>
+			<div id ="des" class="title">Desrciption</div>
+			<div id="debit" class="title">Debit</div>
+			<div id ="credit" class="title">Credit</div>
+		</div>
 		<div id="container">
 			<div id="1" class="row">
 				<div class="add_row"></div>
 				<div id="trans_date">
-					<input type="text" value="" class="date_1" >
+					<input type="text" value="" class="date_1 0" >
 				</div>
 
 				<div id="description">
-					<select class="description_1">
+					<select class="description_1 1">
 						<option >Choose a description</option>
 					</select>
 					<br />
-					<select class="description_2">
+					<select class="description_2 2">
 						<option >Choose a description</option>
 					</select>
 				</div>
 
 				<div id="values">
-					$<input class="amount_1" type="text">
+					$<input class="amount 1" type="text">
 					<br />
-					$<input class="amount_2" type="text">
+					$<input class="amount 2" type="text">
 				</div>
 
 			</div>
 		</div>
+	</div>
 
 	</body>
 
