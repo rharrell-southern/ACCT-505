@@ -1,0 +1,84 @@
+body{
+
+}
+
+#content {
+	width:900px;
+}
+#container {
+	clear:both;
+}
+.add_row, #trans_date, #description, #values {
+	float:left;
+	padding:10px;
+}
+.add_row {
+	width:100px;
+	text-align: right;
+}
+.add_row button {
+	margin-right: 10px;
+}
+#trans_date {
+
+}
+#trans_date input[type=text] {
+	width:90px;
+	height: 30px;
+	line-height: 30px;
+}
+.row {
+	padding-left: 50px;
+}
+
+#description select:nth-child(1) {
+	width: 250px;
+}
+#description select:nth-child(3) {
+	margin-left:20px;
+	width: 230px;
+}
+#values {
+	font-size: 140%;
+	text-align: right;
+}
+#values input[type=text] {
+	width:60px;
+	height: 30px;
+	line-height: 30px;
+}
+#values input[type=text]:nth-child(1) {
+	margin-right:70px;
+}
+
+.bad {
+	font-weight: bold !important;;
+	background-color: #FFCCCC !important;
+	border:1px solid #660000 !important;;
+	color: #660000 !important;;
+}
+
+.good {
+	font-weight: bold !important;;
+	background-color: #CCFFCC !important;;
+	border:1px solid #006600 !important;;
+	color: #006600 !important;;
+}
+
+#legends .title  {
+	float: left;
+	padding-left: 80px;
+	width:90px;
+}
+
+#legends {
+	margin-left:100px;
+}
+
+#debit.title{
+	padding-left:125px !important;
+}
+
+#credit.title{
+	padding-left: 5px !important;
+}
