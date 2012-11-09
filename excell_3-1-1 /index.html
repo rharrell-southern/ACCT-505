@@ -1,0 +1,163 @@
+<html>
+
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.3/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datepicker.js"></script>
+		<link href="css/main.css" rel="stylesheet">
+		<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+		<link href="css/datepicker.css" rel="stylesheet">
+		<title></title>
+		<script>
+		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense");
+		var num_rows = 1;
+
+		// Column names
+			var columns = {
+				0:'.date_1',
+				1:'.description_1',
+				2:'.description_2',
+				3:'.amount_1',
+				4:'.amount_2'
+				
+			};
+
+
+		// Set solution tables
+		var solution = new Array();
+		solution[0] = ['04/30/2012',options[1],options[0],1450];
+		solution[1] = ['04/30/2012',options[2],options[3],225];
+		solution[2] = ['04/30/2012',options[4],options[1],125];
+		solution[3] = ['04/30/2012',options[5],options[0],500];
+		solution[4] = ['04/30/2012',options[6],options[0],1650];
+		solution[5] = ['04/30/2012',options[8],options[1],150];
+		solution[6] = ['04/30/2012',options[7],options[0],4100];
+
+		function add_row(){
+
+			num_rows++;
+			$('#container').append(function(){
+				var html = $('#container div.row:first').html();
+				return '<div id="'+ num_rows +'" class="row">'+ html +'</div>';
+			});
+			$('.add_row').html('&nbsp;');
+			$('.row:last div.add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
+			$('.row div.add_row').append(function(){
+				return '<span class="num">'+ $(this).parent().attr('id') + '</span>';
+			});
+
+			$('.date_1').datepicker();
+
+			for(var i = 0; i < 4;i++) {
+				$('#'+ num_rows +'.row select.' + i).removeClass('bad');
+				$('#'+ num_rows +'.row select.' + i).removeClass('good');
+				$('#'+ num_rows +'.row input.' + i).removeClass('bad');
+				$('#'+ num_rows +'.row input.' + i).removeClass('good');
+			}
+		}
+
+
+		function compare (){
+			console.log('Compare!' + solution.length);
+			for(i = 0; i < solution.length; i++){
+
+				console.log(i);
+				$('#'+ (i+1) +'.row select option:selected').each(function (x,val){
+					x++;
+					console.log(solution[i][x] + " = " + val.value);
+					if(solution[i][x] == val.value){
+						$('#'+ (i+1) +'.row select.' + x).removeClass('bad');
+						$('#'+ (i+1) +'.row select.' + x).addClass('good');
+					} else {
+						$('#'+ (i+1) +'.row select.' + x).removeClass('good');
+						$('#'+ (i+1) +'.row select.' + x).addClass('bad');
+					}
+				});
+				$('#'+ (i+1) +'.row input').each(function (x,val){
+					if (x > 0) {
+						n = 3;
+					} else {
+						n = x;
+					}
+					console.log(solution[i][n] + " = " + $(val).val());
+					if(solution[i][n] == $(val).val()){
+						$('#'+ (i+1) +'.row input.' + x).removeClass('bad');
+						$('#'+ (i+1) +'.row input.' + x).addClass('good');
+					} else {
+						$('#'+ (i+1) +'.row input.' + x).removeClass('good');
+						$('#'+ (i+1) +'.row input.' + x).addClass('bad');
+					}
+				});
+			}
+			
+		}
+
+
+		$(function(){
+			$('.date_1').datepicker();
+				
+			$(window).bind('beforeunload', function(){
+				return 'Leaving this page will wipe all your data.';
+			});
+
+			//Generate options
+			for(var i = 0; i<options.length;i++) {
+				
+				var html = '<option>' + options[i] + '</option>';
+				$('select').append(html);
+			}
+
+			$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
+
+			$('input').live("focusout", function(){
+				compare();
+			});
+
+			$('select').live("focusout", function(){
+				compare();
+			});
+
+
+		});
+
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<div id ="legends">
+			<div id ="date" class="title">Date</div>
+			<div id ="des" class="title">Desrciption</div>
+			<div id="debit" class="title">Debit</div>
+			<div id ="credit" class="title">Credit</div>
+		</div>
+		<div id="container">
+			<div id="1" class="row">
+				<div class="add_row"></div>
+				<div id="trans_date">
+					<input type="text" value="" class="date_1 0" >
+				</div>
+
+				<div id="description">
+					<select class="description_1 1">
+						<option >Choose a description</option>
+					</select>
+					<br />
+					<select class="description_2 2">
+						<option >Choose a description</option>
+					</select>
+				</div>
+
+				<div id="values">
+					$<input class="amount 1" type="text">
+					<br />
+					$<input class="amount 2" type="text">
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	</body>
+
+</html>
