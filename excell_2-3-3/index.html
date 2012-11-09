@@ -7,7 +7,7 @@
 		<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
 		<title></title>
 		<script>
-		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings, April 1","Maintenance and Repairs Expense");
+		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings, April 1","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense");
 		var num_rows = 1;
 
 		// Column names
@@ -17,23 +17,23 @@
 				2:'.credit'
 			};
 
-
+		
 		// Set solution tables
 		var solution = new Array();
-		solution[0] = [options[1],options[0],900];
-		solution[1] = [options[1],options[0],900];
-		solution[2] = [options[1],options[0],900];
-		solution[3] = [options[1],options[0],900];
-		solution[4] = [options[1],options[0],900];
-		solution[5] = [options[1],options[0],900];
-		solution[6] = [options[1],options[0],900];
-		solution[7] = [options[1],options[0],900];
-		solution[8] = [options[1],options[0],900];
-		solution[9] = [options[1],options[0],900];
-		solution[10] = [options[1],options[0],900];
-		solution[11] = [options[1],options[0],900];
-		solution[12] = [options[1],options[0],900];
-		solution[13] = [options[1],options[0],900];
+		solution[0] = [options[0],12424,0];
+		solution[1] = [options[2],13400,0];
+		solution[2] = [options[5],59360,0];
+		solution[3] = [options[7],2200,0];
+		solution[4] = [options[1],0,8400];
+		solution[5] = [options[14],0,820];
+		solution[6] = [options[11],0,28450];
+		solution[7] = [options[15],0,40000];
+		solution[8] = [options[12],0,5200];
+		solution[9] = [options[9],700,0];
+		solution[10] = [options[3],0,15500];
+		solution[11] = [options[13],1958,0];
+		solution[12] = [options[16],900,0];
+		solution[13] = [options[10],7428,0];
 
 		function add_row(){
 
@@ -49,7 +49,7 @@
 			});
 
 
-			for(var i = 0; i < 4;i++) {
+			for(var i = 0; i < 3;i++) {
 				$('#'+ num_rows +'.row select.' + i).removeClass('bad');
 				$('#'+ num_rows +'.row select.' + i).removeClass('good');
 				$('#'+ num_rows +'.row input.' + i).removeClass('bad');
@@ -57,14 +57,13 @@
 			}
 		}
 
-
 		function compare (){
+			var totalDebit = 0;
+			var totalCredit = 0;
 			console.log('Compare!' + solution.length);
 			for(i = 0; i < solution.length; i++){
 
-				console.log(i);
 				$('#'+ (i+1) +'.row select option:selected').each(function (x,val){
-					x++;
 					console.log(solution[i][x] + " = " + val.value);
 					if(solution[i][x] == val.value){
 						$('#'+ (i+1) +'.row select.' + x).removeClass('bad');
@@ -75,34 +74,57 @@
 					}
 				});
 				$('#'+ (i+1) +'.row input').each(function (x,val){
-					if (x > 0) {
-						n = 3;
-					} else {
-						n = x;
-					}
+					n = x + 1;
 					console.log(solution[i][n] + " = " + $(val).val());
-					if(solution[i][n] == $(val).val()){
-						$('#'+ (i+1) +'.row input.' + x).removeClass('bad');
-						$('#'+ (i+1) +'.row input.' + x).addClass('good');
-					} else {
-						$('#'+ (i+1) +'.row input.' + x).removeClass('good');
-						$('#'+ (i+1) +'.row input.' + x).addClass('bad');
+					if($(val).val() == ''){
+						var tmpVal = 0;
+					}else{
+						var tmpVal = $(val).val();
 					}
+					if (n == 1) {
+						totalDebit += parseFloat(tmpVal);
+					} else if (n == 2) {
+						totalCredit += parseFloat(tmpVal);
+					}
+
+					if(solution[i][n] == tmpVal){
+						$('#'+ (i+1) +'.row input.' + n).removeClass('bad');
+						$('#'+ (i+1) +'.row input.' + n).addClass('good');
+					} else {
+						$('#'+ (i+1) +'.row input.' + n).removeClass('good');
+						$('#'+ (i+1) +'.row input.' + n).addClass('bad');
+					}
+
+					if(totalDebit == totalCredit && totalDebit == 98370 && totalCredit == 98370){
+						$('#totalDebit').removeClass('bad');
+						$('#totalDebit').addClass('good');
+						$('#totalCredit').removeClass('bad');
+						$('#totalCredit').addClass('good');
+					}else{
+						$('#totalDebit').removeClass('good');
+						$('#totalDebit').addClass('bad');
+						$('#totalCredit').removeClass('good');
+						$('#totalCredit').addClass('bad');
+					}
+
+
 				});
 			}
-			
+
+			$("#totalDebit").html(totalDebit);
+			$("#totalCredit").html(totalCredit);
 		}
 
 
 		$(function(){
 				
-			$(window).bind('beforeunload', function(){
+			/*$(window).bind('beforeunload', function(){
 				return 'Leaving this page will wipe all your data.';
-			});
+			});*/
 
 			//Generate options
 			for(var i = 0; i<options.length;i++) {
-				
+				console.log(i, options[i]);
 				var html = '<option>' + options[i] + '</option>';
 				$('select').append(html);
 			}
@@ -134,20 +156,18 @@
 			<div id="1" class="row">
 				<div class="add_row"></div>
 				<div id="account">
-					<select class="account_1 1">
+					<select class="account_1 0">
 						<option>Choose a description</option>
 					</select>
+
+					$<input id="deb" class="amount 1 debit" type="text">
+		
+					$<input class="amount 2 credit" type="text">
 				</div>
-
-
-				<div id="values">
-					$<input class="amount 1" type="text">
-					<br />
-					$<input class="amount 2" type="text">
-				</div>
-
 			</div>
 		</div>
+			<div id="totalDebit"></div>
+			<div id="totalCredit"></div>
 	</div>
 
 	</body>
