@@ -7,7 +7,8 @@
 		<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
 		<title></title>
 		<script>
-		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense");
+		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies Expense","Supplies Payable","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense","Office Supplies","Unearned Service Revenue","Rent Expense");
+
 		var num_rows = 1;
 
 		// Column names
@@ -20,20 +21,19 @@
 		
 		// Set solution tables
 		var solution = new Array();
-		solution[0] = [options[0],12424,0];
-		solution[1] = [options[2],13400,0];
-		solution[2] = [options[5],59360,0];
-		solution[3] = [options[7],2200,0];
-		solution[4] = [options[1],0,8400];
-		solution[5] = [options[14],0,820];
-		solution[6] = [options[11],0,28450];
-		solution[7] = [options[15],0,40000];
-		solution[8] = [options[12],0,5200];
-		solution[9] = [options[9],700,0];
-		solution[10] = [options[3],0,15500];
-		solution[11] = [options[13],1958,0];
-		solution[12] = [options[16],900,0];
-		solution[13] = [options[10],7428,0];
+		solution[0] = [options[0],8300,0];
+		solution[1] = [options[2],6240,0];
+		solution[2] = [options[6],2300,0];
+		solution[3] = [options[7],12770,0];
+		solution[4] = [options[1],0,1600];
+		solution[5] = [options[16],0,4250];
+		solution[6] = [options[20],0,0];
+		solution[7] = [options[17],0,23000];
+		solution[8] = [options[3],0,6300];
+		solution[9] = [options[12],4250,0];
+		solution[10] = [options[2100],730,0];
+		solution[11] = [options[11],560,0];
+	
 
 		function add_row(){
 
@@ -95,7 +95,7 @@
 						$('#'+ (i+1) +'.row input.' + n).addClass('bad');
 					}
 
-					if(totalDebit == totalCredit && totalDebit == 98370 && totalCredit == 98370){
+					if(totalDebit == totalCredit && totalDebit == 35150 && totalCredit == 35150){
 						$('#totalDebit').removeClass('bad');
 						$('#totalDebit').addClass('good');
 						$('#totalCredit').removeClass('bad');

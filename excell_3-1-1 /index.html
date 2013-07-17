@@ -9,30 +9,23 @@
 		<link href="css/datepicker.css" rel="stylesheet">
 		<title></title>
 		<script>
-		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense");
+		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies Expense","Supplies Payable","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense","Office Supplies");
 		var num_rows = 1;
-
-		// Column names
-			var columns = {
-				0:'.date_1',
-				1:'.description_1',
-				2:'.description_2',
-				3:'.amount_1',
-				4:'.amount_2'
-				
-			};
 
 
 		// Set solution tables
 		var solution = new Array();
-		solution[0] = ['04/30/2012',options[1],options[0],1450];
-		solution[1] = ['04/30/2012',options[2],options[3],225];
-		solution[2] = ['04/30/2012',options[4],options[1],125];
-		solution[3] = ['04/30/2012',options[5],options[0],500];
-		solution[4] = ['04/30/2012',options[6],options[0],1650];
-		solution[5] = ['04/30/2012',options[8],options[1],150];
-		solution[6] = ['04/30/2012',options[7],options[0],4100];
+		solution[0] = ['04/30/2012',options[4],options[18] ,'Supplies',1450];
+		solution[1] = ['04/30/2012',options[10],options[9] ,'Supplies',225];
+		solution[2] = ['04/30/2012',options[1],options[0] ,'Supplies',125];
+		solution[3] = ['04/30/2012',options[1],options[0] ,'Supplies',5000];
+		solution[4] = ['04/30/2012',options[1],options[0] ,'Supplies',1650];
+		solution[5] = ['04/30/2012',options[1],options[0] ,'Supplies',150];
+		solution[6] = ['04/30/2012',options[1],options[0] ,'Supplies',4100];
 
+		options.forEach(function(i, n){
+			console.log(n,i);
+		})
 		function add_row(){
 
 			num_rows++;
@@ -58,28 +51,31 @@
 
 
 		function compare (){
-			console.log('Compare!' + solution.length);
 			for(i = 0; i < solution.length; i++){
-
-				console.log(i);
 				$('#'+ (i+1) +'.row select option:selected').each(function (x,val){
-					x++;
-					console.log(solution[i][x] + " = " + val.value);
-					if(solution[i][x] == val.value){
-						$('#'+ (i+1) +'.row select.' + x).removeClass('bad');
-						$('#'+ (i+1) +'.row select.' + x).addClass('good');
+					console.log((x+1),val.value)
+					console.log(solution[i][x+1] + " = " + val.value);
+					if(solution[i][(x+1)] == val.value){
+						$('#'+ (i+1) +'.row select.' + (x+1)).removeClass('bad');
+						$('#'+ (i+1) +'.row select.' + (x+1)).addClass('good');
 					} else {
-						$('#'+ (i+1) +'.row select.' + x).removeClass('good');
-						$('#'+ (i+1) +'.row select.' + x).addClass('bad');
+						$('#'+ (i+1) +'.row select.' + (x+1)).removeClass('good');
+						$('#'+ (i+1) +'.row select.' + (x+1)).addClass('bad');
 					}
 				});
 				$('#'+ (i+1) +'.row input').each(function (x,val){
-					if (x > 0) {
+					console.log('x:',x);
+					if (x == 1) {
 						n = 3;
-					} else {
+					} else if(x == 2 || x == 3){
+						n=4;
+					}
+					 else {
 						n = x;
 					}
-					console.log(solution[i][n] + " = " + $(val).val());
+					
+					console.log('solution: '+ solution[i][n] + " = " + $(val).val());
+					console.log('n '+n,val.value)
 					if(solution[i][n] == $(val).val()){
 						$('#'+ (i+1) +'.row input.' + x).removeClass('bad');
 						$('#'+ (i+1) +'.row input.' + x).addClass('good');
@@ -146,12 +142,14 @@
 					<select class="description_2 2">
 						<option >Choose a description</option>
 					</select>
+					<br />
+					<input type="text" class="description_2 1">
 				</div>
 
 				<div id="values">
-					$<input class="amount 1" type="text">
-					<br />
 					$<input class="amount 2" type="text">
+					<br />
+					$<input class="amount 3" type="text">
 				</div>
 
 			</div>

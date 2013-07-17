@@ -22,11 +22,7 @@ body{
 #trans_date {
 
 }
-#trans_date input[type=text] {
-	width:90px;
-	height: 30px;
-	line-height: 30px;
-}
+
 .row {
 	padding-left: 50px;
 }
@@ -39,22 +35,12 @@ body{
 	width: 230px;
 }
 
-#description input{
-	margin-left:40px;
-	width: 210px;
-}
-#values {
-	font-size: 140%;
-	text-align: right;
-}
-#values input[type=text] {
+#account input[type=text] {
 	width:60px;
 	height: 30px;
 	line-height: 30px;
 }
-#values input[type=text]:nth-child(1) {
-	margin-right:70px;
-}
+
 
 .bad {
 	font-weight: bold !important;;
@@ -76,6 +62,10 @@ body{
 	width:90px;
 }
 
+.amount {
+ 	margin-right: 30px !important;
+}
+
 #legends {
 	margin-left:100px;
 }
@@ -86,3 +76,4 @@ body{
 
 #credit.title{
 	padding-left: 5px !important;
+}
