@@ -1,7 +1,26 @@
-#wrapper {
-	width:1024px;
-	font-size: 13px;
+body {
+	font-family: Arial, Helvitca, sans-serif;
+	background-color: #999;
 }
+
+#question {
+	/*width:880px;*/
+	padding:20px;
+}
+#content {
+	/*width:920px;*/
+	font-size: 13px;
+	background-color: #FFF;
+	margin:0px auto;
+}
+#calculations{
+	width:1234px;
+	overflow: auto;
+	margin:0px auto;
+	padding:0px 0px;
+	border:1px dashed #666;
+}
+
 div.beg_balance div, 
 div.row div {
 	float: left;
@@ -17,8 +36,138 @@ div.beg_balance {
 	font-weight: bolder;
 }
 
+#transaction{
+	float: left;
+	padding:16.5px 10px;
+	width:90px;
+	border:1px solid #666;
+	border-right: 0px;
+	height: 20px;
+	background-color:#99E075;
+
+}
+#AccountsDeb{
+	font-weight: bold;
+	float: left;
+	padding:3px 10px;
+	width:534px;
+	border:1px solid #666;
+	border-right: 0px;
+	height: 20px;
+	background-color:#8DC272;
+}
+
+#AccountsCred{
+	font-weight: bold;
+	float: left;
+	padding:3px 50px;
+	width:466px;
+	border:1px solid #666;
+	height: 20px;
+	background-color:#8DC272;
+}
+#legends .title1{
+	/*Basic Type 1*/
+	font-weight: bold;
+	float: left;
+	padding:3px 38px;
+	border:1px solid #666;
+	border-right: 0px;
+	border-top: 0px;
+	height: 20px;
+	background-color:#99E075;
+}
+#legends .title2{
+	/*Specific Amount 1*/
+	font-weight: bold;
+	float: left;
+	padding:3px 20px;
+	border:1px solid #666;
+	border-right: 0px;
+	border-top: 0px;
+	height: 20px;
+	background-color:#99E075;
+}
+#legends .title3{
+	/*Effect 1*/
+	font-weight: bold;
+	float: left;
+	padding:3px 45px;
+	border:1px solid #666;
+	border-right: 0px;
+	border-top: 0px;
+	height: 20px;
+	background-color:#99E075;
+}
+#legends .title4{
+	/*Normal Balance 1*/
+	font-weight: bold;
+	float: left;
+	padding:3px 19.5px;
+	border:1px solid #666;
+	border-right: 0px;
+	border-top: 0px;
+	height: 20px;
+	background-color:#99E075;
+}
+#legends .title5{
+	/*Basic Type 2*/
+	font-weight: bold;
+	float: left;
+	padding:3px 33px;
+	border:1px solid #666;
+	border-right: 0px;
+	border-top: 0px;
+	height: 20px;
+	background-color:#99E075;
+}
+#legends .title6{
+	/* Specific Amount 2*/
+	font-weight: bold;
+	float: left;
+	padding:3px 27px;
+	border:1px solid #666;
+	border-right: 0px;
+	border-top: 0px;
+	height: 20px;
+	background-color:#99E075;
+}
+#legends .title7{
+	/*Effect 2*/
+	font-weight: bold;
+	float: left;
+	padding:3px 42.5px;
+	border:1px solid #666;
+	border-right: 0px;
+	border-top: 0px;
+	height: 20px;
+	background-color:#99E075;
+}
+#legends .title8{
+	/*Normal Balance 2*/
+	font-weight: bold;
+	float: left;
+	padding:3px 27px;
+	border:1px solid #666;
+	border-top: 0px;
+	height: 20px;
+	background-color:#99E075;
+}
+
+.exRow {
+	clear:both;
+	padding-top: 18px;
+	border:1px solid #666;
+	border-top: 0px;
+	padding-left: 110px;
+	padding-bottom: 20px;
+}
+
 .row {
 	clear:both;
+	padding-top: 18px;
+	border:1px solid #666;
+	border-top: 0px;
 }
 input {
 	width: 90px;
@@ -26,14 +175,7 @@ input {
 .num {
 	float:right;
 }
-#legends {
-	margin-left:100px;
-}
-#legends .title  {
-	float: left;
-	padding-left: 20px;
-	width:90px;
-}
+
 div.last_row {
 	clear: both;
 	margin-left: 32px;
@@ -44,34 +186,19 @@ div.last_row div {
 	padding-left:10px;
 	width: 78px;
 }
-div.last_row div.sign {
-	width:20px !important;
-	padding:0px;
-	text-align: center;
-	display: none;
-}
-div.last_row_totals {
-	clear:both;
-	padding-top:10px;
-	text-align: center;
+
+.row {
+	padding-bottom: 20px;
 }
 
 .bad {
-	font-weight: bold;
 	background-color: #FFCCCC;
 	border:1px solid #660000;
 	color: #660000;
 }
 
 .good {
-	font-weight: bold;
 	background-color: #CCFFCC;
 	border:1px solid #006600;
 	color: #006600;
-}
-
-.line {
-	height:25px;
-	padding:2px;
-    border-left:1px solid black;
 }

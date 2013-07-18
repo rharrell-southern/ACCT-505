@@ -3,20 +3,20 @@ body {
 	background-color: #999;
 }
 #question {
-	width:880px;
+	/*width:880px;*/
 	padding:20px;
 }
 #content {
-	width:920px;
+	/*width:920px;*/
 	font-size: 13px;
 	background-color: #FFF;
 	margin:0px auto;
 }
 #wrapper {
-	width:919px;
+	width:1050px;
 	overflow: auto;
 	margin:0px auto;
-	padding:25px 0px;
+	padding:0px 0px;
 	border:1px dashed #666;
 }
 #outer_calc {

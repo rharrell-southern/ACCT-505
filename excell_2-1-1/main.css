@@ -3,11 +3,11 @@ body {
 	background-color: #999;
 }
 #question {
-	width:880px;
+	/*width:880px;*/
 	padding:20px;
 }
 #content {
-	width:920px;
+	/*width:920px;*/
 	font-size: 13px;
 	background-color: #FFF;
 	margin:0px auto;
