@@ -1,37 +1,38 @@
 <html>
 
-	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.3/bootstrap.min.js"></script>
-		<script src="js/bootstrap-datepicker.js"></script>
-		<link href="css/main.css" rel="stylesheet">
-		<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-		<link href="css/datepicker.css" rel="stylesheet">
-		<title></title>
-		<script>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.3/bootstrap.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<link href="css/main.css" rel="stylesheet">
+	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+	<link href="css/datepicker.css" rel="stylesheet">
+	<title>Supplemental Exercise 2.3.2 - Brunswick Corporation</title>
+
+	<script>
 		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense");
 		var num_rows = 1;
 
 		// Column names
-			var columns = {
-				0:'.date_1',
-				1:'.description_1',
-				2:'.description_2',
-				3:'.amount_1',
-				4:'.amount_2'
-				
-			};
+		var columns = {
+			0:'.date_1',
+			1:'.description_1',
+			2:'.description_2',
+			3:'.amount_1',
+			4:'.amount_2'
+
+		}; 
 
 
 		// Set solution tables
 		var solution = new Array();
-		solution[0] = ['01/04/2013',options[1],options[0],900];
-		solution[1] = ['01/07/2013',options[2],options[3],8300];
-		solution[2] = ['01/08/2013',options[4],options[1],725];
-		solution[3] = ['01/09/2013',options[5],options[0],1600];
-		solution[4] = ['01/17/2013',options[6],options[0],680];
-		solution[5] = ['01/22/2013',options[8],options[1],800];
-		solution[6] = ['01/29/2013',options[7],options[0],1800];
+		solution[0] = ['01/04',options[1],options[0],900];
+		solution[1] = ['01/07',options[2],options[3],8300];
+		solution[2] = ['01/08',options[4],options[1],725];
+		solution[3] = ['01/09',options[5],options[0],1600];
+		solution[4] = ['01/17',options[6],options[0],680];
+		solution[5] = ['01/22',options[8],options[1],800];
+		solution[6] = ['01/29',options[7],options[0],1800];
 
 		function add_row(){
 
@@ -46,7 +47,7 @@
 				return '<span class="num">'+ $(this).parent().attr('id') + '</span>';
 			});
 
-			$('.date_1').datepicker();
+			$('.date_1').datepicker({format:'mm/dd'});
 
 			for(var i = 0; i < 4;i++) {
 				$('#'+ num_rows +'.row select.' + i).removeClass('bad');
@@ -94,8 +95,9 @@
 
 
 		$(function(){
-			$('.date_1').datepicker();
-				
+
+			$('.date_1').datepicker({format:'mm/dd'});
+
 			$(window).bind('beforeunload', function(){
 				return 'Leaving this page will wipe all your data.';
 			});
@@ -120,43 +122,63 @@
 
 		});
 
-		</script>
-	</head>
+	</script>
+</head>
 
-	<body>
+<body>
 	<div id="content">
-		<div id ="legends">
-			<div id ="date" class="title">Date</div>
-			<div id ="des" class="title">Desrciption</div>
-			<div id="debit" class="title">Debit</div>
-			<div id ="credit" class="title">Credit</div>
-		</div>
-		<div id="container">
-			<div id="1" class="row">
-				<div class="add_row"></div>
-				<div id="trans_date">
-					<input type="text" value="" class="date_1 0" >
-				</div>
+		<div id="question">
+			<input type="button" value="Print this Page" onclick="window.print()" style="float:right;padding:4px;margin:3px 10px;font-size:12px;border:1px solid #666;"/>
+			<h1>Supplemental Exercise 2.3.2</h1>
+			<h2>The Brunswick Corporation</h2>
+			<br />
+			<p>The January transactions of the Brunswick Corporation were as follows.</p>
+			<br />
+			<div id="transactions">
+				1/4: Paid $900 due for supplies previously purchased on account.<br />
+				1/7: Performed advisory services on account for $8,300.<br />
+				1/8: Purchased supplies for $725 on account.<br />
+				1/9: Purchased equipment for $1,600 cash.<br />
+				1/17: Paid employees $680 in cash.<br />
+				1/22: Received a bill for equipment repairs of $800.<br />
+				1/29: Paid $1,800 for 12 months of insurance. Coverage begins February 1.
+			</div>
+			<br />
+			<p><strong>Instructions:</strong> Journalize the transactions. Do not provide explanations.</p>
 
-				<div id="description">
-					<select class="description_1 1">
-						<option >Choose a description</option>
-					</select>
-					<br />
-					<select class="description_2 2">
-						<option >Choose a description</option>
-					</select>
-				</div>
 
-				<div id="values">
-					$<input class="amount 1" type="text">
-					<br />
-					$<input class="amount 2" type="text">
-				</div>
+			<div id ="legends">
+				<div id ="date" class="title">Date</div>
+				<div id ="des" class="title">Desrciption</div>
+				<div id="debit" class="title">Debit</div>
+				<div id ="credit" class="title">Credit</div>
+			</div>
+			<div id="container">
+				<div id="1" class="row">
+					<div class="add_row"></div>
+					<div id="trans_date">
+						<input type="text" value="" class="date_1 0" >
+					</div>
 
+					<div id="description">
+						<select class="description_1 1">
+							<option >Choose a description</option>
+						</select>
+						<br />
+						<select class="description_2 2">
+							<option >Choose a description</option>
+						</select>
+					</div>
+
+					<div id="values">
+						$<input class="amount 1" type="text">
+						<br />
+						$<input class="amount 2" type="text">
+					</div>
+
+				</div>
 			</div>
 		</div>
-	</div>
 
 	</body>
 

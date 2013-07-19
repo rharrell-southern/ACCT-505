@@ -1,12 +1,43 @@
-body{
-
+body {
+	font-family: Arial, Helvitca, sans-serif !important;
+	background-color: #999 !important;
+	margin:8px !important;
+}
+h1 {
+	font-size: 26px !important;
 }
 
+h2 {
+	font-size: 19px !important;
+}
+
+#question {
+	/*width:880px;*/
+	padding:20px;
+}
 #content {
-	width:900px;
+	/*width:920px;*/
+	font-size: 13px;
+	background-color: #FFF;
+	margin:0px auto;
 }
+
+#legends {
+	width:735px;
+	margin:0px auto;
+	padding:0px 0px;
+}
+
 #container {
-	clear:both;
+	width:735px;
+	overflow: auto;
+	margin:0px auto;
+	padding:0px 0px;
+	border:1px dashed #666;
+}
+
+#transactions{
+	margin-left: 20px;
 }
 .add_row, #trans_date, #description, #values {
 	float:left;
@@ -69,10 +100,6 @@ body{
 	float: left;
 	padding-left: 80px;
 	width:90px;
-}
-
-#legends {
-	margin-left:100px;
 }
 
 #debit.title{
