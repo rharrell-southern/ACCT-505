@@ -2,6 +2,7 @@ body {
 	font-family: Arial, Helvitca, sans-serif !important;
 	background-color: #999 !important;
 	margin:8px !important;
+	line-height: 15px !important;
 }
 h1 {
 	font-size: 26px !important;
@@ -23,7 +24,7 @@ h2 {
 }
 
 #legends {
-	padding-left: 286.5px;
+	padding-left: 307px;
 }
 
 #legends .transaction{
@@ -80,7 +81,7 @@ h2 {
 #container {
 	width:735px;
 	overflow: auto;
-	margin:0px auto;
+	margin:0px 307px;
 	padding:0px 0px;
 	border:1px dashed #666;
 }

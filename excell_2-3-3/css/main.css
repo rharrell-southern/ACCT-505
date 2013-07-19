@@ -1,12 +1,97 @@
-body{
+body {
+	font-family: Arial, Helvitca, sans-serif !important;
+	background-color: #999 !important;
+	margin:8px !important;
+}
+h1 {
+	font-size: 26px !important;
+}
 
+h2 {
+	font-size: 19px !important;
+}
+
+#question {
+	/*width:880px;*/
+	padding:20px;
+}
+
+#columns{
+	padding-left: 30px;
+}
+
+td{
+	font-size: 10pt;
+}
+
+
+#col1{
+	display: inline-block;
+
+}
+
+#col2{
+	display: inline-block;
+	padding-left: 55px;
 }
 
 #content {
-	width:900px;
+	/*width:920px;*/
+	font-size: 13px;
+	background-color: #FFF;
+	margin:0px auto;
 }
+
+#legends {
+	padding-left: 284px;
+}
+
+#legends .transaction{
+	/*Transaction*/
+	font-weight: bold;
+	float: left;
+	padding:3px 37px;
+	border:1px solid #666;
+	border-right: 0px;
+	height: 20px;
+	background-color:#8DC272;
+}
+
+#legends .title1{
+	/*Account*/
+	font-weight: bold;
+	float: left;
+	padding:3px 86px;
+	border:1px solid #666;
+	border-right: 0px;
+	height: 20px;
+	background-color:#8DC272;
+}
+#legends .title2{
+	/*Debit*/
+	font-weight: bold;
+	float: left;
+	padding:3px 27px;
+	border:1px solid #666;
+	border-right: 0px;
+	height: 20px;
+	background-color:#8DC272;
+}
+#legends .title3{
+	/*Credit*/
+	font-weight: bold;
+	float: left;
+	padding:3px 42px;
+	border:1px solid #666;
+	height: 20px;
+	background-color:#8DC272;
+}
+
 #container {
-	clear:both;
+	width:580px;
+	overflow: auto;
+	margin:0px 384px;
+	border:1px dashed #666;
 }
 .add_row, #trans_date, #description, #values {
 	float:left;

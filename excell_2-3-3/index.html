@@ -1,21 +1,22 @@
 <html>
 
-	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.3/bootstrap.min.js"></script>
-		<link href="css/main.css" rel="stylesheet">
-		<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-		<title></title>
-		<script>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.3/bootstrap.min.js"></script>
+	<link href="css/main.css" rel="stylesheet">
+	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+	<title>Supplemental Exercise 2.3.3 - Anderson Delivery Service
+	</title>
+	<script>
 		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense");
 		var num_rows = 1;
 
 		// Column names
-			var columns = {
-				0:'.account',
-				1:'.debit',
-				2:'.credit'
-			};
+		var columns = {
+			0:'.account',
+			1:'.debit',
+			2:'.credit'
+		};
 
 		
 		// Set solution tables
@@ -109,18 +110,18 @@
 
 
 				});
-			}
+}
 
-			$("#totalDebit").html(totalDebit);
-			$("#totalCredit").html(totalCredit);
-		}
+$("#totalDebit").html(totalDebit);
+$("#totalCredit").html(totalCredit);
+}
 
 
-		$(function(){
-				
-			/*$(window).bind('beforeunload', function(){
-				return 'Leaving this page will wipe all your data.';
-			});*/
+$(function(){
+
+	$(window).bind('beforeunload', function(){
+		return 'Leaving this page will wipe all your data.';
+	});
 
 			//Generate options
 			for(var i = 0; i<options.length;i++) {
@@ -142,34 +143,142 @@
 
 		});
 
-		</script>
-	</head>
+</script>
+</head>
 
-	<body>
+<body>
 	<div id="content">
-		<div id ="legends">
-			<div id ="account" class="title">Account</div>
-			<div id="debit" class="title">Debit</div>
-			<div id ="credit" class="title">Credit</div>
-		</div>
-		<div id="container">
-			<div id="1" class="row">
-				<div class="add_row"></div>
-				<div id="account">
-					<select class="account_1 0">
-						<option>Choose a description</option>
-					</select>
+		<div id="question">
+			<input type="button" value="Print this Page" onclick="window.print()" style="float:right;padding:4px;margin:3px 10px;font-size:12px;border:1px solid #666;"/>
+			<h1>Supplemental Exercise 2.3.3</h1>
+			<h2>Anderson Delivery Service</h2>
+			<br />
+			<p>The accounts in the ledger of Anderson Delivery Service contain the following Balances on April 30 of the current year.</p>
+			<br />
+			<div id="columns">
+				<div id="col1">
+					<table border="0">
+						<colgroup>
+						<col span="2">
+					</colgroup>
+					<tr>
+						<td>Accounts Receivable</td>
+						<td>$13,400</td>
+						
+					</tr>
+					<tr>
+						<td>Accounts Payable</td>
+						<td>$8,400</td>
+					</tr>
 
-					$<input id="deb" class="amount 1 debit" type="text">
-		
-					$<input class="amount 2 credit" type="text">
-				</div>
+					<tr>
+						<td>Cash</td>
+						<td>$?</td>
+					</tr>
+
+					<tr>
+						<td>Equipment</td>
+						<td>$59,360</td>
+					</tr>
+
+					<tr>
+						<td>maintenance and Repairs Exp.</td>
+						<td>$1,958</td>
+					</tr>
+
+					<tr>
+						<td>Insurance Expense</td>
+						<td>$900</td>
+					</tr>
+
+					<tr>
+						<td>Notes Payable (due in 3 years)</td>
+						<td>$28,450</td>
+					</tr>
+
+
+				</table>
 			</div>
+			<div id="col2">
+				<table border="0">
+					<colgroup>
+					<col span="2">
+				</colgroup>
+				<tr>
+					<td>Prepaid Insurance</td>
+					<td>$2,200</td>
+				</tr>
+
+				<tr>
+					<td>Service Revenue</td>
+					<td>$15,500</td>
+				</tr>
+
+				<tr>
+					<td>Dividends</td>
+					<td>$700</td>
+				</tr>
+
+				<tr>
+					<td>Common Stock</td>
+					<td>$40,000</td>
+				</tr>
+
+				<tr>
+					<td>Salaries and Wages Expense</td>
+					<td>$7,428</td>
+				</tr>
+
+				<tr>
+					<td>Salaries and Wages Payable</td>
+					<td>$820</td>
+				</tr>
+
+				<tr>
+					<td>Retained Earnings (beg. of the month)</td>
+					<td>$5,200</td>
+				</tr>
+			</table>
 		</div>
-			<div id="totalDebit"></div>
-			<div id="totalCredit"></div>
+		
+
+
+
 	</div>
 
-	</body>
+	<br />
+	<p><strong>Instructions:</strong> Prepare a trial balance with the accounts arranged as follows:<br />
+		Assets: from most liquid (cash or ability to be converted into cash) to least liquid<br />
+		Liabilities: arranged based on due date (earliest due date first, latest due date last)<br />
+		Stockholders' Equity: Common Stock, Retained Earnings, then Dividends<br />
+		Revenues<br />
+		Expenses
+	</p>
+</div>
+<div id ="legends">
+	<div class="transaction">Transaction</div>		
+	<div id ="account" class="title1">Account</div>
+	<div id="debit" class="title2">Debit</div>
+	<div id ="credit" class="title3">Credit</div>
+</div>
+<div id="container">
+	<div id="1" class="row">
+		<div class="add_row"></div>
+		<div id="account">
+			<select class="account_1 0">
+				<option>Choose a description</option>
+			</select>
+
+			$<input id="deb" class="amount 1 debit" type="text">
+
+			$<input class="amount 2 credit" type="text">
+		</div>
+	</div>
+</div>
+<div id="totalDebit"></div>
+<div id="totalCredit"></div>
+</div>
+
+</body>
 
 </html>
