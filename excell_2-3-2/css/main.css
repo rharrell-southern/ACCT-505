@@ -23,9 +23,58 @@ h2 {
 }
 
 #legends {
-	width:735px;
-	margin:0px auto;
-	padding:0px 0px;
+	padding-left: 286.5px;
+}
+
+#legends .transaction{
+	/*Transaction*/
+	font-weight: bold;
+	float: left;
+	padding:3px 42px;
+	border:1px solid #666;
+	border-right: 0px;
+	height: 20px;
+	background-color:#8DC272;
+}
+
+#legends .title1{
+	/*Date*/
+	font-weight: bold;
+	float: left;
+	padding:3px 38px;
+	border:1px solid #666;
+	border-right: 0px;
+	height: 20px;
+	background-color:#8DC272;
+}
+#legends .title2{
+	/*Description*/
+	font-weight: bold;
+	float: left;
+	padding:3px 96px;
+	border:1px solid #666;
+	border-right: 0px;
+	height: 20px;
+	background-color:#8DC272;
+}
+#legends .title3{
+	/*Debit*/
+	font-weight: bold;
+	float: left;
+	padding:3px 30px;
+	border:1px solid #666;
+	border-right: 0px;
+	height: 20px;
+	background-color:#8DC272;
+}
+#legends .title4{
+	/*Credit*/
+	font-weight: bold;
+	float: left;
+	padding:3px 39.5px;
+	border:1px solid #666;
+	height: 20px;
+	background-color:#8DC272;
 }
 
 #container {
@@ -96,11 +145,6 @@ h2 {
 	color: #006600 !important;;
 }
 
-#legends .title  {
-	float: left;
-	padding-left: 80px;
-	width:90px;
-}
 
 #debit.title{
 	padding-left:125px !important;
