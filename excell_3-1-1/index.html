@@ -1,87 +1,98 @@
+<!doctype html>
 <html>
-
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.3/bootstrap.min.js"></script>
 		<script src="js/bootstrap-datepicker.js"></script>
+
 		<link href="css/main.css" rel="stylesheet">
 		<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
 		<link href="css/datepicker.css" rel="stylesheet">
-		<title></title>
+		<title>Supplemental Exercise 3.1.1</title>
 		<script>
-		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies Expense","Supplies Payable","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense","Office Supplies");
+		var options = new Array("Cash", "Accounts Payable", "Accounts Receivable", "Service Revenue",
+			"Supplies Expense", "Supplies Payable", "Equipment", "Salaries Expense", "Prepaid Insurance",
+			"Equipment Repairs Expense", "Dividends", "Salaries and Wages Expense", "Notes Payable",
+			"Retained Earnings", "Maintenance and Repairs Expense", "Salaries and Wages Payable", "Common Stock",
+			"Insurance Expense", "Office Supplies"
+		);
 		var num_rows = 1;
 
 
 		// Set solution tables
-		var solution = new Array();
-		solution[0] = ['04/30/2013',options[4],options[18] ,'Supplies',1450];
-		solution[1] = ['04/30/2013',options[10],options[9] ,'Supplies',225];
-		solution[2] = ['04/30/2013',options[1],options[0] ,'Supplies',125];
-		solution[3] = ['04/30/2013',options[1],options[0] ,'Supplies',5000];
-		solution[4] = ['04/30/2013',options[1],options[0] ,'Supplies',1650];
-		solution[5] = ['04/30/2013',options[1],options[0] ,'Supplies',150];
-		solution[6] = ['04/30/2013',options[1],options[0] ,'Supplies',4100];
+		var solution = new Array(
+			['04/30/2013', options[4], options[18], 'Supplies', 1450],
+			['04/30/2013', options[10], options[9], 'Supplies', 225],
+			['04/30/2013', options[1], options[0], 'Supplies', 125],
+			['04/30/2013', options[1], options[0], 'Supplies', 5000],
+			['04/30/2013', options[1], options[0], 'Supplies', 1650],
+			['04/30/2013', options[1], options[0], 'Supplies', 150],
+			['04/30/2013', options[1], options[0], 'Supplies', 4100]
+		);
 
-		options.forEach(function(i, n){
-			console.log(n,i);
-		})
 		function add_row(){
-
 			num_rows++;
-			$('#container').append(function(){
-				var html = $('#container div.row:first').html();
-				return '<div id="'+ num_rows +'" class="row">'+ html +'</div>';
-			});
-			$('.add_row').html('&nbsp;');
-			$('.row:last div.add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
-			$('.row div.add_row').append(function(){
-				return '<span class="num">'+ $(this).parent().attr('id') + '</span>';
+
+			// Do *not* copy the bound events, because the datepicker will go along with it
+			var $prototypeRow = $('#container div.row:first').clone(false);
+			// Clone doesn't set existing selects, but it does set inputs, so clear them to default
+			$prototypeRow.find('input').val('');
+			// Also clear the coloring classes from the inputs and selects
+			$prototypeRow.find('input, select').removeClass('bad good');
+			// Set the id to be the row number
+			$prototypeRow.attr('id', num_rows);
+			// Make sure the row number matches
+			$prototypeRow.find('span.num').html(num_rows);
+			// Activate the date picker
+			$prototypeRow.find('input.date_1').datepicker({format: 'mm/dd'});
+
+			// Add the event listeners
+			$prototypeRow.find('input, select').on("change", function() {
+				compare();
 			});
 
-			$('.date_1').datepicker();
-
-			for(var i = 0; i < 4;i++) {
-				$('#'+ num_rows +'.row select.' + i).removeClass('bad');
-				$('#'+ num_rows +'.row select.' + i).removeClass('good');
-				$('#'+ num_rows +'.row input.' + i).removeClass('bad');
-				$('#'+ num_rows +'.row input.' + i).removeClass('good');
-			}
+			$('#container').append($prototypeRow);
 		}
 
 
-		function compare (){
-			for(i = 0; i < solution.length; i++) {
-				$('#'+ (i+1) +'.row select option:selected').each(function (x,val){
-					console.log((x+1),val.value)
-					console.log(solution[i][x+1] + " = " + val.value);
-					if(solution[i][(x+1)] == val.value){
-						$('#'+ (i+1) +'.row select.' + (x+1)).removeClass('bad');
-						$('#'+ (i+1) +'.row select.' + (x+1)).addClass('good');
+		function compare() {
+			for(var i = 0; i < solution.length; i++) {
+				var rowNum = i+1;
+				
+				// Check select elements
+				$('#'+ rowNum +'.row select option:selected').each(function (x, val){
+					//console.log((x+1),val.value)
+					//console.log(solution[i][x+1] + " = " + val.value);
+					
+					var $elem = $('#'+ rowNum +'.row select.' + (x+1));
+					if(solution[i][(x+1)] === val.value) {
+						$elem.removeClass('bad');
+						$elem.addClass('good');
 					} else {
-						$('#'+ (i+1) +'.row select.' + (x+1)).removeClass('good');
-						$('#'+ (i+1) +'.row select.' + (x+1)).addClass('bad');
+						$elem.removeClass('good');
+						$elem.addClass('bad');
 					}
 				});
-				$('#'+ (i+1) +'.row input').each(function (x,val){
-					console.log('x:',x);
-					if (x == 1) {
+				
+				// Check input elements
+				$('#'+ rowNum +'.row input').each(function (x, val) {
+					//console.log('x:', x);
+					var n = x;
+					if (x === 1) {
 						n = 3;
-					} else if(x == 2 || x == 3){
-						n=4;
-					}
-					 else {
-						n = x;
+					} else if(x === 2 || x === 3) {
+						n = 4;
 					}
 					
-					console.log('solution: '+ solution[i][n] + " = " + $(val).val());
-					console.log('n '+n,val.value)
-					if(solution[i][n] == $(val).val()){
-						$('#'+ (i+1) +'.row input.' + x).removeClass('bad');
-						$('#'+ (i+1) +'.row input.' + x).addClass('good');
+					//console.log('solution: '+ solution[i][n] + " = " + $(val).val());
+					//console.log('n '+n, val.value);
+					var $elem = $('#'+ (i+1) +'.row input.' + x);
+					if(solution[i][n] == $(val).val()) {
+						$elem.removeClass('bad');
+						$elem.addClass('good');
 					} else {
-						$('#'+ (i+1) +'.row input.' + x).removeClass('good');
-						$('#'+ (i+1) +'.row input.' + x).addClass('bad');
+						$elem.removeClass('good');
+						$elem.addClass('bad');
 					}
 				});
 			}
@@ -89,33 +100,25 @@
 		}
 
 
-		$(function(){
-			$('.date_1').datepicker();
+		$(document).ready(function() {
+			$('input.date_1').datepicker({format: 'mm/dd'});
 				
-			$(window).bind('beforeunload', function(){
+			$(window).on('beforeunload', function() {
 				return 'Leaving this page will wipe all your data.';
 			});
 
 			//Generate options
-			for(var i = 0; i<options.length;i++) {
-				
-				var html = '<option>' + options[i] + '</option>';
-				$('select').append(html);
+			var html = '';
+			for(var i = 0; i < options.length; i++) {
+				html += '<option>' + options[i] + '</option>';
 			}
+			$('select').append(html);
+			
 
-			$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
-
-			$('input').live("focusout", function(){
+			$('input, select').on("change", function() {
 				compare();
 			});
-
-			$('select').live("focusout", function(){
-				compare();
-			});
-
-
 		});
-
 		</script>
 	</head>
 
@@ -123,13 +126,15 @@
 	<div id="content">
 		<div id ="legends">
 			<div id ="date" class="title">Date</div>
-			<div id ="des" class="title">Desrciption</div>
+			<div id ="des" class="title">Description</div>
 			<div id="debit" class="title">Debit</div>
 			<div id ="credit" class="title">Credit</div>
 		</div>
 		<div id="container">
 			<div id="1" class="row">
-				<div class="add_row"></div>
+				<div class="add_row">
+					<span class="num">1</span>
+				</div>
 				<div id="trans_date">
 					<input type="text" value="" class="date_1 0" >
 				</div>
@@ -154,6 +159,7 @@
 
 			</div>
 		</div>
+		<button id="add_row_btn" onClick="javascript: add_row();">Add a Row</button>
 	</div>
 
 	</body>

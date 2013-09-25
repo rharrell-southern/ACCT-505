@@ -29,6 +29,8 @@ body{
 }
 .row {
 	padding-left: 50px;
+
+	display: inline-block;
 }
 
 #description select:nth-child(1) {
@@ -54,6 +56,11 @@ body{
 }
 #values input[type=text]:nth-child(1) {
 	margin-right:70px;
+}
+
+select {
+	border: 1px solid black;
+	background-color: transparent;
 }
 
 .bad {
