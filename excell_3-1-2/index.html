@@ -1,11 +1,14 @@
 <html>
-
 	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.3/bootstrap.min.js"></script>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 3.1.2</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.4/css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/main.css" rel="stylesheet">
-		<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-		<title></title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.4/bootstrap.min.js"></script>
+
 		<script>
 		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies Expense","Supplies Payable","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense","Office Supplies","Unearned Service Revenue","Rent Expense");
 
@@ -141,12 +144,33 @@
 
 
 		});
+		
+		$(document).ready(function() {
+			$(window).on('beforeunload', function() {
+				return 'Leaving this page will clear all the work you\'ve done.';
+			});
+			
+			
+		});
 
 		</script>
 	</head>
 
 	<body>
 	<div id="content">
+		<section id="question">
+			<h1>Supplemental Exercise 3.1.2</h1>
+			<h2>McKay Corp.</h2>
+			
+			The trial balance of McKay Corp. as of April 30<sup>th</sup> is given below.<br>
+			[Insert Trial Balance Sheet Here]
+			<br>
+			The April transactions are given below:
+			<ul>
+				<li><strong>3<sup>rd</sup></strong> Received $2,840 cash from customers for accounts receivable due.</li>
+				<li><strong>9<sup>th</sup></strong> Billed customer $3,850 for services performed.</li>
+			</ul>
+		</section>
 		<div id ="legends">
 			<div id ="account" class="title">Account</div>
 			<div id="debit" class="title">Debit</div>
@@ -169,7 +193,5 @@
 			<div id="totalDebit"></div>
 			<div id="totalCredit"></div>
 	</div>
-
 	</body>
-
 </html>
