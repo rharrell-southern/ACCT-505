@@ -30,7 +30,11 @@
 			['04/30/2013', options[1], options[0], 'Supplies', 4100]
 		);
 
-		function add_row(){
+		function add_row() {
+			if(num_rows >= solution.length) {
+				return;
+			}
+			
 			num_rows++;
 
 			// Do *not* copy the bound events, because the datepicker will go along with it
@@ -44,10 +48,10 @@
 			// Make sure the row number matches
 			$prototypeRow.find('span.num').html(num_rows);
 			// Activate the date picker
-			$prototypeRow.find('input.date_1').datepicker({format: 'mm/dd'});
+			$prototypeRow.find('input.date').datepicker({format: 'mm/dd'});
 
 			// Add the event listeners
-			$prototypeRow.find('input, select').on("change", function() {
+			$prototypeRow.find('input, select').on('change', function() {
 				compare();
 			});
 
@@ -55,53 +59,40 @@
 		}
 
 
-		function compare() {
-			for(var i = 0; i < solution.length; i++) {
-				var rowNum = i+1;
-				
-				// Check select elements
-				$('#'+ rowNum +'.row select option:selected').each(function (x, val){
-					//console.log((x+1),val.value)
-					//console.log(solution[i][x+1] + " = " + val.value);
-					
-					var $elem = $('#'+ rowNum +'.row select.' + (x+1));
-					if(solution[i][(x+1)] === val.value) {
-						$elem.removeClass('bad');
-						$elem.addClass('good');
-					} else {
-						$elem.removeClass('good');
-						$elem.addClass('bad');
-					}
-				});
-				
-				// Check input elements
-				$('#'+ rowNum +'.row input').each(function (x, val) {
-					//console.log('x:', x);
-					var n = x;
-					if (x === 1) {
-						n = 3;
-					} else if(x === 2 || x === 3) {
-						n = 4;
-					}
-					
-					//console.log('solution: '+ solution[i][n] + " = " + $(val).val());
-					//console.log('n '+n, val.value);
-					var $elem = $('#'+ (i+1) +'.row input.' + x);
-					if(solution[i][n] == $(val).val()) {
-						$elem.removeClass('bad');
-						$elem.addClass('good');
-					} else {
-						$elem.removeClass('good');
-						$elem.addClass('bad');
-					}
-				});
+		function doValueCompare($elem, value, toCompare) {
+			console.log("Checking value: "+value+" against answer: "+toCompare);
+			if(value == toCompare) {
+				$elem.addClass('good');
+				$elem.removeClass('bad');
+			} else {
+				$elem.addClass('bad');
+				$elem.removeClass('good');
 			}
-			
+		}
+
+
+		function compare() {
+			$("div.row").each(function(index) {
+				var $row = $(this);
+				var $date = $row.find('input.date'),
+				    $descOne = $row.find('select.descriptionOne'),
+					$descTwo = $row.find('select.descriptionTwo'),
+					$debit = $row.find('input.debitAmount'),
+					$credit = $row.find('input.creditAmount');
+
+				var sol = solution[index];
+				
+				doValueCompare($date, $date.val(), sol[0]);
+				doValueCompare($descOne, $descOne.children('option:selected').val(), sol[1]);
+				doValueCompare($descTwo, $descTwo.children('option:selected').val(), sol[2]);
+				doValueCompare($debit, $debit.val(), sol[4]);
+				doValueCompare($credit, $credit.val(), sol[4]);
+			});
 		}
 
 
 		$(document).ready(function() {
-			$('input.date_1').datepicker({format: 'mm/dd'});
+			$('input.date').datepicker({format: 'mm/dd'});
 				
 			$(window).on('beforeunload', function() {
 				return 'Leaving this page will wipe all your data.';
@@ -131,30 +122,30 @@
 			<div id ="credit" class="title">Credit</div>
 		</div>
 		<div id="container">
-			<div id="1" class="row">
+			<div class="row">
 				<div class="add_row">
 					<span class="num">1</span>
 				</div>
 				<div id="trans_date">
-					<input type="text" value="" class="date_1 0" >
+					<input type="text" class="date">
 				</div>
 
 				<div id="description">
-					<select class="description_1 1">
+					<select class="descriptionOne">
 						<option >Choose a description</option>
 					</select>
 					<br />
-					<select class="description_2 2">
+					<select class="descriptionTwo">
 						<option >Choose a description</option>
 					</select>
 					<br />
-					<input type="text" class="description_2s">
+					<input type="text" class="descriptionThree">
 				</div>
 
 				<div id="values">
-					$<input class="amount 2" type="text">
+					$<input class="creditAmount" type="text">
 					<br />
-					$<input class="amount 3" type="text">
+					$<input class="debitAmount" type="text">
 				</div>
 
 			</div>
