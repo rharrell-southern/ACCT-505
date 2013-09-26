@@ -1,14 +1,17 @@
 <!doctype html>
 <html>
 	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.3/bootstrap.min.js"></script>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 3.1.1</title>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.4/bootstrap.min.js"></script>
 		<script src="js/bootstrap-datepicker.js"></script>
 
 		<link href="css/main.css" rel="stylesheet">
-		<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.4/css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/datepicker.css" rel="stylesheet">
-		<title>Supplemental Exercise 3.1.1</title>
+
 		<script>
 		var options = new Array("Cash", "Accounts Payable", "Accounts Receivable", "Service Revenue",
 			"Supplies Expense", "Supplies Payable", "Equipment", "Salaries Expense", "Prepaid Insurance",
@@ -18,23 +21,23 @@
 		);
 		var num_rows = 1;
 
-
-		// Set solution tables
+		// Set solution table
 		var solution = new Array(
-			['04/30/2013', options[4], options[18], 'Supplies', 1450],
-			['04/30/2013', options[10], options[9], 'Supplies', 225],
-			['04/30/2013', options[1], options[0], 'Supplies', 125],
-			['04/30/2013', options[1], options[0], 'Supplies', 5000],
-			['04/30/2013', options[1], options[0], 'Supplies', 1650],
-			['04/30/2013', options[1], options[0], 'Supplies', 150],
-			['04/30/2013', options[1], options[0], 'Supplies', 4100]
+			// Date - Upper Dropdown - Lower Dropdown - Blank line - Credit/Debit Amounts
+			['04/30', options[4], options[18], 'Supplies', 1450],
+			['04/30', options[10], options[9], 'Supplies', 225],
+			['04/30', options[1], options[0], 'Supplies', 125],
+			['04/30', options[1], options[0], 'Supplies', 5000],
+			['04/30', options[1], options[0], 'Supplies', 1650],
+			['04/30', options[1], options[0], 'Supplies', 150],
+			['04/30', options[1], options[0], 'Supplies', 4100]
 		);
 
 		function add_row() {
 			if(num_rows >= solution.length) {
 				return;
 			}
-			
+
 			num_rows++;
 
 			// Do *not* copy the bound events, because the datepicker will go along with it
@@ -81,7 +84,7 @@
 					$credit = $row.find('input.creditAmount');
 
 				var sol = solution[index];
-				
+
 				doValueCompare($date, $date.val(), sol[0]);
 				doValueCompare($descOne, $descOne.children('option:selected').val(), sol[1]);
 				doValueCompare($descTwo, $descTwo.children('option:selected').val(), sol[2]);
@@ -93,7 +96,7 @@
 
 		$(document).ready(function() {
 			$('input.date').datepicker({format: 'mm/dd'});
-				
+
 			$(window).on('beforeunload', function() {
 				return 'Leaving this page will wipe all your data.';
 			});
@@ -104,7 +107,6 @@
 				html += '<option>' + options[i] + '</option>';
 			}
 			$('select').append(html);
-			
 
 			$('input, select').on("change", function() {
 				compare();
