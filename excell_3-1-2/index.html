@@ -158,40 +158,78 @@
 
 	<body>
 	<div id="content">
+		<button class="printBtn" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 3.1.2</h1>
+		<h2>McKay Corp.</h2>
+		<br>
 		<section id="question">
-			<h1>Supplemental Exercise 3.1.2</h1>
-			<h2>McKay Corp.</h2>
+			<p>The trial balance of McKay Corp. as of April 30<sup>th</sup> is given below.</p>
 			
-			The trial balance of McKay Corp. as of April 30<sup>th</sup> is given below.<br>
-			[Insert Trial Balance Sheet Here]
-			<br>
-			The April transactions are given below:
+			[Insert Trial Balance Sheet Here]<br><br>
+			
+			<strong>April Transactions:</strong>
 			<ul>
-				<li><strong>3<sup>rd</sup></strong> Received $2,840 cash from customers for accounts receivable due.</li>
-				<li><strong>9<sup>th</sup></strong> Billed customer $3,850 for services performed.</li>
+				<li><strong>3<sup>rd</sup>:</strong> Received $2,840 cash from customers for accounts receivable due.</li>
+				<li><strong>9<sup>th</sup>:</strong> Billed customer $3,850 for services performed.</li>
+				<li><strong>17<sup>th</sup>:</strong> Owe employees $4,250 for services performed.</li>
+				<li><strong>23<sup>rd</sup>:</strong> Performed $2,450 worth of service for customer who paid in advance in January.</li>
+				<li><strong>28<sup>th</sup>:</strong> Paid Creditors $2,350 for accounts payable.</li>
+				<li><strong>29<sup>th</sup>:</strong> Paid cash dividends of $560.</li>
+				<li><strong>30<sup>th</sup>:</strong> Paid Rent for $730.</li>
 			</ul>
+			
+			<strong>Instructions:</strong>
+			<!-- Because the Journal entries will affect the T accounts general ledger, it may be a good idea to move #1 to #2 instead -->
+			<ol>
+				<li>Prepare a general ledger using T Accounts. Enter the opening balances in the ledger as of April 1.
+					Prepare the following additional accounts
+					<ul>
+						<li>Dividends</li>
+						<li>Service Revenue</li>
+						<li>Salaries and Wages Payable</li>
+						<li>Rent Expenses</li>
+						<li>Salary and Wages Expense</li>
+					</ul>
+				</li>
+				<li>Journalize the transactions, excluding explanations.</li>
+				<li>Post the entries to the ledger accounts.</li>
+				<li>Prepare a trial balance for McKay Corp. at April 30, 20xx.</li>
+			</ol>
 		</section>
-		<div id ="legends">
-			<div id ="account" class="title">Account</div>
-			<div id="debit" class="title">Debit</div>
-			<div id ="credit" class="title">Credit</div>
-		</div>
-		<div id="container">
-			<div id="1" class="row">
-				<div class="add_row"></div>
-				<div id="account">
-					<select class="account_1 0">
-						<option>Choose a description</option>
-					</select>
-
-					$<input id="deb" class="amount 1 debit" type="text">
 		
-					$<input class="amount 2 credit" type="text">
+		<section id="problems">
+			<h3>Journal</h3>
+			<div id="legends">
+				<div id="account" class="title">Account</div>
+				<div id="debit" class="title">Debit</div>
+				<div id="credit" class="title">Credit</div>
+			</div>
+			<div id="container">
+				<div id="1" class="row">
+					<div class="add_row"></div>
+					<div id="account">
+						<select class="account_1 0">
+							<option>Choose a description</option>
+						</select>
+
+						$<input id="deb" class="amount 1 debit" type="text">
+
+						$<input class="amount 2 credit" type="text">
+					</div>
 				</div>
 			</div>
-		</div>
-			<div id="totalDebit"></div>
-			<div id="totalCredit"></div>
+			
+			<hr>
+			<h3>T accounts</h3>
+			New code.
+			
+			<hr>
+			<h3>Trial Balance</h3>
+			New code.
+		</section>
+		
+		<div id="totalDebit"></div>
+		<div id="totalCredit"></div>
 	</div>
 	</body>
 </html>
