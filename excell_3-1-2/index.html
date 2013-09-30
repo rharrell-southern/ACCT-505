@@ -141,23 +141,70 @@
 			/*$(window).on('beforeunload', function() {
 				return 'Leaving this page will clear all the work you\'ve done.';
 			});*/
-			
+
+			var options = [
+				"Accounts Receivable",
+				"Accounts Payable",
+				"Cash",
+				"Dividends",
+				"Rent Expense",
+				"Salaries and Wages Expense",
+				"Salaries and Wages Payable",
+				"Service Revenue",
+				"Unearned Servies Revenue"
+			];
+
 			journalCont = new Journal('#journalTable',
-				['First Value', 'Second Value', 'Another option'],
+				options,
 				[
 					{
-						date: {type: 'string', value: '01/01'},
-						descriptionOne: {type: 'option', value: 1},
+						date: {type: 'string', value: '04/03'},
+						descriptionOne: {type: 'option', value: 2},
 						descriptionTwo: {type: 'option', value: 0},
-						credit: {type: 'int', value: 150},
-						debit: {type: 'int', value: 150}
+						credit: {type: 'int', value: 2840},
+						debit: {type: 'int', value: 2840}
 					},
 					{
-						date: {type: 'string', value: '01/02'},
+						date: {type: 'string', value: '04/09'},
+						descriptionOne: {type: 'option', value: 0},
+						descriptionTwo: {type: 'option', value: 7},
+						credit: {type: 'int', value: 3850},
+						debit: {type: 'int', value: 3850}
+					},
+					{
+						date: {type: 'string', value: '04/17'},
+						descriptionOne: {type: 'option', value: 5},
+						descriptionTwo: {type: 'option', value: 6},
+						credit: {type: 'int', value: 4250},
+						debit: {type: 'int', value: 4250}
+					},
+					{
+						date: {type: 'string', value: '04/23'},
+						descriptionOne: {type: 'option', value: 8},
+						descriptionTwo: {type: 'option', value: 7},
+						credit: {type: 'int', value: 2450},
+						debit: {type: 'int', value: 2450}
+					},
+					{
+						date: {type: 'string', value: '04/28'},
 						descriptionOne: {type: 'option', value: 1},
 						descriptionTwo: {type: 'option', value: 2},
-						credit: {type: 'int', value: 2000},
-						debit: {type: 'int', value: 2000}
+						credit: {type: 'int', value: 2350},
+						debit: {type: 'int', value: 2350}
+					},
+					{
+						date: {type: 'string', value: '04/29'},
+						descriptionOne: {type: 'option', value: 3},
+						descriptionTwo: {type: 'option', value: 2},
+						credit: {type: 'int', value: 560},
+						debit: {type: 'int', value: 560}
+					},
+					{
+						date: {type: 'string', value: '04/30'},
+						descriptionOne: {type: 'option', value: 4},
+						descriptionTwo: {type: 'option', value: 2},
+						credit: {type: 'int', value: 730},
+						debit: {type: 'int', value: 730}
 					}
 				]
 			);
