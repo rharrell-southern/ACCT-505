@@ -12,7 +12,7 @@ var Journal = function(elem, options, solutions) {
 	
 	var $tRow = $table.find('tr.journalRow:first');
 	// Generate the options for the dropdowns
-	var toInsert = '';
+	var toInsert = '<option value="" selected>Choose a Description</option>';
 	for(var i = 0; i < options.length; i++) {
 		toInsert += '<option>'+options[i]+'</option>';
 	}
@@ -21,11 +21,15 @@ var Journal = function(elem, options, solutions) {
 	$tRow.find('input,select').on('change focusout', function() {
 		checkAnswers();
 	});
+	// Set handler on the button
+	$table.find('td.journalButton button').click(function() {
+		addRow();
+	});
 
 	// Clone the first row and save it for later appending
 	var $prototypeRow = $tRow.clone(false);
 	// Add event listeners to check for changes (do it again, because it was told to ignore previous bindings)
-	$prototypeRow.find('input,select').on('change', function() {
+	$prototypeRow.find('input,select').on('change focusout', function() {
 		checkAnswers();
 	});
 	// TODO: Find a better way to point to this one
@@ -37,17 +41,23 @@ var Journal = function(elem, options, solutions) {
 
 	function compareValues($elem, type, toCompare) {
 		var value = $elem.val();
+		var isEmpty = false;
 		switch(type) {
 			case 'option':
 				value = $elem.find('option:selected').val();
 				toCompare = options[toCompare];
 				break;
 			case 'int':
+				if(value === '') {
+					isEmpty = true;
+				}
 				value = parseInt(value, 10);
 				break;
 			default:
 		}
-		if(value === toCompare) {
+		if(typeof value === 'undefined' || isEmpty || value === '') {
+			$elem.removeClass('bad good');
+		} else if(value === toCompare) {
 			$elem.removeClass('bad').addClass('good');
 		} else {
 			$elem.removeClass('good').addClass('bad');
@@ -68,12 +78,18 @@ var Journal = function(elem, options, solutions) {
 	}
 
 	function addRow() {
-		if($table.find('tr.journalRow').length >= solutions.length) {
+		var numRows = $table.find('tr.journalRow').length;
+		if(numRows >= solutions.length) {
 			return;
 		}
 
 		// NOTE: We *do* want to take all the bound events with this one
-		$table.append($prototypeRow.clone(true));
+		$prototypeRow.clone(true).insertAfter($table.find('tr.journalRow:last'));
+
+		// Disable the button if there are no more rows to add
+		if(++numRows >= solutions.length) {
+			$table.find('td.journalButton button').prop('disabled', true);
+		}
 	}
 
 

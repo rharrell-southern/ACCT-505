@@ -1,17 +1,18 @@
+<!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>Supplemental Exercise 3.1.2</title>
 
-		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.4/css/bootstrap.min.css" rel="stylesheet">
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/main.css" rel="stylesheet">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.4/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
 		<script src="../template/js/journal.js"></script>
 
 		<script>
-		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies Expense","Supplies Payable","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense","Office Supplies","Unearned Service Revenue","Rent Expense");
+		/*var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies Expense","Supplies Payable","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense","Office Supplies","Unearned Service Revenue","Rent Expense");
 
 		var num_rows = 1;
 
@@ -121,10 +122,6 @@
 
 
 		$(function(){
-				
-			/*$(window).bind('beforeunload', function(){
-				return 'Leaving this page will wipe all your data.';
-			});*/
 
 			//Generate options
 			for(var i = 0; i<options.length;i++) {
@@ -138,7 +135,7 @@
 			$('#container select,input').live("focusout", function(){
 				compare();
 			});
-		});
+		});*/
 		
 		$(document).ready(function() {
 			/*$(window).on('beforeunload', function() {
@@ -171,7 +168,7 @@
 
 	<body>
 	<div id="content">
-		<button class="printBtn" onclick="window.print();">Print this Page</button>
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
 		<h1>Supplemental Exercise 3.1.2</h1>
 		<h2>McKay Corp.</h2>
 		<br>
@@ -220,13 +217,30 @@
 					<th>Credit</th>
 				</tr>
 				<tr class="journalRow">
-					<td><input type="text" value='' class='date'></td>
-					<td><select class="descriptionOne"></select> <select class="descriptionTwo"></select></td>
-					<td>$<input type="text" value="" class="debit"></td>
-					<td>$<input type="text" value="" class="credit"></td>
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+						<select class="descriptionTwo"></select>
+					</td>
+					<td class="onTop">
+						<div class="row input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="tdDividerBottom input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
 				</tr>
 			</table>
-			<button onclick="journalCont.addRow();">Add Row</button>
 			
 			<hr>
 			<h3>T accounts</h3>
