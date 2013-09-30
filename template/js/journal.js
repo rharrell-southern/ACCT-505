@@ -47,7 +47,6 @@ var Journal = function(elem, options, solutions) {
 				break;
 			default:
 		}
-		console.debug("Comparing "+value+" to "+toCompare);
 		if(value === toCompare) {
 			$elem.removeClass('bad').addClass('good');
 		} else {
