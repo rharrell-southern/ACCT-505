@@ -8,6 +8,7 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.4/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
 
 		<script>
 		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies Expense","Supplies Payable","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense","Office Supplies","Unearned Service Revenue","Rent Expense");
@@ -129,28 +130,40 @@
 			for(var i = 0; i<options.length;i++) {
 				console.log(i, options[i]);
 				var html = '<option>' + options[i] + '</option>';
-				$('select').append(html);
+				$('#account select').append(html);
 			}
 
 			$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
 
-			$('input').live("focusout", function(){
+			$('#container select,input').live("focusout", function(){
 				compare();
 			});
-
-			$('select').live("focusout", function(){
-				compare();
-			});
-
-
 		});
 		
 		$(document).ready(function() {
-			$(window).on('beforeunload', function() {
+			/*$(window).on('beforeunload', function() {
 				return 'Leaving this page will clear all the work you\'ve done.';
-			});
+			});*/
 			
-			
+			journalCont = new Journal('#journalTable',
+				['First Value', 'Second Value', 'Another option'],
+				[
+					{
+						date: {type: 'string', value: '01/01'},
+						descriptionOne: {type: 'option', value: 1},
+						descriptionTwo: {type: 'option', value: 0},
+						credit: {type: 'int', value: 150},
+						debit: {type: 'int', value: 150}
+					},
+					{
+						date: {type: 'string', value: '01/02'},
+						descriptionOne: {type: 'option', value: 1},
+						descriptionTwo: {type: 'option', value: 2},
+						credit: {type: 'int', value: 2000},
+						debit: {type: 'int', value: 2000}
+					}
+				]
+			);
 		});
 
 		</script>
@@ -199,7 +212,21 @@
 		
 		<section id="problems">
 			<h3>Journal</h3>
-			New code.
+			<table id="journalTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td><input type="text" value='' class='date'></td>
+					<td><select class="descriptionOne"></select> <select class="descriptionTwo"></select></td>
+					<td>$<input type="text" value="" class="debit"></td>
+					<td>$<input type="text" value="" class="credit"></td>
+				</tr>
+			</table>
+			<button onclick="journalCont.addRow();">Add Row</button>
 			
 			<hr>
 			<h3>T accounts</h3>
