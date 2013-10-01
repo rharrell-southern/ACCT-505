@@ -9,139 +9,11 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+
 		<script src="../template/js/journal.js"></script>
 
 		<script>
-		/*var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies Expense","Supplies Payable","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense","Office Supplies","Unearned Service Revenue","Rent Expense");
-
-		var num_rows = 1;
-
-		// Column names
-			var columns = {
-				0:'.account',
-				1:'.debit',
-				2:'.credit'
-			};
-
-		
-		// Set solution tables
-		var solution = new Array();
-		solution[0] = [options[0],8300,0];
-		solution[1] = [options[2],6240,0];
-		solution[2] = [options[6],2300,0];
-		solution[3] = [options[7],12770,0];
-		solution[4] = [options[1],0,1600];
-		solution[5] = [options[16],0,4250];
-		solution[6] = [options[20],0,0];
-		solution[7] = [options[17],0,23000];
-		solution[8] = [options[3],0,6300];
-		solution[9] = [options[12],4250,0];
-		solution[10] = [options[2100],730,0];
-		solution[11] = [options[11],560,0];
-	
-
-		function add_row(){
-
-			num_rows++;
-			$('#container').append(function(){
-				var html = $('#container div.row:first').html();
-				return '<div id="'+ num_rows +'" class="row">'+ html +'</div>';
-			});
-			$('.add_row').html('&nbsp;');
-			$('.row:last div.add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
-			$('.row div.add_row').append(function(){
-				return '<span class="num">'+ $(this).parent().attr('id') + '</span>';
-			});
-
-
-			for(var i = 0; i < 3;i++) {
-				$('#'+ num_rows +'.row select.' + i).removeClass('bad');
-				$('#'+ num_rows +'.row select.' + i).removeClass('good');
-				$('#'+ num_rows +'.row input.' + i).removeClass('bad');
-				$('#'+ num_rows +'.row input.' + i).removeClass('good');
-			}
-		}
-
-		function compare (){
-			var totalDebit = 0;
-			var totalCredit = 0;
-			console.log('Compare!' + solution.length);
-			for(i = 0; i < solution.length; i++){
-
-				$('#'+ (i+1) +'.row select option:selected').each(function (x,val){
-					console.log(solution[i][x] + " = " + val.value);
-					if(solution[i][x] == val.value){
-						$('#'+ (i+1) +'.row select.' + x).removeClass('bad');
-						$('#'+ (i+1) +'.row select.' + x).addClass('good');
-					} else {
-						$('#'+ (i+1) +'.row select.' + x).removeClass('good');
-						$('#'+ (i+1) +'.row select.' + x).addClass('bad');
-					}
-				});
-				$('#'+ (i+1) +'.row input').each(function (x,val){
-					n = x + 1;
-					console.log(solution[i][n] + " = " + $(val).val());
-					if($(val).val() == ''){
-						var tmpVal = 0;
-					}else{
-						var tmpVal = $(val).val();
-					}
-					if (n == 1) {
-						totalDebit += parseFloat(tmpVal);
-					} else if (n == 2) {
-						totalCredit += parseFloat(tmpVal);
-					}
-
-					if(solution[i][n] == tmpVal){
-						$('#'+ (i+1) +'.row input.' + n).removeClass('bad');
-						$('#'+ (i+1) +'.row input.' + n).addClass('good');
-					} else {
-						$('#'+ (i+1) +'.row input.' + n).removeClass('good');
-						$('#'+ (i+1) +'.row input.' + n).addClass('bad');
-					}
-
-					if(totalDebit == totalCredit && totalDebit == 35150 && totalCredit == 35150){
-						$('#totalDebit').removeClass('bad');
-						$('#totalDebit').addClass('good');
-						$('#totalCredit').removeClass('bad');
-						$('#totalCredit').addClass('good');
-					}else{
-						$('#totalDebit').removeClass('good');
-						$('#totalDebit').addClass('bad');
-						$('#totalCredit').removeClass('good');
-						$('#totalCredit').addClass('bad');
-					}
-
-
-				});
-			}
-
-			$("#totalDebit").html(totalDebit);
-			$("#totalCredit").html(totalCredit);
-		}
-
-
-		$(function(){
-
-			//Generate options
-			for(var i = 0; i<options.length;i++) {
-				console.log(i, options[i]);
-				var html = '<option>' + options[i] + '</option>';
-				$('#account select').append(html);
-			}
-
-			$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
-
-			$('#container select,input').live("focusout", function(){
-				compare();
-			});
-		});*/
-		
 		$(document).ready(function() {
-			/*$(window).on('beforeunload', function() {
-				return 'Leaving this page will clear all the work you\'ve done.';
-			});*/
-
 			var options = [
 				"Accounts Receivable",
 				"Accounts Payable",
@@ -221,8 +93,58 @@
 		<br>
 		<section id="question">
 			<p>The trial balance of McKay Corp. as of April 30<sup>th</sup> is given below.</p>
-			
-			[Insert Trial Balance Sheet Here]<br><br>
+			<table style="width: 30em;">
+				<tr>
+					<th colspan="3">
+						McKay Corp.<br>
+						Trial Balance<br>
+						March 31, 20XX<br>
+					</th>
+				</tr>
+				<tr><th><th>Debit</th><th>Credit</th></tr>
+				<tr>
+					<td>Cash</td>
+					<td>$9,100</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Accounts Receivable</td>
+					<td>5,230</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Supplies</td>
+					<td>2,300</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Equipment</td>
+					<td>12,770</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Accounts Payable</td>
+					<td></td>
+					<td>3,950</td>
+				</tr>
+				<tr>
+					<td>Unearned Service Revenue</td>
+					<td></td>
+					<td>2,450</td>
+				</tr>
+				<tr>
+					<td>Common Stock</td>
+					<td></td>
+					<td>23,000</td>
+				</tr>
+				<!-- Totals -->
+				<tr>
+					<td></td>
+					<td>$29,400</td>
+					<td>$29,400</td>
+				</tr>
+			</table>
+			<br><br>
 			
 			<strong>April Transactions:</strong>
 			<ul>
@@ -291,7 +213,11 @@
 			
 			<hr>
 			<h3>T accounts</h3>
-			New code.
+			<table id="tAccountTable">
+				<tr>
+					
+				</tr>
+			</table>
 			
 			<hr>
 			<h3>Trial Balance</h3>
