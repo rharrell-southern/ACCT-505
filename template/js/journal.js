@@ -53,6 +53,11 @@ var Journal = function(elem, options, solutions) {
 				}
 				value = parseInt(value, 10);
 				break;
+			case 'empty':
+				if(value === '') {
+					value = true;
+					toCompare = true;
+				}
 			default:
 		}
 		if(typeof value === 'undefined' || isEmpty || value === '') {
