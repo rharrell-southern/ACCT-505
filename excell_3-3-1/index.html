@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 3.3.1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+
+		<style>
+			.questionTable {
+				border: 1px solid lightgray;
+				width: 30em;
+				border-collapse: collapse;
+			}
+			.questionTable td {
+				padding: 0.1em;
+				border: 1px solid lightgray;
+			}
+			td.tableTotal {
+				border-top: 3px double black;
+				border-bottom: 1px solid black;
+			}
+			.questionTable tr td:nth-child(1n+2) {
+				text-align: right;
+			}
+		</style>
+		
+		<script>
+
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 3.3.1</h1>
+		<h2>Thrasher Automotive Collision Repair</h2>
+		<br>
+		<section id="question">
+			<center>
+			<p>Thrasher Automotive Collision Repair was organized on January 1st of the current year.
+				Quarterly financial statements are prepared. The adjusted trial balance on March 31 is shown here:</p>
+			<table class="questionTable">
+				<tr>
+					<th colspan="3">
+					THRASHER AUTOMOTIVE COLLISION REPAIR<br>
+					TRIAL BALANCE<br>
+					March 31, 20XX
+					</th>
+				</tr>
+				<tr>
+					<td></td> <td><strong>Debit</strong></td> <td><strong>Credit</strong></td>
+				</tr>
+				<tr><td>Cash</td>								<td>$5,600</td> <td></td></tr>
+				<tr><td>Accounts Receivable</td>				<td>1,200</td>	<td></td></tr>
+				<tr><td>Prepaid Rent</td>						<td>500</td>	<td></td></tr>
+				<tr><td>Automotive Paint and Parts Supplies</td><td>7,200</td>	<td></td></tr>
+				<tr><td>Equipment</td>							<td>18,300</td> <td></td></tr>
+				<tr><td>Accumulated Depreciation-Equipment</td> <td></td>		<td>$250</td></tr>
+				<tr><td>Notes Payable</td>						<td></td>		<td>5,000</td></tr>
+				<tr><td>Accounts Payable</td>					<td></td>		<td>1,200</td></tr>
+				<tr><td>Salaries and Wages Payable</td>			<td></td>		<td>400</td></tr>
+				<tr><td>Interest Payable</td>					<td></td>		<td>75</td></tr>
+				<tr><td>Common Stock</td>						<td></td>		<td>20,000</td></tr>
+				<tr><td>Retained Earnings</td>					<td></td>		<td>0</td></tr>
+				<tr><td>Dividends</td>							<td>1,000</td>	<td></td></tr>
+				<tr><td>Auto Repair Revenue</td>				<td></td>		<td>17,500</td></tr>
+				<tr><td>Salaries and Wages Expense</td>			<td>8,225</td>	<td></td></tr>
+				<tr><td>Rent Expense</td>						<td>600</td>	<td></td></tr>
+				<tr><td>Depreciation Expense</td>				<td>250</td>	<td></td></tr>
+				<tr><td>Supplies Expense</td>					<td>1,000</td>	<td></td></tr>
+				<tr><td>Utilities Expense</td>					<td>500</td>	<td></td></tr>
+				<tr><td>Interest Expense</td>					<td>50</td>		<td></td></tr>
+				<tr><td></td>									<td class="tableTotal">$44,425</td><td class="tableTotal">$44,425</td></tr>
+			</table>
+			</center>
+			<strong>Instructions:</strong>
+			<ol>
+				<li>Prepare an income statement and a retained earnings statement for the 3 months ending March 31 and a classified balance sheet at March 31</li>
+				<li>Identify which accounts should be closed on March 31</li>
+			</ol>
+		</section>
+		
+		<section id="problems">
+			<h3>Closing Entries</h3>
+			<table id="closingEntryTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	</body>
+</html>
