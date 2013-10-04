@@ -12,6 +12,22 @@
 
 		<script src="../template/js/journal.js"></script>
 
+		<style>
+			.trialBalanceTable {
+				border: 1px solid lightgray;
+				width: 30em;
+				border-collapse: collapse;
+			}
+			.trialBalanceTable td, th {
+				padding: 0.1em;
+				border: 1px solid lightgray;
+			}
+			td.tableTotal {
+				border-top: 3px double black;
+				border-bottom: 1px solid black;
+			}
+		</style>
+		
 		<script>
 		$(document).ready(function() {
 			var options = [
@@ -93,7 +109,7 @@
 		<br>
 		<section id="question">
 			<p>The trial balance of McKay Corp. as of April 30<sup>th</sup> is given below.</p>
-			<table style="width: 30em;">
+			<table class="trialBalanceTable">
 				<tr>
 					<th colspan="3">
 						McKay Corp.<br>
@@ -139,9 +155,9 @@
 				</tr>
 				<!-- Totals -->
 				<tr>
-					<td></td>
-					<td>$29,400</td>
-					<td>$29,400</td>
+					<td><strong>Total</strong></td>
+					<td class="tableTotal">$29,400</td>
+					<td class="tableTotal">$29,400</td>
 				</tr>
 			</table>
 			<br><br>
