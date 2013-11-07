@@ -1,0 +1,35 @@
+/* Page Format */
+body {
+	font-family: Arial, Helvetica sans-serif;
+	background-color: #999;
+	font-size: 12pt;
+	line-height: 1.5em;
+}
+
+div#content {
+	background-color: #FFF;
+	margin: 0.3em;
+	box-shadow: 2px 2px 3px #000;
+	padding: 0.5em;
+}
+
+button.btn-print {
+	float: right;
+}
+
+/* Tables */
+table.trial-balance {
+	width: 30em;
+	border: 1px solid lightgray;
+	border-collapse: collapse;
+}
+
+table.trial-balance td,th {
+	padding: 0.1em;
+	border: 1px solid lightgray;
+}
+
+table.trial-balance td.tableTotal {
+	border-top: 3px double black;
+	border-bottom: 1px solid black;
+}
