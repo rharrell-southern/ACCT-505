@@ -5,29 +5,12 @@
 		<title>Supplemental Exercise 3.2.1</title>
 
 		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/main.css" rel="stylesheet">
+		<link href="../template/css/common.css" rel="stylesheet">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
-		
 		<script src="../template/js/journal.js"></script>
 
-		<style>
-			.trialBalanceTable {
-				border: 1px solid lightgray;
-				width: 30em;
-				border-collapse: collapse;
-			}
-			.trialBalanceTable td,th {
-				padding: 0.1em;
-				border: 1px solid lightgray;
-			}
-			td.tableTotal {
-				border-top: 3px double black;
-				border-bottom: 1px solid black;
-			}
-		</style>
-		
 		<script>
 		$(document).ready(function() {
 			var options = [
@@ -99,7 +82,7 @@
 
 	<body>
 	<div id="content">
-		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<button class="btn-info btn-print" onclick="window.print();">Print this Page</button>
 		<h1>Supplemental Exercise 3.2.1</h1>
 		<h2>Kudos Supplies Trial Balance</h2>
 		<br>
@@ -107,7 +90,7 @@
 			<center>
 			<p>The trial balance of Kudos Supplies as of December 31<sup>st</sup> is as follows:</p>
 
-			<table class="trialBalanceTable">
+			<table class="trial-balance">
 				<tr>
 					<th colspan="3">
 					Kudos Supplies<br>
