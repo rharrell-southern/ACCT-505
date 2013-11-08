@@ -9,6 +9,195 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		
+		<script>
+		var IFOTable = function(elem, solutions) {
+			var $table = $(elem);
+			var solutions = solutions;
+			
+			var $tRow = $table.find('tr.ifoRow:first');
+			$tRow.find('input').on('change focusout', function() {
+				console.log("Firing tRow");
+				checkAnswers();
+			});
+			
+			var $prototypeRow = $tRow.clone(false);
+			$prototypeRow.find('input').on('change focusout', function() {
+				console.log("Firing");
+				checkAnswers();
+			});
+			
+			$table.find('.ifoButton').on('click', function() {
+				addRow();
+			});
+			
+			function checkAnswers() {
+				var sum = 0;
+				$table.find('tr.ifoRow').each(function(index) {
+					var $row = $(this),
+						$quan = $row.find('.ifoQuantity'),
+						$cost = $row.find('.ifoCost'),
+						$value = $row.find('.ifoValue');
+					var currentSolution = solutions[index];
+					
+					var amount = $quan.val(),
+						cost = $cost.val(),
+						subtotal = amount*cost;
+					
+					if(amount == currentSolution.quantity) {
+						$quan.removeClass('bad').addClass('good');
+					} else {
+						$quan.removeClass('good').addClass('bad');
+					}
+					if(cost == currentSolution.cost) {
+						$cost.removeClass('bad').addClass('good');
+					} else {
+						$cost.removeClass('good').addClass('bad');
+					}
+					
+					if(subtotal === currentSolution.cost*currentSolution.quantity) {
+						$value.removeClass('bad').addClass('good');
+					} else {
+						$value.removeClass('good').addClass('bad');
+					}
+					$value.val("$" + subtotal);
+					sum += subtotal;
+				});
+				$table.find('td.ifoTotal').html("$" + sum);
+			}
+			
+			function updateDisplay() {
+				var sum = 0;
+				$table.find('tr.ifoRow').each(function() {
+					var $row = $(this);
+					var amt = $row.find('.ifoQuantity').val();
+					var cost = $row.find('.ifoCost').val();
+					var subtotal = amt*cost;
+					$row.find('.ifoValue').val(subtotal);
+					sum += subtotal;
+				});
+				$table.find('td.ifoTotal').html("$" + sum);
+			}
+			
+			function addRow() {
+				var numRows = $table.find('tr.ifoRow').length;
+				if(numRows >= solutions.length) {
+					return;
+				}
+
+				// NOTE: We *do* want to take all the bound events with this one
+				$prototypeRow.clone(true).insertAfter($table.find('tr.ifoRow:last'));
+
+				// Disable the button if there are no more rows to add
+				if(++numRows >= solutions.length) {
+					$table.find('td.ifoButton button').prop('disabled', true);
+				}
+			}
+		};
+		
+		
+		function compareValues($elem, type, toCompare) {
+			var value = $elem.val();
+			var isEmpty = false;
+			switch(type) {
+				case 'option':
+					value = $elem.find('option:selected').val();
+					toCompare = options[toCompare];
+					break;
+				case 'int':
+					if(value === '') {
+						isEmpty = true;
+					}
+					value = parseInt(value, 10);
+					break;
+				case 'empty':
+					if(value === '') {
+						value = true;
+						toCompare = true;
+					}
+				default:
+			}
+			if(typeof value === 'undefined' || isEmpty || value === '') {
+				$elem.removeClass('bad good');
+			} else if(value === toCompare) {
+				$elem.removeClass('bad').addClass('good');
+			} else {
+				$elem.removeClass('good').addClass('bad');
+			}
+		}
+		
+		// Average-Cost Variables
+		var solution = [
+			{date: '08/03', units: 10, unitCost: 50},
+			{date: '08/07', units: 30, unitCost: 53},
+			{date: '08/15', units: 10, unitCost: 55},
+			{date: '08/23', units: 15, unitCost: 67}
+		];
+		var unitSums = [];
+		var totalSums = [];
+		for(var i = 0; i < solution.length; i++) {
+			unitSums[i] = 0;
+			totalSums[i] = 0;
+		}
+		
+		// Average-Cost Functions
+		function checkRow($elem, solutionIndex) {
+			var $date = $elem.find('.date'),
+				$units = $elem.find('.units'),
+				$unitsCost = $elem.find('.unitsCost'),
+				$total = $elem.find('.total');
+			
+			var total = $units.val() * $unitsCost.val();
+			// Update dependent values
+			$total.val(total);
+			unitSums[solutionIndex] = parseInt($units.val());
+			totalSums[solutionIndex] = total;
+			
+			// Check values
+			var sol = solution[solutionIndex];
+			compareValues($date, 'date', sol.date);
+			compareValues($units, 'int', sol.units);
+			compareValues($unitsCost, 'int', sol.unitCost);
+			compareValues($total, 'int', sol.units*sol.unitCost);
+			
+			checkSolution();
+		}
+		
+		function checkSolution() {
+			var $weightCost = $('#avgWeightCost'),
+				$avgEnding = $('#avgEnding');
+		
+			var unitSum = 0,
+				totalSum = 0;
+			for(var i = 0; i < solution.length; i++) {
+				unitSum += unitSums[i];
+				totalSum += totalSums[i];
+			}
+			var wcTotal = totalSum/unitSum;
+			$weightCost.html(totalSum + " / " + unitSum + " = " + wcTotal);
+			$avgEnding.html("35 * " + wcTotal + " = " + 35*wcTotal);
+			// TODO: Make the student enter the remaining inventory amount!!
+		}
+		
+		$(document).ready(function() {
+			new IFOTable('#fifoTable', [
+				{quantity: 10, cost: 50},
+				{quantity: 25, cost: 53}
+			]);
+			new IFOTable('#lifoTable', [
+				{quantity: 15, cost: 67},
+				{quantity: 10, cost: 55},
+				{quantity: 10, cost: 53}
+			]);
+			
+			$('.acRow').each(function(index) {
+				var $this = $(this);
+				$this.find('.date, .units, .unitsCost, .total').on('change, focusout', function() {
+					checkRow($this, index);
+				});
+			});
+		});
+		</script>
 	</head>
 
 	<body>
@@ -86,10 +275,109 @@
 		
 		<section id="problems">
 			<h3>FIFO</h3>
+			<table id="fifoTable">
+				<tr>
+					<th>Quantity</th>
+					<th>Cost</th>
+					<th>Value</th>
+				</tr>
+				
+				<tr class="ifoRow">
+					<td><input type="text" value="" class="ifoQuantity"></td>
+					<td><input type="text" value="" class="ifoCost"></td>
+					<td><input type="text" value="" class="ifoValue" disabled></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2">
+						<strong>Ending Inventory</strong>
+					</td>
+					<td class="ifoTotal"></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="ifoButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+			
 			
 			<h3>FIFO</h3>
+			<table id="lifoTable">
+				<tr>
+					<th>Quantity</th>
+					<th>Cost</th>
+					<th>Value</th>
+				</tr>
+				
+				<tr class="ifoRow">
+					<td><input type="text" value="" class="ifoQuantity"></td>
+					<td><input type="text" value="" class="ifoCost"></td>
+					<td><input type="text" value="" class="ifoValue" disabled></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2">
+						<strong>Ending Inventory</strong>
+					</td>
+					<td class="ifoTotal"></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="ifoButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
 			
 			<h3>Average-Cost</h3>
+			<table>
+				<tr>
+					<th>Date</th>
+					<th>Units</th>
+					<th>Unit Cost</th>
+					<th>Total Cost</th>
+				</tr>
+				
+				<tr class="acRow">
+					<td><input type="text" value="" class="date"></td>
+					<td><input type="text" value="" class="units"></td>
+					<td><input type="text" value="" class="unitsCost"></td>
+					<td><input type="text" value="" class="total" disabled></td>
+				</tr>
+				<tr class="acRow">
+					<td><input type="text" value="" class="date"></td>
+					<td><input type="text" value="" class="units"></td>
+					<td><input type="text" value="" class="unitsCost"></td>
+					<td><input type="text" value="" class="total" disabled></td>
+				</tr>
+				<tr class="acRow">
+					<td><input type="text" value="" class="date"></td>
+					<td><input type="text" value="" class="units"></td>
+					<td><input type="text" value="" class="unitsCost"></td>
+					<td><input type="text" value="" class="total" disabled></td>
+				</tr>
+				<tr class="acRow">
+					<td><input type="text" value="" class="date"></td>
+					<td><input type="text" value="" class="units"></td>
+					<td><input type="text" value="" class="unitsCost"></td>
+					<td><input type="text" value="" class="total" disabled></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2">
+						<strong>Weighted Average Cost per Unit</strong>
+					</td>
+					<td id="avgWeightCost"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<strong>Ending Inventory</strong>
+					</td>
+					<td id="avgEnding"></td>
+					<td></td>
+				</tr>
+			</table>
 			
 		</section>
 	</div>
