@@ -9,6 +9,41 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				$('#lifoAnswer').on('change, focusout', function() {
+					var $this = $(this);
+					var value = parseInt($this.val());
+					
+					if(value !== 2960) {
+						$this.removeClass('good').addClass('bad');
+					} else {
+						$this.removeClass('bad').addClass('good');
+					}
+				});
+				$('#fifoAnswer').on('change, focusout', function() {
+					var $this = $(this);
+					var value = parseInt($this.val());
+					
+					if(value !== 2448) {
+						$this.removeClass('good').addClass('bad');
+					} else {
+						$this.removeClass('bad').addClass('good');
+					}
+				});
+				$('#avgCostAnswer').on('change, focusout', function() {
+					var $this = $(this);
+					var value = parseInt($this.val());
+					
+					if(value !== 2772) {
+						$this.removeClass('good').addClass('bad');
+					} else {
+						$this.removeClass('bad').addClass('good');
+					}
+				});
+			});
+		</script>
 	</head>
 
 	<body>
@@ -98,13 +133,15 @@
 		</section>
 		
 		<section id="problems">
-			<h3>FIFO</h3>
+
+			<label for="lifoAnswer">LIFO: </label><input type="text" value="" id="lifoAnswer" name="lifoAnswer">
 			
-			<h3>FIFO</h3>
+			<label for="fifoAnswer">FIFO: </label>
+			<input type="text" value="" id="fifoAnswer" name="fifoAnswer">
 			
-			<h3>Average-Cost</h3>
+			<label for="avgCostAnswer">Average-Cost: </label>
+			<input type="text" value="" id="avgCostAnswer" name="avgCostAnswer">
 			
-			<h3>Compare Results</h3>
 		</section>
 	</div>
 	</body>
