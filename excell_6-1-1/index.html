@@ -9,6 +9,79 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		
+		<script>
+			var p1Options = [
+				"Bank reconciliation",
+				"Segregation of duties",
+				"Physical control",
+				"Independent checks"
+			];
+			var p2Options = [
+				"Place two cashiers that are more bonded together",
+				"Each cashier should be responsible for a single petty cash box",
+				"Place the access cash somewhere more security such as a locked vault of safe",
+				"An employee should either be responsible for record keeping or physical control of the asset but not both, The other role is the responsibility of an independent party",
+				"An independent party should be responsible for checking the accountants work",
+				"Have an employee other than the cashier prepare the bank reconciliations"
+			];
+			var p1Solutions = [
+				1,
+				2,
+				3,
+				2,
+				4
+			];
+			var p2Solutions = [
+				6,
+				2,
+				3,
+				4,
+				5
+			];
+			
+			function genOptions(arr) {
+				var ret = "<option value='-1'></option>";
+				for(var i = 0; i < arr.length; i++) {
+					ret += "<option value='" + (i+1) + "'>" + arr[i] + "</option>";
+				}
+				return ret;
+			}
+			
+			$(document).ready(function() {
+				var p1Opt = genOptions(p1Options),
+					p2Opt = genOptions(p2Options);
+
+				$('.aProblems').each(function(index) {
+					var $this = $(this);
+					$this.html(p1Opt);
+					$this.on('change, focusout', function() {
+						var selected = parseInt($this.find('option:selected').val());
+						if(selected < 0) {
+							$this.removeClass('good').removeClass('bad');
+						} else if(selected === p1Solutions[index]) {
+							$this.removeClass('bad').addClass('good');
+						} else {
+							$this.removeClass('good').addClass('bad');
+						}
+					});
+				});
+				$('.bProblems').each(function(index) {
+					var $this = $(this);
+					$this.html(p2Opt);
+					$this.on('change, focusout', function() {
+						var selected = parseInt($this.find('option:selected').val());
+						if(selected < 0) {
+							$this.removeClass('good').removeClass('bad');
+						} else if(selected === p2Solutions[index]) {
+							$this.removeClass('bad').addClass('good');
+						} else {
+							$this.removeClass('good').addClass('bad');
+						}
+					});
+				});
+			});
+		</script>
 	</head>
 
 	<body>
@@ -37,7 +110,48 @@
 		
 		<section id="problems">
 			<h3>Answers</h3>
-			
+			<ol type="A">
+				<li>
+					For each procedure, choose the weakness in internal control and identify the control principle that is violated.
+					<ol>
+						<li>The clerk who is charge of processing cash transaction does so without anyone checking on her work.
+							<br><select id="problem-a1" class="aProblems"></select>
+						</li>
+						<li>Three cashiers all have access to the same petty cash fund.
+							<br><select id="problem-a2" class="aProblems"></select>
+						</li>
+						<li>To minimize the risk of robbery, cash in excess of $100 is stored in a secret filing cabinet in the stock room until it is deposited in the bank.
+							<br><select id="problem-a3" class="aProblems"></select>
+						</li>
+						<li>The person who is responsible for an asset’s recordkeeping is also responsible for physical control of that asset.
+							<br><select id="problem-a4" class="aProblems"></select>
+						</li>
+						<li>The company accountant rechecks her own work at the end of each day.
+							<br><select id="problem-a5" class="aProblems"></select>
+						</li>
+					</ol>
+				</li>
+				<li>
+					For each weakness choose the change in procedure that will result in good internal control.
+					<ol>
+						<li>The clerk who is charge of processing cash transaction does so without anyone checking on her work.
+							<br><select id="problem-b1" class="bProblems"></select>
+						</li>
+						<li>Three cashiers all have access to the same petty cash fund.
+							<br><select id="problem-b2" class="bProblems"></select>
+						</li>
+						<li>To minimize the risk of robbery, cash in excess of $100 is stored in a secret filing cabinet in the stock room until it is deposited in the bank.
+							<br><select id="problem-b3" class="bProblems"></select>
+						</li>
+						<li>The person who is responsible for an asset’s recordkeeping is also responsible for physical control of that asset.
+							<br><select id="problem-b4" class="bProblems"></select>
+						</li>
+						<li>The company accountant rechecks her own work at the end of each day.
+							<br><select id="problem-b5" class="bProblems"></select>
+						</li>
+					</ol>
+				</li>
+			</ol>
 		</section>
 	</div>
 	</body>
