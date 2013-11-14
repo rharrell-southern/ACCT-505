@@ -9,6 +9,67 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script>			
+			var answers = {
+				firstProblems: {
+					options: [
+						"Capital Expenditure",
+						"Operating Expense"
+					],
+					solutions: [
+						0, 0, 0, 0, 1, 0, 1, 0
+					]
+				},
+				secondProblems: {
+					options: [
+						"Factory Equipment",
+						"Delivery Van",
+						"Land",
+						"Equipment",
+						"Expense Account",
+						"Prepaid Insurance"
+					],
+					solutions: [
+						0, 1, 2, 3, 4, 2, 5, 1
+					]
+				}
+			};
+			
+			function genOptions(arr) {
+				var ret = "<option value='-1'></option>";
+				for(var i = 0; i < arr.length; i++) {
+					ret += "<option value='" + (i) + "'>" + arr[i] + "</option>";
+				}
+				return ret;
+			}
+			
+			function initQuestions(settings) {
+				for(var prop in settings) {
+					console.log("Running", prop)
+					var current = settings[prop];
+					var optGen = genOptions(current.options);
+					$("." + prop).each(function(index) {
+						var $this = $(this);
+						var now = current;
+						$this.html(optGen);
+						$this.on('change focusout', function() {
+							var selected = parseInt($this.find('option:selected').val());
+							if(selected < 0) {
+								$this.removeClass('good').removeClass('bad');
+							} else if(selected === now.solutions[index]) {
+								$this.removeClass('bad').addClass('good');
+							} else {
+								$this.removeClass('good').addClass('bad');
+							}
+						});
+					});
+				}
+			}
+			
+			$(document).ready(function() {
+				initQuestions(answers);
+			});
+		</script>
 	</head>
 
 	<body>
@@ -20,14 +81,30 @@
 		<section id="question">
 			<p>The following expenditures relating to plant assets were made by Flemming Company during the first 2 month of 20XX.</p>
 			<ol>
-				<li>Paid $5600 for installation of new factory equipment.</li>
-				<li>Paid $950 sales tax on a new delivery van.</li>
-				<li>Paid $8,200 of accrued taxes at the same time the plant site was acquired.</li>
-				<li>Paid $500 insurance to cover a possible accident loss on new factory equipment while the machinery was in transit.</li>
-				<li>Paid $800 to have the company name and slogan painted.</li>
-				<li>Paid $21,000 for parking lots and driveways on the new plant site.</li>
-				<li>Paid $940 for a 1-year accident insurance policy on the new delivery van.</li>
-				<li>Paid $110 Motor vehicle license fee on the new van.</li>
+				<li>
+					Paid $5600 for installation of new factory equipment.
+				</li>
+				<li>
+					Paid $950 sales tax on a new delivery van.
+				</li>
+				<li>
+					Paid $8,200 of accrued taxes at the same time the plant site was acquired.
+				</li>
+				<li>
+					Paid $500 insurance to cover a possible accident loss on new factory equipment while the machinery was in transit.
+				</li>
+				<li>
+					Paid $800 to have the company name and slogan painted.
+				</li>
+				<li>
+					Paid $21,000 for parking lots and driveways on the new plant site.
+				</li>
+				<li>
+					Paid $940 for a 1-year accident insurance policy on the new delivery van.
+				</li>
+				<li>
+					Paid $110 Motor vehicle license fee on the new van.
+				</li>
 			</ol>
 			<br>
 			<strong>Instructions:</strong>
@@ -43,7 +120,82 @@
 		
 		<section id="problems">
 			<h3>Answers</h3>
-			
+			<ol type="A">
+				<li>
+					For each transaction, indicate whether it is a capital expenditure or an operating expense
+					<ol>
+						<li>
+							Paid $5600 for installation of new factory equipment.
+							<br><select class="firstProblems"></select>
+						</li>
+						<li>
+							Paid $950 sales tax on a new delivery van.
+							<br><select class="firstProblems"></select>
+						</li>
+						<li>
+							Paid $8,200 of accrued taxes at the same time the plant site was. 
+							<br><select class="firstProblems"></select>
+						</li>
+						<li>
+							Paid $500 insurance to cover a possible accident loss on new factory equipment while the machinery was in transit.
+							<br><select class="firstProblems"></select>
+						</li>
+						<li>
+							Paid $800 to have the company name and slogan painted.
+							<br><select class="firstProblems"></select>
+						</li>
+						<li>
+							Paid $21,000 for parking lots and driveways on the new plant site.
+							<br><select class="firstProblems"></select>
+						</li>
+						<li>
+							Paid $940 for a 1-year accident insurance policy on the new delivery van.
+							<br><select class="firstProblems"></select>
+						</li>
+						<li>
+							Paid $110 Motor vehicle license fee on the new van.
+							<br><select class="firstProblems"></select>
+						</li>
+					</ol>
+				</li>
+				<li>
+					For each transaction, indicate the account title to which each expenditure should be debited.
+					<ol>
+						<li>
+							Paid $5600 for installation of new factory equipment.
+							<br><select class="secondProblems"></select>
+						</li>
+						<li>
+							Paid $950 sales tax on a new delivery van.
+							<br><select class="secondProblems"></select>
+						</li>
+						<li>
+							Paid $8,200 of accrued taxes at the same time the plant site was. 
+							<br><select class="secondProblems"></select>
+						</li>
+						<li>
+							Paid $500 insurance to cover a possible accident loss on new factory equipment while the machinery was in transit.
+							<br><select class="secondProblems"></select>
+						</li>
+						<li>
+							Paid $800 to have the company name and slogan painted.
+							<br><select class="secondProblems"></select>
+						</li>
+						<li>
+							Paid $21,000 for parking lots and driveways on the new plant site.
+							<br><select class="secondProblems"></select>
+						</li>
+						<li>
+							Paid $940 for a 1-year accident insurance policy on the new delivery van.
+							<br><select class="secondProblems"></select>
+						</li>
+						<li>
+							Paid $110 Motor vehicle license fee on the new van.
+							<br><select class="secondProblems"></select>
+						</li>
+					</ol>
+				</li>
+			</ol>
 		</section>
 	</div>
 	</body>
