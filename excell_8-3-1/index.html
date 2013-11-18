@@ -9,6 +9,39 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"Amortization Expense",
+				"Copyright",
+				"Goodwill",
+				"Patent"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "03/02"},
+							descriptionOne: {type: "option", value: 0},
+							descriptionTwo: {type: "option", value: 3},
+							debit: {type: "int", value: 72000},
+							credit: {type: "int", value: 72000}
+						},
+						{
+							date: {type: "string", value: "10/02"},
+							descriptionOne: {type: "option", value: 0},
+							descriptionTwo: {type: "option", value: 1},
+							debit: {type: "int", value: 146000},
+							credit: {type: "int", value: 146000}
+						}
+					]
+			);
+		});
+		</script>
 	</head>
 
 	<body>
@@ -42,7 +75,38 @@
 		
 		<section id="problems">
 			<h3>Answers</h3>
-			
+			<table id="generalJournalTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+						<select class="descriptionTwo"></select>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
 		</section>
 	</div>
 	</body>
