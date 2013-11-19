@@ -9,6 +9,85 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"Cash",
+				"Delivery Truck",
+				"Equipment",
+				"Land",
+				"Land Improvements",
+				"Machinery",
+				"Prepaid Insurance",
+				"Vehicle Expense"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "1"},
+							descriptionOne: {type: "option", value: 3},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 6000},
+							credit: {type: "int", value: 6000}
+						},
+						{
+							date: {type: "string", value: "2"},
+							descriptionOne: {type: "option", value: 2},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 100},
+							credit: {type: "int", value: 100}
+						},
+						{
+							date: {type: "string", value: "3"},
+							descriptionOne: {type: "option", value: 1},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 1050},
+							credit: {type: "int", value: 1050}
+						},
+						{
+							date: {type: "string", value: "4"},
+							descriptionOne: {type: "option", value: 4},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 2000},
+							credit: {type: "int", value: 2000}
+						},
+						{
+							date: {type: "string", value: "5"},
+							descriptionOne: {type: "option", value: 1},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 280},
+							credit: {type: "int", value: 280}
+						},
+						{
+							date: {type: "string", value: "6"},
+							descriptionOne: {type: "option", value: 5},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 5000},
+							credit: {type: "int", value: 5000}
+						},
+						{
+							date: {type: "string", value: "7"},
+							descriptionOne: {type: "option", value: 6},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 700},
+							credit: {type: "int", value: 700}
+						},
+						{
+							date: {type: "string", value: "8"},
+							descriptionOne: {type: "option", value: 7},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 95},
+							credit: {type: "int", value: 95}
+						}
+					]
+			);
+		});
+		</script>
 	</head>
 
 	<body>
@@ -38,7 +117,38 @@
 		
 		<section id="problems">
 			<h3>Answers</h3>
-			
+			<table id="generalJournalTable">
+				<tr>
+					<th>Number</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+						<select class="descriptionTwo"></select>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
 		</section>
 	</div>
 	</body>
