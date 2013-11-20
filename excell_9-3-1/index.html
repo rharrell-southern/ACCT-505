@@ -9,6 +9,82 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"Advertising Expenses",
+				"Cash",
+				"Copyright",
+				"R&D Expenses",
+				"Patent",
+				"Patent Expenses",
+				"Copyright Expenses"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "01/04"},
+							descriptionOne: {type: "option", value: 4},
+							descriptionTwo: {type: "option", value: 1},
+							debit: {type: "int", value: 46500},
+							credit: {type: "int", value: 46500}
+						},
+						{
+							date: {type: "string", value: "01-06"},
+							descriptionOne: {type: "option", value: 3},
+							descriptionTwo: {type: "option", value: 1},
+							debit: {type: "int", value: 250000},
+							credit: {type: "int", value: 250000}
+						},
+						{
+							date: {type: "string", value: "07/01"},
+							descriptionOne: {type: "option", value: 4},
+							descriptionTwo: {type: "option", value: 1},
+							debit: {type: "int", value: 30000},
+							credit: {type: "int", value: 30000}
+						},
+						{
+							date: {type: "string", value: "09/01"},
+							descriptionOne: {type: "option", value: 0},
+							descriptionTwo: {type: "option", value: 1},
+							debit: {type: "int", value: 30000},
+							credit: {type: "int", value: 30000}
+						},
+						{
+							date: {type: "string", value: "12/01"},
+							descriptionOne: {type: "option", value: 2},
+							descriptionTwo: {type: "option", value: 1},
+							debit: {type: "int", value: 250000},
+							credit: {type: "int", value: 250000}
+						}
+					]
+			);
+	
+			new Journal(
+					"#amoJournalTable",
+					options,
+					[
+						{
+							descriptionOne: {type: "option", value: 5},
+							descriptionTwo: {type: "option", value: 4},
+							debit: {type: "int", value: 11667},
+							credit: {type: "int", value: 11667}
+						},
+						{
+							descriptionOne: {type: "option", value: 6},
+							descriptionTwo: {type: "option", value: 2},
+							debit: {type: "int", value: 7600},
+							credit: {type: "int", value: 7600}
+						}
+					]
+			);
+		});
+		</script>
 	</head>
 
 	<body>
@@ -66,8 +142,69 @@
 		</section>
 		
 		<section id="problems">
-			<h3>Journal</h3>
+			<h3>General Journal</h3>
+			<table id="generalJournalTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+						<select class="descriptionTwo"></select>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
 			
+			<h3>Amortization Journal</h3>
+			<table id="amoJournalTable">
+				<tr>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+						<select class="descriptionTwo"></select>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
 		</section>
 	</div>
 	</body>
