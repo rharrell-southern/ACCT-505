@@ -9,6 +9,30 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		
+		<script>
+			function setup(id, toCompare) {
+				$(id).on("change focousout", function() {
+					var $this = $(this);
+					var val = $this.val();
+					if(val === "") {
+						$this.removeClass('bad').removeClass('good');
+						return;
+					}
+					val = parseInt(val, 10);
+					if(val === toCompare) {
+						$this.removeClass('bad').addClass('good');
+					} else {
+						$this.removeClass('good').addClass('bad');
+					}
+				});
+			}
+			$(document).ready(function() {
+				setup("#machineOne", 41250);
+				setup("#machineTwo", 70312);
+				setup("#machineThree", 23638);
+			});
+		</script>
 	</head>
 
 	<body>
@@ -67,8 +91,10 @@
 		</section>
 		
 		<section id="problems">
-			<h3>Transactions</h3>
-			
+			<h3>Solution</h3>
+			<label>Accumulated Depreciation for Machine One: <input type="text" value="" id="machineOne"></label>
+			<label>Accumulated Depreciation for Machine Two: <input type="text" value="" id="machineTwo"></label>
+			<label>Accumulated Depreciation for Machine Three: <input type="text" value="" id="machineThree"></label>
 		</section>
 	</div>
 	</body>
