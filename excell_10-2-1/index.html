@@ -9,6 +9,74 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		var solutions = {
+			'cs-before': 420000,
+			'cs-after': 483000,
+			'cs-after-split': 420000,
+			'cso-before': 70000,
+			'cso-after': 73500,
+			'cso-after-split': 140000,
+			'bv-before': 6,
+			'bv-after': 6,
+			'bv-after-split': 3
+		};
+			
+		$(document).ready(function() {
+			var options = [
+				"Cash",
+				"Dividend",
+				"Dividend Payable"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "06/15"},
+							descriptionOne: {type: "option", value: 1},
+							descriptionTwo: {type: "option", value: 2},
+							debit: {type: "int", value: 84500},
+							credit: {type: "int", value: 84500}
+						},
+						{
+							date: {type: "string", value: "07/10"},
+							descriptionOne: {type: "option", value: 2},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 84500},
+							credit: {type: "int", value: 84500}
+						},
+						{
+							date: {type: "string", value: "09/30"},
+							descriptionOne: {type: "option", value: 1},
+							descriptionTwo: {type: "option", value: 2},
+							debit: {type: "int", value: 105000},
+							credit: {type: "int", value: 105000}
+						}
+					]
+			);
+	
+			$.each(solutions, function(index, elem) {
+				$("#" + index).on("change focusout", function() {
+					var $this = $(this);
+					var val = $this.val();
+					if(val === "") {
+						$this.removeClass('good').removeClass('bad');
+						return;
+					}
+					val = parseInt(val, 10);
+					if(val === elem) {
+						$this.removeClass('bad').addClass('good');
+					} else {
+						$this.removeClass('good').addClass('bad');
+					}
+				});
+			});
+		});
+		</script>
 	</head>
 
 	<body>
@@ -68,9 +136,102 @@
 		
 		<section id="problems">
 			<h3>Part One - General Journal</h3>
+			<table id="generalJournalTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+						<select class="descriptionTwo"></select>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
 			
-			<h3>Part Two</h3>
-			
+			<h3>Part Two - Tabular Summary</h3>
+			<table>
+				<tr>
+					<th>Item</th>
+					<th>Before Action</th>
+					<th>After Stock Dividend</th>
+					<th>After Stock Split</th>
+				</tr>
+				<tr>
+					<td><strong>Common Stock</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="cs-before">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="cs-after">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="cs-after-split">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Common Stock Outstanding</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="cso-before">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="cso-after">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="cso-after-split">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Book Value</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="bv-before">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="bv-after">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="bv-after-split">
+						</div>
+					</td>
+				</tr>
+			</table>
 		</section>
 	</div>
 	</body>
