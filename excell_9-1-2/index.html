@@ -9,6 +9,75 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"Land",
+				"Land Improvements",
+				"Buildings",
+				"Real Estate Tax Expenses"
+			];
+			
+			new Journal(
+					"#transactionTable",
+					options,
+					[
+						{
+							item: {type: "string", value: "1"},
+							solution: {type: "option", value: 0},
+							amount: {type: "int", value: 291000}
+						},
+						{
+							item: {type: "string", value: "2"},
+							solution: {type: "option", value: 1},
+							amount: {type: "int", value: 5800}
+						},
+						{
+							item: {type: "string", value: "3"},
+							solution: {type: "option", value: 0},
+							amount: {type: "int", value: 32000}
+						},
+						{
+							item: {type: "string", value: "4"},
+							solution: {type: "option", value: 2},
+							amount: {type: "int", value: 13000}
+						},
+						{
+							item: {type: "string", value: "5"},
+							solution: {type: "option", value: 0},
+							amount: {type: "int", value: 5170}
+						},
+						{
+							item: {type: "string", value: "6"},
+							solution: {type: "option", value: 1},
+							amount: {type: "int", value: 25000}
+						},
+						{
+							item: {type: "string", value: "7"},
+							solution: {type: "option", value: 2},
+							amount: {type: "int", value: 23000}
+						},
+						{
+							item: {type: "string", value: "8"},
+							solution: {type: "option", value: 3},
+							amount: {type: "int", value: 8400}
+						},
+						{
+							item: {type: "string", value: "9"},
+							solution: {type: "option", value: 2},
+							amount: {type: "int", value: 680000}
+						},
+						{
+							item: {type: "string", value: "10"},
+							solution: {type: "option", value: 0},
+							amount: {type: "int", value: 15000}
+						}
+					]
+			);
+		});
+		</script>
 	</head>
 
 	<body>
@@ -83,7 +152,31 @@
 		
 		<section id="problems">
 			<h3>Transactions</h3>
-			
+			<table id="transactionTable">
+				<tr>
+					<th>Item</th>
+					<th>Solution</th>
+					<th>Amount</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='item'>
+					</td>
+					<td>
+						<div class="row"><select class="solution"></select></div>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="amount">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
 		</section>
 	</div>
 	</body>
