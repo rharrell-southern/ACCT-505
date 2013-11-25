@@ -53,6 +53,12 @@ var Journal = function(elem, options, solutions) {
 				}
 				value = parseInt(value, 10);
 				break;
+			case 'float':
+				if(value === '') {
+					isEmpty = true;
+				}
+				value = parseFloat(value);
+				break;
 			case 'empty':
 				if(value === '') {
 					value = true;
