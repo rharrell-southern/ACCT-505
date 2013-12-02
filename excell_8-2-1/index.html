@@ -9,6 +9,104 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			// Straight Line Table
+			var $line = {};
+			$line.cost = $('#sl-cost');
+			$line.salvageValue = $('#sl-salvageValue');
+			$line.depreciableCost = $('#sl-depreciableCost');
+			$line.estimatedUsefulLife = $('#sl-estimatedUsefulLife');
+			$line.annualDeprecation = $('#sl-annualDeprecation');
+			function lineUpdateDC() {
+				var cost = $line.cost.val();
+				var sv = $line.salvageValue.val();
+				$line.depreciableCost.val(cost-sv);
+				lineUpdateAnnualDeprication();
+			}
+			function lineUpdateAnnualDeprication() {
+				var depCost = $line.depreciableCost.val();
+				var estLife = $line.estimatedUsefulLife.val();
+				$line.annualDeprecation.val(depCost/estLife);
+			}
+			$line.cost.on('change focusout', lineUpdateDC);
+			$line.salvageValue.on('change focusout', lineUpdateDC);
+
+			// Activity Method Table
+			var $meth = {};
+			$meth.cost = $('#am-cost');
+			$meth.salvageValue = $('#am-salvageValue');
+			$meth.depreciableCost = $('#am-depreciableCost');
+			$meth.estimatedUsefulHours = $('#am-estimatedUsefulHours');
+			$meth.depricationPerHour = $('#am-deprecationPerHour');
+			$meth.hoursUsed = $('#am-hoursUsed');
+			$meth.annualDeprecation = $('#am-annualDeprecation');
+			function methUpdateDC() {
+				var cost = $meth.cost.val();
+				var sv = $meth.salvageValue.val();
+				$meth.depreciableCost.val(cost-sv);
+				methUpdateDepricationPerHour();
+				methUpdateAnnualDeprication();
+			}
+			function methUpdateDepricationPerHour() {
+				var depCost = $meth.depreciableCost.val();
+				var estHours = $meth.estimatedUsefulHours.val();
+				$meth.depricationPerHour.val(Math.round(depCost/estHours));
+				methUpdateAnnualDeprication();
+			}
+			function methUpdateAnnualDeprication() {
+				var depHour = $meth.depricationPerHour.val();
+				var hoursUsed = $meth.hoursUsed.val();
+				$meth.annualDeprecation.val(depHour*hoursUsed);
+			}
+			$meth.cost.on('change focusout', methUpdateDC);
+			$meth.salvageValue.on('change focusout', methUpdateDC);
+			$meth.hoursUsed.on('change focusout', methUpdateAnnualDeprication);
+
+			// Sum of Years Digits
+			$('#syd-table').find('tr:not(:first)').each(function() {
+				var $row = $(this);
+				var $depCost = $row.find('.deprecationCost');
+				var $totalYears = $row.find('.totalYears');
+				var $remainingLife = $row.find('.remainingLife');
+				var $deprecationExpense = $row.find('.deprecationExpense');
+
+				function updateDepExpenses() {
+					var depCost = $depCost.val();
+					var totalYears = $totalYears.val();
+					var remainingLife = $remainingLife.val();
+					$deprecationExpense.val(depCost*(remainingLife/totalYears));
+				}
+
+				$depCost.on('change focusout', function() {updateDepExpenses();});
+				$totalYears.on('change focusout', function() {updateDepExpenses();});
+				$remainingLife.on('change focusout', function() {updateDepExpenses();});
+			});
+
+			// Double Declining Balance
+			// NOTE: Exclude first AND second rows!
+			$('#ddb-table').find('tr:not(:first)').each(function(i) {
+				if(i === 0)
+					return true;
+				var $row = $(this);
+				var $base = $row.find('.base');
+				var $rate = $row.find('.rate');
+				var $deprecationExpense = $row.find('.deprecationExpense');
+				var $bookValue = $row.find('.bookValue');
+
+				function updateAll() {
+					var base = $base.val();
+					var rate = $rate.val();
+					var depExpense = base*(rate/100);
+					$deprecationExpense.val(depExpense);
+					$bookValue.val(base-depExpense);
+				}
+				$base.on('change focusout', function() {updateAll();});
+				$rate.on('change focusout', function() {updateAll();});
+			});
+		});
+		</script>
 	</head>
 
 	<body>
@@ -37,8 +135,118 @@
 		</section>
 		
 		<section id="problems">
-			<h3>Answers</h3>
+			<h3>Straight Line</h3>
+			<table>
+				<tr>
+					<td>Cost</td>
+					<td><input type="text" value="" id="sl-cost"></td>
+				</tr>
+				<tr>
+					<td>Less: Salvage Value</td>
+					<td><input type="text" value="" id="sl-salvageValue"></td>
+				</tr>
+				<tr>
+					<td>= Depreciable Cost</td>
+					<td><input type="text" value="" id="sl-depreciableCost" disabled></td>
+				</tr>
+				<tr>
+					<td>/ Estimated Useful Life</td>
+					<td><input type="text" value="9" id="sl-estimatedUsefulLife" disabled></td>
+				</tr>
+				<tr>
+					<td>= Annual Deprecation</td>
+					<td><input type="text" value="" id="sl-annualDeprecation" disabled></td>
+				</tr>
+			</table>
+
+			<h3>Activity Method</h3>
+			<table>
+				<tr>
+					<td>Cost</td>
+					<td><input type="text" value="" id="am-cost"></td>
+				</tr>
+				<tr>
+					<td>Less: Salvage Value</td>
+					<td><input type="text" value="" id="am-salvageValue"></td>
+				</tr>
+				<tr>
+					<td>= Depreciable Cost</td>
+					<td><input type="text" value="" id="am-depreciableCost" disabled></td>
+				</tr>
+				<tr>
+					<td>/ Estimated Useful Hours</td>
+					<td><input type="text" value="21000" id="am-estimatedUsefulHours" disabled></td>
+				</tr>
+				<tr>
+					<td>= Deprecation Per Hour</td>
+					<td><input type="text" value="" id="am-deprecationPerHour" disabled></td>
+				</tr>
+				<tr>
+					<td>* Hours Used</td>
+					<td><input type="text" value="" id="am-hoursUsed"></td>
+				</tr>
+				<tr>
+					<td>= Annual Deprecation</td>
+					<td><input type="text" value="" id="am-annualDeprecation" disabled></td>
+				</tr>
+			</table>
 			
+			<h3>Sum of Years Digits</h3>
+			<table id="syd-table">
+				<tr>
+					<th>Year</th>
+					<th>Deprecation Cost</th>
+					<th>Total Years</th>
+					<th>Remaining Life</th>
+					<th>Deprecation Expense</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" value="" class="deprecationCost"></div></td>
+					<td><input type="text" value="" class="totalYears"></td>
+					<td><input type="text" value="" class="remainingLife"></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" value="" class="deprecationExpense" disabled></div></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" value="" class="deprecationCost"></div></td>
+					<td><input type="text" value="" class="totalYears"></td>
+					<td><input type="text" value="" class="remainingLife"></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" value="" class="deprecationExpense" disabled></div></td>
+				</tr>
+			</table>
+
+			<h3>Double Declining Balance</h3>
+			<table id="ddb-table">
+				<tr>
+					<th>Year</th>
+					<th>Base</th>
+					<th>Rate</th>
+					<th>Deprecation Expense</th>
+					<th>Book Value</th>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" value="" class="bookValue"></div></td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" value="" class="base"></div></td>
+					<td><div class="input-append"><input type="text" value="" class="rate"><span class="add-on">%</span></div></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" value="" class="deprecationExpense" disabled></div></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" value="" class="bookValue" disabled></div></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" value="" class="base"></div></td>
+					<td><div class="input-append"><input type="text" value="" class="rate"><span class="add-on">%</span></div></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" value="" class="deprecationExpense" disabled></div></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" value="" class="bookValue" disabled></div></td>
+				</tr>
+			</table>
 		</section>
 	</div>
 	</body>
