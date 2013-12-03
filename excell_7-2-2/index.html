@@ -9,6 +9,71 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				// Question 1
+				var $creditSales = $("#q1-creditSales");
+				var $badPercent = $("#q1-badDebtPercent");
+				var $badExpense = $("#q1-badDebtExpense");
+				function updateQ1Answer() {
+					var cs = $creditSales.val();
+					var bp = $badPercent.val();
+					$badExpense.val(cs*(bp/100));
+				}
+				$creditSales.on("change focusout", updateQ1Answer);
+				$badPercent.on("change focusout", updateQ1Answer);
+				
+				// Question 2
+				var $2accountsReceivable = $("#q2-accountsReceivable");
+				var $2badPercent = $("#q2-badDebtPercent");
+				var $2subtotal = $("#q2-subtotal");
+				var $2deduct = $("#q2-deduct");
+				var $2badExpense = $("#q2-badDebtExpense");
+				function updateQ2Answer() {
+					var subtotal = $2subtotal.val();
+					var deduct = $2deduct.val();
+					$2badExpense.val(subtotal-deduct);
+				}
+				function updateQ2Subtotal() {
+					var ar = $2accountsReceivable.val();
+					var bp = $2badPercent.val();
+					$2subtotal.val(ar*(bp/100));
+					updateQ2Answer();
+				}
+				$2accountsReceivable.on("change focusout", updateQ2Subtotal);
+				$2badPercent.on("change focusout", updateQ2Subtotal);
+				$2deduct.on("change focusout", updateQ2Answer);
+				
+				// Question 3
+				var $3accountsReceivable = $("#q3-accountsReceivable");
+				var $3badPercent = $("#q3-badDebtPercent");
+				var $3subtotal = $("#q3-subtotal");
+				var $3add = $("#q3-add");
+				var $3badExpense = $("#q3-badDebtExpense");
+				function updateQ3Answer() {
+					var subtotal = parseInt($3subtotal.val(), 10);
+					var add = parseInt($3add.val(), 10);
+					if(isNaN(subtotal)) {
+						subtotal = 0;
+					}
+					if(isNaN(add)) {
+						add = 0;
+					}
+					$3badExpense.val(subtotal+add);
+				}
+				function updateQ3Subtotal() {
+					var ar = $3accountsReceivable.val();
+					var bp = $3badPercent.val();
+					$3subtotal.val(ar*(bp/100));
+					updateQ3Answer();
+				}
+				$3accountsReceivable.on("change focusout", updateQ3Subtotal);
+				$3badPercent.on("change focusout", updateQ3Subtotal);
+				$3add.on("change focusout", updateQ3Answer);
+				
+			});
+		</script>
 	</head>
 
 	<body>
@@ -43,7 +108,112 @@
 		</section>
 		
 		<section id="problems">
-			<h3>Answers</h3>
+			<h3>Question 1</h3>
+			<p>When using percentage of sales, the full amount is adjusted.</p>
+			<table id="q1-table">
+				<tr>
+					<th colspan="2">Bad Debt Expense</th>
+				</tr>
+				<tr>
+					<td>Credit Sales</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="q1-creditSales"></div></td>
+				</tr>
+				<tr>
+					<td><strong>*</strong></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Estimated Bad Debts Percentage</td>
+					<td><div class="input-append"><input type="text" id="q1-badDebtPercent"><span class="add-on">%</span></div></td>
+				</tr>
+				<tr>
+					<td><strong>=</strong></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Bad Debt Expense</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="q1-badDebtExpense" disabled></div></td>
+				</tr>
+			</table>
+			
+			<h3>Question 2</h3>
+			<p>When using percentage of receivables, adjust to get the account to that amount</p>
+			<table id="q2-table">
+				<tr>
+					<th colspan="2">Bad Debt Expense</th>
+				</tr>
+				<tr>
+					<td>Accounts Receivables at December 31th</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="q2-accountsReceivable"></div></td>
+				</tr>
+				<tr>
+					<td><strong>*</strong></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Estimated Bad Debts Percentage</td>
+					<td><div class="input-append"><input type="text" id="q2-badDebtPercent"><span class="add-on">%</span></div></td>
+				</tr>
+				<tr>
+					<td><strong>=</strong></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Subtotal</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="q2-subtotal" disabled></div></td>
+				</tr>
+				<tr>
+					<td>Deduct: Credit Balance of Allowances of Doubtful Accounts</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="q2-deduct"></div></td>
+				</tr>
+				<tr>
+					<td><strong>=</strong></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Bad Debt Expense</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="q2-badDebtExpense" disabled></div></td>
+				</tr>
+			</table>
+			
+			<h3>Question 3</h3>
+			<table id="q3-table">
+				<tr>
+					<th colspan="2">Bad Debt Expense</th>
+				</tr>
+				<tr>
+					<td>Accounts Receivables at December 31th</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="q3-accountsReceivable"></div></td>
+				</tr>
+				<tr>
+					<td><strong>*</strong></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Estimated Bad Debts Percentage</td>
+					<td><div class="input-append"><input type="text" id="q3-badDebtPercent"><span class="add-on">%</span></div></td>
+				</tr>
+				<tr>
+					<td><strong>=</strong></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Subtotal</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="q3-subtotal" disabled></div></td>
+				</tr>
+				<tr>
+					<td>Add: Debit Balance of Allowance of Doubtful Accounts</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="q3-add"></div></td>
+				</tr>
+				<tr>
+					<td><strong>=</strong></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Bad Debt Expense</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="q3-badDebtExpense" disabled></div></td>
+				</tr>
+			</table>
 			
 		</section>
 	</div>
