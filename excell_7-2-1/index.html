@@ -6,9 +6,81 @@
 
 		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/main.css" rel="stylesheet">
+		<link href="../template/css/common.css" rel="stylesheet">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			// Part 1
+			var $bdTable = $("#bad-debts-table");
+			var $bdTableFinal = $("#bd-final");
+			function updateBadDebtFinal() {
+				var total = 0;
+				$bdTable.find(".bd-total").each(function() {
+					var $this = $(this);
+					var val = parseInt($this.val(), 10);
+					if(isNaN(val)) {
+						val = 0;
+					}
+					total += val;
+				});
+				$bdTableFinal.val(total);
+			}
+
+			$bdTable.find(".bd-row").each(function() {
+				var $row = $(this);
+				var $amount = $row.find(".bd-amounts");
+				var $percent = $row.find(".bd-percent");
+				var $total = $row.find(".bd-total");
+
+				$amount.on("change focusout", function() {
+					var amt = parseInt($amount.val(), 10);
+					var per = parseInt($percent.val(), 10);
+					if(isNaN(amt)) {
+						amt = 0;
+					}
+					$total.val(amt*(per/100));
+					updateBadDebtFinal();
+				});
+			});
+
+			// Part 2
+			var options = [
+				"Allowance for Doubtful Accounts",
+				"Bad Debts Expense"
+			];
+
+			new Journal(
+				"#journalTable",
+				options,
+				[
+					{
+						date: {type: "string", value: "12/31"},
+						descriptionOne: {type: "option", value: 1},
+						descriptionTwo: {type: "option", value: 0},
+						debit: {type: "int", value: 18340},
+						credit: {type: "int", value: 18340}
+					}
+				]
+			);
+
+			// Part 3
+			var $totals = $("#bde-totals");
+			var $percent = $("#bde-percent");
+			var $badExpense = $("#bde-badDebtExpense");
+			function updateBDEAnswer() {
+				var cs = $totals.val();
+				var bp = $percent.val();
+				$badExpense.val(cs*(bp/100));
+			}
+			$totals.on("change focusout", updateBDEAnswer);
+			$percent.on("change focusout", updateBDEAnswer);
+		});
+		</script>
 	</head>
 
 	<body>
@@ -50,7 +122,111 @@
 		</section>
 		
 		<section id="problems">
-			<h3>Answers</h3>
+			<h3>Total Estimated Bad Debts</h3>
+			<table id="bad-debts-table">
+				<tr>
+					<th>Days</th>
+					<th>Amounts</th>
+					<th>Percentage</th>
+					<th></th>
+					<th>Estimated Bad Debts</th>
+				</tr>
+				<tr class="bd-row">
+					<td>0-30</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" class="bd-amounts" value=""></div></td>
+					<td><div class="input-append"><input type="text" class="bd-percent" value="1" disabled><span class="add-on">%</span></div></td>
+					<td>=</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" class="bd-total" value="" disabled></div></td>
+				</tr>
+				<tr class="bd-row">
+					<td>31-60</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" class="bd-amounts" value=""></div></td>
+					<td><div class="input-append"><input type="text" class="bd-percent" value="4" disabled><span class="add-on">%</span></div></td>
+					<td>=</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" class="bd-total" value="" disabled></div></td>
+				</tr>
+				<tr class="bd-row">
+					<td>61-90</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" class="bd-amounts" value=""></div></td>
+					<td><div class="input-append"><input type="text" class="bd-percent" value="5" disabled><span class="add-on">%</span></div></td>
+					<td>=</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" class="bd-total" value="" disabled></div></td>
+				</tr>
+				<tr class="bd-row">
+					<td>91-120</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" class="bd-amounts" value=""></div></td>
+					<td><div class="input-append"><input type="text" class="bd-percent" value="8" disabled><span class="add-on">%</span></div></td>
+					<td>=</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" class="bd-total" value="" disabled></div></td>
+				</tr>
+				<tr class="bd-row">
+					<td>>120</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" class="bd-amounts" value=""></div></td>
+					<td><div class="input-append"><input type="text" class="bd-percent" value="10" disabled><span class="add-on">%</span></div></td>
+					<td>=</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" class="bd-total" value="" disabled></div></td>
+				</tr>
+				<tr>
+					<td colspan="4"><strong style="float: right;">Total Estimated Bad Debts Expense</strong></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="bd-final" value="" disabled></div></td>
+				</tr>
+			</table>
+			
+			<h3>Journal</h3>
+			<table id="journalTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+						<select class="descriptionTwo"></select>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+			</table>
+			
+			<h3>Total Estimated Bad Debts Expense</h3>
+			<table id="bde-table">
+				<tr>
+					<th colspan="2">Bad Debt Expense</th>
+				</tr>
+				<tr>
+					<td>Total Receivables</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="bde-totals"></div></td>
+				</tr>
+				<tr>
+					<td><strong>*</strong></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Percentage Estimated Uncollectable</td>
+					<td><div class="input-append"><input type="text" id="bde-percent"><span class="add-on">%</span></div></td>
+				</tr>
+				<tr>
+					<td><strong>=</strong></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Bad Debt Expense</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="bde-badDebtExpense" disabled></div></td>
+				</tr>
+			</table>
 			
 		</section>
 	</div>
