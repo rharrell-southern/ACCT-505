@@ -77,35 +77,103 @@
 		
 		<section id="problems">
 			<h3>Classified Balance Sheet</h3>
-			<table id="closingEntryTable">
+			<table id="balanceSheet">
+				<tr><th colspan="2">Assets</th></tr>
+				<!-- Current Assets -->
 				<tr>
-					<th>Date</th>
-					<th>Description</th>
-					<th>Debit</th>
-					<th>Credit</th>
-				</tr>
-				<tr class="journalRow">
-					<td class="onTop">
-						<input type="text" value='' class='date'>
-					</td>
-					<td>
-						<div class="row"><select class="descriptionOne"></select></div>
-					</td>
-					<td class="onTop">
-						<div class="input-prepend">
-							<span class="add-on">$</span><input type="text" value="" class="debit">
-						</div>
-					</td>
-					<td class="onBottom">
-						<div class="input-prepend">
-							<span class="add-on">$</span><input type="text" value="" class="credit">
-						</div>
-					</td>
+					<td colspan="2"><b>Current Assets</b></td>
 				</tr>
 				<tr>
-					<td colspan="4" class="journalButton">
-						<button class="btn">Add Row</button>
-					</td>
+					<td>Cash</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g1-1"></div></td>
+				</tr>
+				<tr>
+					<td>Prepaid Insurance</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g1-2"></div></td>
+				</tr>
+				<tr>
+					<td>Supplies</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g1-3"></div></td>
+				</tr>
+				<tr>
+					<td><b>Total Current Assets</b></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g1-total"></div></td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<!-- Long Term Assets -->
+				<tr>
+					<td colspan="2"><b>Long Term Assets</b></td>
+				</tr>
+				<tr>
+					<td>Equipment</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g2-1"></div></td>
+				</tr>
+				<tr>
+					<td>Less: Accumulated Deprecation-Equipment</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g2-2"></div></td>
+				</tr>
+				<tr>
+					<td>Trademarks</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g2-3"></div></td>
+				</tr>
+				<tr>
+					<td><b>Total Long-term Assets</b></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g2-total"></div></td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<!-- Assets Subtotal -->
+				<tr>
+					<td><strong>Total Assets</strong></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g1g2-total"></div></td>
+				</tr>
+				
+				<tr><th colspan="2">Liability and Stockholder's Equity</th></tr>
+				<!-- Current Liabilities -->
+				<tr>
+					<td colspan="2"><b>Current Liabilities</b></td>
+				</tr>
+				<tr>
+					<td>Accounts Payable</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g3-1"></div></td>
+				</tr>
+				<tr>
+					<td>Salaries and Wages Payable</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g3-2"></div></td>
+				</tr>
+				<tr>
+					<td>Bonds Payable</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g3-3"></div></td>
+				</tr>
+				<tr>
+					<td>Unearned Service Revenue</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g3-4"></div></td>
+				</tr>
+				<tr>
+					<td><b>Total Liability</b></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g3-total"></div></td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<!-- Stockholder's Equity -->
+				<tr>
+					<td colspan="2"><b>Stockholder's Equity</b></td>
+				</tr>
+				<tr>
+					<td>Common Stock</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g4-1"></div></td>
+				</tr>
+				<tr>
+					<td>Retain Earnings</td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g4-2"></div></td>
+				</tr>
+				<tr>
+					<td><b>Total Shareholder's Equity</b></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g4-total"></div></td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<!-- Liabilities Subtotal -->
+				<tr>
+					<td><strong>Total liabilities and stockholder's equity</strong></td>
+					<td><div class="input-prepend"><span class="add-on">$</span><input type="text" id="g3g4-total"></div></td>
 				</tr>
 			</table>
 		</section>
