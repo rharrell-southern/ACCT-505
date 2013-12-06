@@ -10,6 +10,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
 
+		<script src='../template/js/valueChecker.js'></script>
+		
 		<style>
 			.questionTable {
 				border: 1px solid lightgray;
@@ -30,7 +32,28 @@
 		</style>
 		
 		<script>
-
+		$(document).ready(function() {
+			new ValueChecker({
+				"#g1-1": 6850,
+				"#g1-2": 1000,
+				"#g1-3": 1200,
+				"#g1-total": 9050,
+				"#g2-1": 48000,
+				"#g2-2": -9000,
+				"#g2-3": 950,
+				"#g2-total": 39950,
+				"#g1g2-total": 49000,
+				"#g3-1": 10000,
+				"#g3-2": 500,
+				"#g3-3": 9000,
+				"#g3-4": 2000,
+				"#g3-total": 21500,
+				"#g4-1": 10000,
+				"#g4-2": 17500,
+				"#g4-total": 27500,
+				"#g3g4-total": 49000
+			});
+		});
 		</script>
 	</head>
 
