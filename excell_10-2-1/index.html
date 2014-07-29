@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 10.2.1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		var solutions = {
+			'cs-before': 420000,
+			'cs-after': 483000,
+			'cs-after-split': 420000,
+			'cso-before': 70000,
+			'cso-after': 73500,
+			'cso-after-split': 140000,
+			'bv-before': 6,
+			'bv-after': 6,
+			'bv-after-split': 3
+		};
+			
+		$(document).ready(function() {
+			var options = [
+				"Cash",
+				"Dividend",
+				"Dividend Payable"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "06/15"},
+							descriptionOne: {type: "option", value: 1},
+							descriptionTwo: {type: "option", value: 2},
+							debit: {type: "int", value: 84500},
+							credit: {type: "int", value: 84500}
+						},
+						{
+							date: {type: "string", value: "07/10"},
+							descriptionOne: {type: "option", value: 2},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 84500},
+							credit: {type: "int", value: 84500}
+						},
+						{
+							date: {type: "string", value: "09/30"},
+							descriptionOne: {type: "option", value: 1},
+							descriptionTwo: {type: "option", value: 2},
+							debit: {type: "int", value: 105000},
+							credit: {type: "int", value: 105000}
+						}
+					]
+			);
+	
+			$.each(solutions, function(index, elem) {
+				$("#" + index).on("change focusout", function() {
+					var $this = $(this);
+					var val = $this.val();
+					if(val === "") {
+						$this.removeClass('good').removeClass('bad');
+						return;
+					}
+					val = parseInt(val, 10);
+					if(val === elem) {
+						$this.removeClass('bad').addClass('good');
+					} else {
+						$this.removeClass('good').addClass('bad');
+					}
+				});
+			});
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 10.2.1</h1>
+		<h2>Wong Corporation</h2>
+		<br>
+		<section id="question">
+			<h3>Part One</h3>
+			<p>On January 1, Wong Corporation had 55,000 shares of par common stock issued and outstanding.
+				During the year, the following transactions occurred.</p>
+			<table>
+				<tr>
+					<td>Apr. 1</td>
+					<td>Issued 10,000 additional shares of common stock for $12 per share.</td>
+				</tr>
+				<tr>
+					<td>Jun. 15</td>
+					<td>Declared a cash dividend of $1.30 per share to stockholders of record on June 30.</td>
+				</tr>
+				<tr>
+					<td>July 10</td>
+					<td>Paid the $1.30 cash dividend.</td>
+				</tr>
+				<tr>
+					<td>Sept. 1</td>
+					<td>Issued 5,000 additional shares of common stock for $14 per share.</td>
+				</tr>
+				<tr>
+					<td>Sept. 30</td>
+					<td>Declared a cash dividend on outstanding shares of $1.50 per share stockholders of record on December 31.</td>
+				</tr>
+			</table>
+			<br>
+			<strong>Instructions:</strong>
+			<ol>
+				<li>Prepare the entries, if any, on each of the three dates that involved dividends.</li>
+			</ol>
+			
+			<h3>Part Two</h3>
+			<br>
+			<p>On October 1, Wong is considering the following two courses of action:</p>
+			<ol>
+				<li>declaring a 5% stock dividend on the $6 par value shares outstanding</li>
+				<li>effecting a 2-for-1 stock split that will reduce par value to $3 per share. The current market
+					price is $18 per share.</li>
+			</ol>
+			<br>
+			<strong>Instructions:</strong>
+			<ul>
+				<li>Prepare a tabular summary of the effects of the alternative actions on the company’s stockholders’
+					equity and outstanding shares. Use these column headings: Before Action, After Stock dividend, and
+					After Stock Split.</li>
+			</ul>
+		</section>
+		
+		<section id="problems">
+			<h3>Part One - General Journal</h3>
+			<table id="generalJournalTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+						<select class="descriptionTwo"></select>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+			
+			<h3>Part Two - Tabular Summary</h3>
+			<table>
+				<tr>
+					<th>Item</th>
+					<th>Before Action</th>
+					<th>After Stock Dividend</th>
+					<th>After Stock Split</th>
+				</tr>
+				<tr>
+					<td><strong>Common Stock</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="cs-after">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="cs-after-split">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Common Stock Outstanding</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="cso-before">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="cso-after">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="cso-after-split">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Book Value</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="bv-before">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="bv-after">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="bv-after-split">
+						</div>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	</body>
+</html>

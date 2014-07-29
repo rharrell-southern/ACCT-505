@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 16-1-1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		var solutions = {
+			'DM'	: "variable cost",
+			'DL'	: "variable cost",
+			'U'		: "mixed cost",
+			'PT'	: "fixed cost",
+			'IL'	: "variable cost",
+			'SS'	: "fixed cost",
+			'M'		: "mixed cost",
+			'D'		: "fixed cost"
+		};
+	$(document).ready(function() {
+			$.each(solutions, function(index, elem) {
+				console.log("#YOLO");
+				$("#" + index).on("change focusout", function() {
+					var $this = $(this);
+					var val = $this.val();
+					if(val === "") {
+						$this.removeClass('good').removeClass('bad');
+						return;
+					}
+					val = val.toLowerCase();
+					if(val === elem) {
+						$this.removeClass('bad').addClass('good');
+					} else {
+						$this.removeClass('good').addClass('bad');
+					}
+				});
+			});
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 16.1.1</h1>
+		<h2>Henderson Corporation</h2>
+		<br>
+		<section id="question">
+			<p>Henderson Corporation manufactures a single product. Monthly production costs incurred in the manufacturing process are shown below for the production of 4,000 units. The utilities and maintenance costs are mixed costs. The fixed portions of these costs are $400 and $300, respectively.</p>
+			<table align="center">
+				<tr>
+					<th>Production in Units</th>
+					<th>$4,000</th>
+				</tr>
+				<tr>
+					<th>Production Costs</th>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Direct Materials</td>
+					<td>$8,500</td>
+				</tr>
+				<tr>
+					<td>Direct Labor</td>
+					<td>$16,000</td>
+				</tr>
+				<tr>
+					<td>Utilities</td>
+					<td>$2,800</td>
+				</tr>
+				<tr>
+					<td>Property Taxes</td>
+					<td>$2,000</td>
+				</tr>
+				<tr>
+					<td>Indirect Labor</td>
+					<td>$5,500</td>
+				</tr>
+				<tr>
+					<td>Supervisory Salaries</td>
+					<td>$2,800</td>
+				</tr>
+				<tr>
+					<td>Maintenance</td>
+					<td>$2,100</td>
+				</tr>
+				<tr>
+					<td>Description</td>
+					<td>$3,400</td>
+				</tr>
+			</table>
+			<br>
+			<strong>Instructions:</strong>
+			<p>Identify the above costs as variable, fixed, or mixed.</p>
+		</section>
+		<section id="problems">
+			<h3>Part 1 - Costs Identification</h3>
+				<STRONG>Identify the costs below as fixed, variable or mixed costs:</STRONG>
+						<ol>
+							<label>Direct Materials:<input type="text" value="" id="DM"></label>
+							<label>Direct Labor:<input type="text" value="" id="DL"></label>
+							<label>Utilities:<input type="text" value="" id="U"></label>
+							<label>Property Taxes:<input type="text" value="" id="PT"></label>
+							<label>Indirect Labor:<input type="text" value="" id="IL"></label>
+							<label>Supervisory Salaries:<input type="text" value="" id="SS"></label>
+							<label>Maintenance:<input type="text" value="" id="M"></label>
+							<label>Depreciation:<input type="text" value="" id="D"></label>
+						</ol>
+		</section>
+	</div>
+	</body>
+</html>

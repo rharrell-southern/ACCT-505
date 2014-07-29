@@ -1,144 +1,176 @@
+<!doctype html>
 <html>
-
 	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.3/bootstrap.min.js"></script>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 3.1.2</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/main.css" rel="stylesheet">
-		<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-		<title></title>
-		<script>
-		var options = new Array("Cash","Accounts Payable","Accounts Receivable","Service Revenue","Supplies Expense","Supplies Payable","Supplies","Equipment","Salaries Expense","Prepaid Insurance","Equipment Repairs Expense","Dividends","Salaries and Wages Expense","Notes Payable","Retained Earnings","Maintenance and Repairs Expense","Salaries and Wages Payable","Common Stock","Insurance Expense","Office Supplies","Unearned Service Revenue","Rent Expense");
 
-		var num_rows = 1;
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
 
-		// Column names
-			var columns = {
-				0:'.account',
-				1:'.debit',
-				2:'.credit'
-			};
+		<script src="../template/js/journal.js"></script>
 
+		<style>
+			.trialBalanceTable {
+				border: 1px solid lightgray;
+				width: 30em;
+				border-collapse: collapse;
+			}
+			.trialBalanceTable td, th {
+				padding: 0.1em;
+				border: 1px solid lightgray;
+			}
+			td.tableTotal {
+				border-top: 3px double black;
+				border-bottom: 1px solid black;
+			}
+		</style>
 		
-		// Set solution tables
-		var solution = new Array();
-		solution[0] = [options[0],8300,0];
-		solution[1] = [options[2],6240,0];
-		solution[2] = [options[6],2300,0];
-		solution[3] = [options[7],12770,0];
-		solution[4] = [options[1],0,1600];
-		solution[5] = [options[16],0,4250];
-		solution[6] = [options[20],0,0];
-		solution[7] = [options[17],0,23000];
-		solution[8] = [options[3],0,6300];
-		solution[9] = [options[12],4250,0];
-		solution[10] = [options[2100],730,0];
-		solution[11] = [options[11],560,0];
-	
-
-		function add_row(){
-
-			num_rows++;
-			$('#container').append(function(){
-				var html = $('#container div.row:first').html();
-				return '<div id="'+ num_rows +'" class="row">'+ html +'</div>';
-			});
-			$('.add_row').html('&nbsp;');
-			$('.row:last div.add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
-			$('.row div.add_row').append(function(){
-				return '<span class="num">'+ $(this).parent().attr('id') + '</span>';
-			});
+		<script>
+		var placeH = 0;
 
 
-			for(var i = 0; i < 3;i++) {
-				$('#'+ num_rows +'.row select.' + i).removeClass('bad');
-				$('#'+ num_rows +'.row select.' + i).removeClass('good');
-				$('#'+ num_rows +'.row input.' + i).removeClass('bad');
-				$('#'+ num_rows +'.row input.' + i).removeClass('good');
-			}
-		}
+		var solutions = {
+			'Cb4'	: 9100,
+			'Caft' 	: 8300,
+			'ARb4'	: 5230,
+			'ARaft'	: 6240,
+			'Sb4'	: 2300,
+			'Saft'	: 2300,
+			'Eb4'	: 12770,
+			'Eaft'	: 12770,
+			'APb4'	: 3950,
+			'APaft'	: 1600,
+			'USRb4'	: 2450,
+			'USRaft': 0,
+			'CSb4'	: 23000,
+			'CSaft'	: 23000,
+			'SaWPb4': 0,
+			'SaWPaft': 4250,
+			'SRb4'	: 0,
+			'SRaft'	: 4250,
+			'SaWEb4': 0,
+			'SaWEaft': 4250,
+			'REb4'	: 0,
+			'REaft'	: 730,
+			'Db4'	: 0,
+			'Daft'	: 560,
+			'CD'	: 8300,
+			'CC' 	: 0,
+			'ARD'	: 6240,
+			'ARC'	: 0,
+			'SD'	: 2300,
+			'SC'	: 0,
+			'ED'	: 12770,
+			'EC'	: 0,
+			'APD'	: 0,
+			'APC'	: 1600,
+			'USRD'	: 0,
+			'USRC'	: 0,
+			'CSD'	: 0,
+			'CSC'	: 23000,
+			'SaWPD'	: 0,
+			'SaWPC'	: 4250,
+			'SRD'	: 0,
+			'SRC'	: 6300,
+			'SaWED'	: 4250,
+			'SaWEC'	: 0,
+			'RED'	: 730,
+			'REC'	: 0,
+			'DD'	: 560,
+			'DC'	: 0,
+			'TD'	: 35150,
+			'TC'	: 35150
+		};
 
-		function compare (){
-			var totalDebit = 0;
-			var totalCredit = 0;
-			console.log('Compare!' + solution.length);
-			for(i = 0; i < solution.length; i++){
+		$(document).ready(function() {
+			var options = [
+				"Accounts Receivable",
+				"Accounts Payable",
+				"Cash",
+				"Dividends",
+				"Rent Expense",
+				"Salaries and Wages Expense",
+				"Salaries and Wages Payable",
+				"Service Revenue",
+				"Unearned Servies Revenue"
+			];
 
-				$('#'+ (i+1) +'.row select option:selected').each(function (x,val){
-					console.log(solution[i][x] + " = " + val.value);
-					if(solution[i][x] == val.value){
-						$('#'+ (i+1) +'.row select.' + x).removeClass('bad');
-						$('#'+ (i+1) +'.row select.' + x).addClass('good');
+			journalCont = new Journal('#journalTable',
+				options,
+				[
+					{
+						date: {type: 'string', value: '04/03'},
+						descriptionOne: {type: 'option', value: 2},
+						descriptionTwo: {type: 'option', value: 0},
+						credit: {type: 'int', value: 2840},
+						debit: {type: 'int', value: 2840}
+					},
+					{
+						date: {type: 'string', value: '04/09'},
+						descriptionOne: {type: 'option', value: 0},
+						descriptionTwo: {type: 'option', value: 7},
+						credit: {type: 'int', value: 3850},
+						debit: {type: 'int', value: 3850}
+					},
+					{
+						date: {type: 'string', value: '04/17'},
+						descriptionOne: {type: 'option', value: 5},
+						descriptionTwo: {type: 'option', value: 6},
+						credit: {type: 'int', value: 4250},
+						debit: {type: 'int', value: 4250}
+					},
+					{
+						date: {type: 'string', value: '04/23'},
+						descriptionOne: {type: 'option', value: 8},
+						descriptionTwo: {type: 'option', value: 7},
+						credit: {type: 'int', value: 2450},
+						debit: {type: 'int', value: 2450}
+					},
+					{
+						date: {type: 'string', value: '04/28'},
+						descriptionOne: {type: 'option', value: 1},
+						descriptionTwo: {type: 'option', value: 2},
+						credit: {type: 'int', value: 2350},
+						debit: {type: 'int', value: 2350}
+					},
+					{
+						date: {type: 'string', value: '04/29'},
+						descriptionOne: {type: 'option', value: 3},
+						descriptionTwo: {type: 'option', value: 2},
+						credit: {type: 'int', value: 560},
+						debit: {type: 'int', value: 560}
+					},
+					{
+						date: {type: 'string', value: '04/30'},
+						descriptionOne: {type: 'option', value: 4},
+						descriptionTwo: {type: 'option', value: 2},
+						credit: {type: 'int', value: 730},
+						debit: {type: 'int', value: 730}
+					}
+				]
+			);
+
+
+
+			$.each(solutions, function(index, elem) {
+				$("#" + index).on("change focusout", function() {
+					var $this = $(this);
+					var val = $this.val();
+					if(val === "") {
+						$this.removeClass('good').removeClass('bad');
+						return;
+					}
+					val = parseInt(val, 10);
+					if(val === elem) {
+						$this.removeClass('bad').addClass('good');
 					} else {
-						$('#'+ (i+1) +'.row select.' + x).removeClass('good');
-						$('#'+ (i+1) +'.row select.' + x).addClass('bad');
+						$this.removeClass('good').addClass('bad');
 					}
 				});
-				$('#'+ (i+1) +'.row input').each(function (x,val){
-					n = x + 1;
-					console.log(solution[i][n] + " = " + $(val).val());
-					if($(val).val() == ''){
-						var tmpVal = 0;
-					}else{
-						var tmpVal = $(val).val();
-					}
-					if (n == 1) {
-						totalDebit += parseFloat(tmpVal);
-					} else if (n == 2) {
-						totalCredit += parseFloat(tmpVal);
-					}
-
-					if(solution[i][n] == tmpVal){
-						$('#'+ (i+1) +'.row input.' + n).removeClass('bad');
-						$('#'+ (i+1) +'.row input.' + n).addClass('good');
-					} else {
-						$('#'+ (i+1) +'.row input.' + n).removeClass('good');
-						$('#'+ (i+1) +'.row input.' + n).addClass('bad');
-					}
-
-					if(totalDebit == totalCredit && totalDebit == 35150 && totalCredit == 35150){
-						$('#totalDebit').removeClass('bad');
-						$('#totalDebit').addClass('good');
-						$('#totalCredit').removeClass('bad');
-						$('#totalCredit').addClass('good');
-					}else{
-						$('#totalDebit').removeClass('good');
-						$('#totalDebit').addClass('bad');
-						$('#totalCredit').removeClass('good');
-						$('#totalCredit').addClass('bad');
-					}
-
-
-				});
-			}
-
-			$("#totalDebit").html(totalDebit);
-			$("#totalCredit").html(totalCredit);
-		}
-
-
-		$(function(){
-				
-			/*$(window).bind('beforeunload', function(){
-				return 'Leaving this page will wipe all your data.';
-			});*/
-
-			//Generate options
-			for(var i = 0; i<options.length;i++) {
-				console.log(i, options[i]);
-				var html = '<option>' + options[i] + '</option>';
-				$('select').append(html);
-			}
-
-			$('.row:last .add_row').html('<button id="add_row_btn" onClick="javascript:add_row();">Add a row</button>');
-
-			$('input').live("focusout", function(){
-				compare();
 			});
-
-			$('select').live("focusout", function(){
-				compare();
-			});
-
 
 		});
 
@@ -147,29 +179,480 @@
 
 	<body>
 	<div id="content">
-		<div id ="legends">
-			<div id ="account" class="title">Account</div>
-			<div id="debit" class="title">Debit</div>
-			<div id ="credit" class="title">Credit</div>
-		</div>
-		<div id="container">
-			<div id="1" class="row">
-				<div class="add_row"></div>
-				<div id="account">
-					<select class="account_1 0">
-						<option>Choose a description</option>
-					</select>
-
-					$<input id="deb" class="amount 1 debit" type="text">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 3.1.2</h1>
+		<h2>McKay Corp.</h2>
+		<br>
+		<section id="question">
+			<p>The trial balance of McKay Corp. as of April 30<sup>th</sup> is given below.</p>
+			<table class="trialBalanceTable">
+				<tr>
+					<th colspan="3">
+						McKay Corp.<br>
+						Trial Balance<br>
+						March 31, 20XX<br>
+					</th>
+				</tr>
+				<tr><th><th>Debit</th><th>Credit</th></tr>
+				<tr>
+					<td>Cash</td>
+					<td>$9,100</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Accounts Receivable</td>
+					<td>5,230</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Supplies</td>
+					<td>2,300</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Equipment</td>
+					<td>12,770</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Accounts Payable</td>
+					<td></td>
+					<td>3,950</td>
+				</tr>
+				<tr>
+					<td>Unearned Service Revenue</td>
+					<td></td>
+					<td>2,450</td>
+				</tr>
+				<tr>
+					<td>Common Stock</td>
+					<td></td>
+					<td>23,000</td>
+				</tr>
+				<!-- Totals -->
+				<tr>
+					<td><strong>Total</strong></td>
+					<td class="tableTotal">$29,400</td>
+					<td class="tableTotal">$29,400</td>
+				</tr>
+			</table>
+			<br><br>
+			
+			<strong>April Transactions:</strong>
+			<ul>
+				<li><strong>3<sup>rd</sup>:</strong> Received $2,840 cash from customers for accounts receivable due.</li>
+				<li><strong>9<sup>th</sup>:</strong> Billed customer $3,850 for services performed.</li>
+				<li><strong>17<sup>th</sup>:</strong> Owe employees $4,250 for services performed.</li>
+				<li><strong>23<sup>rd</sup>:</strong> Performed $2,450 worth of service for customer who paid in advance in January.</li>
+				<li><strong>28<sup>th</sup>:</strong> Paid Creditors $2,350 for accounts payable.</li>
+				<li><strong>29<sup>th</sup>:</strong> Paid cash dividends of $560.</li>
+				<li><strong>30<sup>th</sup>:</strong> Paid Rent for $730.</li>
+			</ul>
+			
+			<strong>Instructions:</strong>
+			<!-- Because the Journal entries will affect the T accounts general ledger, it may be a good idea to move #1 to #2 instead -->
+			<ol>
+				<li>Prepare a general ledger using T Accounts. Enter the opening balances in the ledger as of April 1.
+					Prepare the following additional accounts
+					<ul>
+						<li>Salaries and Wages Payable</li>
+						<li>Service Revenue</li>
+						<li>Salary and Wages Expense</li>
+						<li>Rent Expenses</li>
+						<li>Dividends</li>
+					</ul>
+				</li>
+				<li>Journalize the transactions, excluding explanations.</li>
+				<li>Post the entries to the ledger accounts in the above order.</li>
+				<li>Prepare a trial balance for McKay Corp. at April 30, 20xx.</li>
+			</ol>
+		</section>
 		
-					$<input class="amount 2 credit" type="text">
-				</div>
-			</div>
-		</div>
-			<div id="totalDebit"></div>
-			<div id="totalCredit"></div>
+		<section id="problems">
+			<hr>
+			<h3>T accounts</h3>
+				<table align="center">
+				<tr>
+					<th>Item</th>
+					<th>Begining Value</th>
+					<th>Final Value</th>
+				</tr>
+				<tr>
+					<td><strong>Cash</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="Cb4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="Caft">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Accounts Receivable</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="ARb4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="ARaft">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Supplies</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="Sb4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="Saft">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Equipment</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="Eb4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="Eaft">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Accounts Payable</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="APb4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="APaft">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Unearned Service Revenue</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="USRb4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="USRaft">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Common Stock</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="CSb4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="CSaft">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Salaries and Wages Payable</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SaWPb4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SaWPaft">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Salaries Revenue</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SRb4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SRaft">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Salaries and Wages Expense</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SaWEb4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SaWEaft">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Rent Expense</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="REb4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="REaft">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Dividends</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="Db4">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="Daft">
+						</div>
+					</td>
+				</tr>
+			</table>
+
+
+
+			<hr>
+			<h3>Journal</h3>
+			<table id="journalTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+						<select class="descriptionTwo"></select>
+					</td>
+					<td class="onTop">
+						<div class="row input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="tdDividerBottom input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+			
+			
+
+			<hr>
+			<h3>Trial Balance</h3>
+		<table align="center">
+				<tr>
+					<th>Item</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr>
+					<td><strong>Cash</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="CD">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="CC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Accounts Receivable</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="ARD">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="ARC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Supplies</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SD">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Equipment</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="ED">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="EC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Accounts Payable</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="APD">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="APC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Unearned Service Revenue</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="USRD">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="USRC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Common Stock</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="CSD">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="CSC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Salaries and Wages Payable</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SaWPD">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SaWPC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Salaries Revenue</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SRD">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SRC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Salaries and Wages Expense</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SaWED">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="SaWEC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Rent Expense</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="RED">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="REC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Dividends</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="DD">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="DC">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Total</strong></td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="TD">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" id="TC">
+						</div>
+					</td>
+				</tr>
+			</table>
+		</section>
 	</div>
-
 	</body>
-
 </html>

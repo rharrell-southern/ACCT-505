@@ -1,0 +1,126 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 9.2.1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+		<script>
+					var solutions = {
+			'OR' 	: 2.65,
+			'OOC'	: 22706
+		};
+
+		$(document).ready(function() {
+			var options = [
+				"Manufacturing overhead cost",
+				"Cost of good sold"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "01/31"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "int", value: 22706},
+							credit: {type: "int", value: 0}
+						},
+						{
+							date: {type: "string", value: "01/31"},
+							descriptionOne: {type: "option", value: 1},
+							debit: {type: "int", value: 0},
+							credit: {type: "int", value: 22706}
+						}
+					]
+			);
+			$.each(solutions, function(index, elem) {
+				$("#" + index).on("change focusout", function() {
+					var $this = $(this);
+					var val = $this.val();
+					if(val === "") {
+						$this.removeClass('good').removeClass('bad');
+						return;
+					}
+					val = parseInt(val, 10);
+					if(val === elem) {
+						$this.removeClass('bad').addClass('good');
+					} else {
+						$this.removeClass('good').addClass('bad');
+					}
+				});
+			});
+
+		});
+		</script>
+	</head>
+	<body>
+		<div id="content">
+			<section id="question">
+				<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+				<h1>Supplemental Exercise 13.2.1</h1>
+				<h2>Duncan Company</h2>
+				<p>Duncan Company applies manufacturing overhead to jobs on the basis of machine hours used. Overhead costs are expected to total $225,000 for the year, and machines usage is estimated at 85,000 hours.</p>
+				<p>For the year, $242,000 of overhead costs are incurred and 100,000 hours are used.</p>
+				<h3>Part 1</h3>
+					<p>Compute the manufacturing overhead rate for the year.</p>
+				<h3>Part 2</h3>
+					<p>What is the amount of under- or over-applied overhead at December 31?</p>
+				<h3>Part 3</h3>
+					<p>Prepare the adjusting entry to assign the under- or over-applied overhead for the year to cost of goods sold.</p>
+			</section>
+			<section id="problem">
+				<h3>Part 1 - Overhead Rate</h3>
+					<p>Expected overhead costs</p>
+					<p>Divide by: estimated machines usage</p>
+					<p>Equals: applied manufacturing overhead rate</p>
+					<br>
+					<label>Overhead Rate (%): <input type="text" value="" id="OR"></label>
+				<h3>Part 2 - Over-applied Overhead</h3>
+					<p>Applied manufacturing overhead rate</p>
+					<p>Time:  actual hour usage</p>
+					<p>Equals: applied manufacturing overhead cost</p>
+					<p>Subtract: actual manufacturing overhead cost</p>
+					<p>Equals: over-applied overhead cost</p>
+					<br>
+					<label>Over-applied Overhead Cost ($): <input type="text" value="" id="OOC"></label>
+				<h3>Part 3 - Adjust</h3>
+					<table id="generalJournalTable">
+						<tr>
+							<th>Date</th>
+							<th>Description</th>
+							<th>Debit</th>
+							<th>Credit</th>
+						</tr>
+						<tr class="journalRow">
+							<td class="onTop">
+								<input type="text" value='' class='date'>
+							</td>
+							<td>
+								<div class="row"><select class="descriptionOne"></select></div>
+							</td>
+							<td class="onTop">
+								<div class="input-prepend">
+									<span class="add-on">$</span><input type="text" value="" class="debit">
+								</div>
+							</td>
+							<td class="onBottom">
+								<div class="input-prepend">
+									<span class="add-on">$</span><input type="text" value="" class="credit">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4" class="journalButton">
+								<button class="btn">Add Row</button>
+							</td>
+						</tr>
+					</table>
+			</section>
+		</div>
+	</body>

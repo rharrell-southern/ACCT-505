@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 8.1.2</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script>
+			var answers = {
+				firstProblems: {
+					options: [
+						"Machinery",
+						"Truck",
+						"Land",
+						"Building"
+					],
+					solutions: [
+						1, 0, 0, 2, 2, 3, 3, 2, 1
+					]
+				}
+			};
+			
+			function genOptions(arr) {
+				var ret = "<option value='-1'></option>";
+				for(var i = 0; i < arr.length; i++) {
+					ret += "<option value='" + (i) + "'>" + arr[i] + "</option>";
+				}
+				return ret;
+			}
+			
+			function initQuestions(settings) {
+				for(var prop in settings) {
+					var current = settings[prop];
+					var optGen = genOptions(current.options);
+					$("." + prop).each(function(index) {
+						var $this = $(this);
+						var now = current;
+						$this.html(optGen);
+						$this.on('change focusout', function() {
+							var selected = parseInt($this.find('option:selected').val());
+							if(selected < 0) {
+								$this.removeClass('good').removeClass('bad');
+							} else if(selected === now.solutions[index]) {
+								$this.removeClass('bad').addClass('good');
+							} else {
+								$this.removeClass('good').addClass('bad');
+							}
+						});
+					});
+				}
+			}
+			
+			$(document).ready(function() {
+				initQuestions(answers);
+			});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 8.1.2</h1>
+		<h2>Krawler Company</h2>
+		<br>
+		<section id="question">
+			<p>Krawler Company incurred the following costs.</p>
+			<table>
+				<tr>
+					<td>1.</td>
+					<td>Insurance premium paid for the first year's insurance on new truck</td>
+					<td>$5,600</td>
+				</tr>
+				<tr>
+					<td>2.</td>
+					<td>Sales Tax on Factory Machinery Purchased</td>
+					<td>920</td>
+				</tr>
+				<tr>
+					<td>3.</td>
+					<td>Installation and testing of Factory Machinery</td>
+					<td>1,240</td>
+				</tr>
+				<tr>
+					<td>4.</td>
+					<td>Real estate broker's commission on land</td>
+					<td>5,200</td>
+				</tr>
+				<tr>
+					<td>5.</td>
+					<td>Cost of landscaping on property purchased</td>
+					<td>12,000</td>
+				</tr>
+				<tr>
+					<td>6.</td>
+					<td>Architect's fees on self-constructed building</td>
+					<td>4,200</td>
+				</tr>
+				<tr>
+					<td>7.</td>
+					<td>Cost of paving parking lot for new building constructed</td>
+					<td>16,800</td>
+				</tr>
+				<tr>
+					<td>8.</td>
+					<td>Cost of clearing, draining, and filling land</td>
+					<td>9,460</td>
+				</tr>
+				<tr>
+					<td>9.</td>
+					<td>Painting and lettering of truck immediately purchased</td>
+					<td>580</td>
+				</tr>
+			</table>
+			<br>
+			<strong>Instructions:</strong>
+			<ul>
+				<li>Indicate to which account Krawler would debit each cost.</li>
+			</ul>
+		</section>
+		
+		<section id="problems">
+			<h3>Answers</h3>
+			<ol>
+				<li>
+					Insurance premium paid for the first year's insurance on new truck: $5,600
+					<br><select class="firstProblems"></select>
+				</li>
+				<li>
+					Sales Tax on Factory Machinery Purchased: $920 
+					<br><select class="firstProblems"></select>
+				</li>
+				<li>
+					Installation and testing of Factory Machinery: $1,240 
+					<br><select class="firstProblems"></select>
+				</li>
+				<li>
+					Real estate broker's commission on land: $5,200 
+					<br><select class="firstProblems"></select>
+				</li>
+				<li>
+					Cost of landscaping on property purchased: $12,000 
+					<br><select class="firstProblems"></select>
+				</li>
+				<li>
+					Architect's fees on self-constructed building: $4,200 
+					<br><select class="firstProblems"></select>
+				</li>
+				<li>
+					Cost of paving parking lot for new building constructed: $16,800 
+					<br><select class="firstProblems"></select>
+				</li>
+				<li>
+					Cost of clearing, draining, and filling land: $9,460 
+					<br><select class="firstProblems"></select>
+				</li>
+				<li>
+					Painting and lettering of truck immediately purchased: $580
+					<br><select class="firstProblems"></select>
+				</li>
+			</ol>
+		</section>
+	</div>
+	</body>
+</html>

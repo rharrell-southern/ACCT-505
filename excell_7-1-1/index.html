@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 7.1.1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+		<link href="../template/css/common.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"A/R",
+				"Cash",
+				"Sales",
+				"Sales Discount",
+				"Sales Returns & Allowance"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "07/01"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "int", value: 26000},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 2},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 26000}
+						},
+						{
+							date: {type: "string", value: "07/08"},
+							descriptionOne: {type: "option", value: 4},
+							debit: {type: "int", value: 4800},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 4800}
+						},
+						{
+							date: {type: "string", value: "07/11"},
+							descriptionOne: {type: "option", value: 1},
+							debit: {type: "int", value: 20776},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 3},
+							debit: {type: "int", value: 424},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 21200}
+						}
+					]
+			);
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 7.1.1</h1>
+		<h2>Krusty Co.</h2>
+		<br>
+		<section id="question">
+			<strong>Instructions:</strong>
+			<ul>
+				<li>Record the following transactions of Krusty Co. (Omit cost of goods sold entries).
+					<ol>
+						<li>On July 1, Krusty Co. sold merchandise on account to Quinn Co. for $26,000 terms 2/10, n/30.</li>
+						<li>On July 8, Quinn Co. returned merchandise worth $4,800 to Krusty Co.</li>
+						<li>On July 11, Quinn Co. paid for the merchandise.</li>
+					</ol>
+				</li>
+			</ul>
+		</section>
+		
+		<section id="problems">
+			<h3>Journal</h3>
+			<table id="generalJournalTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	</body>
+</html>

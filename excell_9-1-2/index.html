@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 9.1.2</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"Land",
+				"Land Improvements",
+				"Buildings",
+				"Real Estate Tax Expenses"
+			];
+			
+			new Journal(
+					"#transactionTable",
+					options,
+					[
+						{
+							item: {type: "string", value: "1"},
+							solution: {type: "option", value: 0},
+							amount: {type: "int", value: 291000}
+						},
+						{
+							item: {type: "string", value: "2"},
+							solution: {type: "option", value: 1},
+							amount: {type: "int", value: 5800}
+						},
+						{
+							item: {type: "string", value: "3"},
+							solution: {type: "option", value: 0},
+							amount: {type: "int", value: 32000}
+						},
+						{
+							item: {type: "string", value: "4"},
+							solution: {type: "option", value: 2},
+							amount: {type: "int", value: 13000}
+						},
+						{
+							item: {type: "string", value: "5"},
+							solution: {type: "option", value: 0},
+							amount: {type: "int", value: 5170}
+						},
+						{
+							item: {type: "string", value: "6"},
+							solution: {type: "option", value: 1},
+							amount: {type: "int", value: 25000}
+						},
+						{
+							item: {type: "string", value: "7"},
+							solution: {type: "option", value: 2},
+							amount: {type: "int", value: 23000}
+						},
+						{
+							item: {type: "string", value: "8"},
+							solution: {type: "option", value: 3},
+							amount: {type: "int", value: 8400}
+						},
+						{
+							item: {type: "string", value: "9"},
+							solution: {type: "option", value: 2},
+							amount: {type: "int", value: 680000}
+						},
+						{
+							item: {type: "string", value: "10"},
+							solution: {type: "option", value: 0},
+							amount: {type: "int", value: 15000}
+						}
+					]
+			);
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 9.1.2</h1>
+		<h2>Yan Company</h2>
+		<br>
+		<section id="question">
+			<p>Yan Company was organized on January 1. During the first year of operations, the following plant asset expenditures and receipts were recorded.</p>
+			<table>
+				<tr><th colspan="3">Debits</th></tr>
+				<tr>
+					<td>1.</td>
+					<td>Cost of real estate purchased as a plant site (land $ 265,000 and Building $ 26,000)</td>
+					<td>$291,000</td>
+				</tr>
+				<tr>
+					<td>2.</td>
+					<td>Installation cost of fences around property</td>
+					<td>5,800</td>
+				</tr>
+				<tr>
+					<td>3.</td>
+					<td>Cost of demolishing building to make land suitable for construction of new building</td>
+					<td>32,000</td>
+				</tr>
+				<tr>
+					<td>4.</td>
+					<td>Excavation costs for new buildings</td>
+					<td>13,000</td>
+				</tr>
+				<tr>
+					<td>5.</td>
+					<td>Accrued real estate taxes paid at time of purchase of real estate</td>
+					<td>5,170</td>
+				</tr>
+				<tr>
+					<td>6.</td>
+					<td>Cost of parking lots and driveways</td>
+					<td>25,000</td>
+				</tr>
+				<tr>
+					<td>7.</td>
+					<td>Architect’s fees on building plans</td>
+					<td>23,000</td>
+				</tr>
+				<tr>
+					<td>8.</td>
+					<td>Real estate taxes paid for the current year on land </td>
+					<td>8,400</td>
+				</tr>
+				<tr>
+					<td>9.</td>
+					<td>Full payment to building contractor</td>
+					<td>680,000</td>
+				</tr>
+				<tr><td></td><td></td><td>$1,083,370</td></tr>
+				<tr><th colspan="3">Credits</th></tr>
+				<tr>
+					<td>10.</td>
+					<td>Proceeds from salvage of demolished building</td>
+					<td>$15,000</td>
+				</tr>
+			</table>
+			<br>
+			<strong>Instructions:</strong>
+			<ul>
+				<li>Analyze the transactions using the following table column headings. For each transaction, select the appropriate account and account amount.</li>
+			</ul>
+		</section>
+		
+		<section id="problems">
+			<h3>Transactions</h3>
+			<table id="transactionTable">
+				<tr>
+					<th>Item</th>
+					<th>Solution</th>
+					<th>Amount</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='item'>
+					</td>
+					<td>
+						<div class="row"><select class="solution"></select></div>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="amount">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	</body>
+</html>

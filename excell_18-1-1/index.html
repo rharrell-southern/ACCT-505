@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 18-1-1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"Direct Materals",
+				"Direct Labor",
+				"Manufacturing Overhead",
+				"Total"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							descriptionOne: {type: "option", value: 0},
+							costs: {type: "float", value: 84000}
+						},
+						{
+							descriptionOne: {type: "option", value: 1},
+							costs: {type: "float", value: 22500}
+						},
+						{
+							descriptionOne: {type: "option", value: 2},
+							costs: {type: "float", value: 16875}
+						}
+					]
+			);
+			
+			new Journal(
+					"#generalJournalTable2",
+					options,
+					[
+						{
+							descriptionOne: {type: "option", value: 0},
+							costs: {type: "float", value: 28.00}
+						},
+						{
+							descriptionOne: {type: "option", value: 1},
+							costs: {type: "float", value: 7.50}
+						},
+						{
+							descriptionOne: {type: "option", value: 2},
+							costs: {type: "float", value: 5.63}
+						},
+						{
+							descriptionOne: {type: "option", value: 3},
+							costs: {type: "float", value: 41.13}
+						}
+					]
+			);
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 18.1.1</h1>
+		<h2>Miller Company</h2>
+		<br>
+		<section id="question">
+			<p>Miller Company is planning to produce 3,000 units of product in 20XX. Each unit requires 4 pounds of materials at $7 per pound and a half-hour of labor at $15 per hour. The overhead rate is 75% of direct labor.</p>
+			<strong>Instructions:</strong>
+			<ol>
+				<li>Compute the budgeted amounts for 20XX for direct materials to be used, direct labor, and applied overhead</li>
+				<li>Compute the the standard cost of one unit of product</li>
+			</ol>
+		</section>
+		<section id="problems">
+			<h3>Part 1 - Breakdown - Year 1</h3>
+				<table id="generalJournalTable" align="center">
+						<tr>
+							<th>Item</th>
+							<th>Ammount</th>
+						</tr>
+						<tr class="journalRow">
+							<td>
+								<div><select class="descriptionOne"></select></div>
+							</td>
+							<td class="onTop">
+								<div class="input-prepend">
+									<span class="add-on">$</span><input type="text" value="" class="costs">
+								</div>
+							</td>
+
+						</tr>
+						<tr>
+							<td colspan="4" class="journalButton">
+								<button class="btn">Add Row</button>
+							</td>
+						</tr>
+					</table>
+			<h3>Part 2 - Breakdown per Alternative</h3>
+				<table id="generalJournalTable2" align="center">
+						<tr>
+							<th>Item</th>
+							<th>Ammount</th>
+						</tr>
+						<tr class="journalRow">
+							<td>
+								<div><select class="descriptionOne"></select></div>
+							</td>
+							<td class="onTop">
+								<div class="input-prepend">
+									<span class="add-on">$</span><input type="text" value="" class="costs">
+								</div>
+							</td>
+
+						</tr>
+						<tr>
+							<td colspan="4" class="journalButton">
+								<button class="btn">Add Row</button>
+							</td>
+						</tr>
+					</table>
+		</section>
+	</div>
+	</body>
+</html>

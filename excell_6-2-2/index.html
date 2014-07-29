@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 6.2.2</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+		<link href="../template/css/common.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"Cash",
+				"Cash Short and Over",
+				"Freight Expense",
+				"Postage Expense",
+				"Snacks Expense",
+				"Supplies Expense",
+				"Petty Cash"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "11/05"},
+							descriptionOne: {type: "option", value: 6},
+							debit: {type: "int", value: 200},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 200}
+						},
+						{
+							date: {type: "string", value: "11/31"},
+							descriptionOne: {type: "option", value: 5},
+							debit: {type: "float", value: 28.75},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 4},
+							debit: {type: "float", value: 36.80},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 3},
+							debit: {type: "float", value: 45.65},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 2},
+							debit: {type: "int", value: 25},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 1},
+							debit: {type: "float", value: 9.80},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 146}
+						}
+					]
+			);
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 6.2.2</h1>
+		<h2>Gourmet Services</h2>
+		<br>
+		<section id="question">
+			<p>During the month of November of the current year, Gourmet Services had the following transactions relating to its Petty Cash account:</p>
+			<table>
+				<tr>
+					<td style="font-weight: bold;">Nov. 5</td>
+					<td>A petty cash fund was established by writing a check for $200, issued to the petty cash custodian.</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top; font-weight: bold;">Nov. 31</td>
+					<td>A check was written to replenish the petty cash fund. A count of the petty cash fund disclosed the following information:
+						<table>
+							<tr><td>Currency</td>                      <td>39.50</td></tr>
+							<tr><td>Coins</td>                         <td>14.50</td></tr>
+							<tr><td>Expenditures:</td>                 <td></td></tr>
+							<tr><td>&emsp;Supplies</td>               <td>28.75</td></tr>
+							<tr><td>&emsp;Snacks (For Customers)</td> <td>36.80</td></tr>
+							<tr><td>&emsp;Postage</td>                <td>45.65</td></tr>
+							<tr><td>&emsp;Freight Out</td>            <td>25.00</td></tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			
+			<strong>Instructions:</strong>
+			<ol>
+				<li>Write journal entries to record these transactions in the General Journal.</li>
+			</ol>
+		</section>
+		
+		<section id="problems">
+			<h3>Journal</h3>
+			<table id="generalJournalTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	</body>
+</html>

@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 14-2-1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		var solutions = {
+			'TO'	: 735785,
+			'IP'	: 96218
+		};
+		$(document).ready(function() {
+			var options = [
+				"Work in process inventory starting",
+				"Started and cnpleted",
+				"transferred out",
+				"Work in process inventory - ending",
+				"Total units"
+			];
+			var options2 = [
+				"Direct materals",
+				"Direct labor",
+				"Overhead",
+				"Total"
+			];
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							descriptionOne: {type: "option", value: 0},
+							unit: {type: "int", value: 30000},
+							mate: {type: "int", value: 0},
+							conv: {type: "int", value: 15000}
+						},
+						{
+							descriptionOne: {type: "option", value: 1},
+							unit: {type: "int", value: 230000},
+							mate: {type: "int", value: 230000},
+							conv: {type: "int", value: 230000}
+						},
+						{
+							descriptionOne: {type: "option", value: 2},
+							unit: {type: "int", value: 260000},
+							mate: {type: "int", value: 230000},
+							conv: {type: "int", value: 245000}
+						},
+						{
+							descriptionOne: {type: "option", value: 3},
+							unit: {type: "int", value: 34000},
+							mate: {type: "int", value: 34000},
+							conv: {type: "int", value: 20400}
+						},
+						{
+							descriptionOne: {type: "option", value: 4},
+							unit: {type: "int", value: 294000},
+							mate: {type: "int", value: 264000},
+							conv: {type: "int", value: 265400}
+						}
+					]
+			);
+			new Journal(
+				'#generalJournalTableAgain',
+				options2,
+				[
+					{
+						descriptionOne: {type: "option", value: 0},
+						mate: {type: "float", value: 0.7621},
+						conv: {type: "float", value: 0},
+						ucop: {type: "float", value: 0.7621} 
+					},
+					{
+						descriptionOne: {type: "option", value: 1},
+						mate: {type: "float", value: 0},
+						conv: {type: "float", value: 0.9977},
+						ucop: {type: "float", value: 0.9977} 
+					},
+					{
+						descriptionOne: {type: "option", value: 2},
+						mate: {type: "float", value: 0},
+						conv: {type: "float", value: 1.0701},
+						ucop: {type: "float", value: 1.0701} 
+					},
+					{
+						descriptionOne: {type: "option", value: 3},
+						mate: {type: "float", value: 0},
+						conv: {type: "float", value: 0},
+						ucop: {type: "float", value: 2.8299} 
+					}
+				]
+			)
+	
+			$.each(solutions, function(index, elem) {
+				console.log("#YOLO");
+				$("#" + index).on("change focusout", function() {
+					var $this = $(this);
+					var val = $this.val();
+					if(val === "") {
+						$this.removeClass('good').removeClass('bad');
+						return;
+					}
+					val = parseInt(val, 10);
+					if(val === elem) {
+						$this.removeClass('bad').addClass('good');
+					} else {
+						$this.removeClass('good').addClass('bad');
+					}
+				});
+			});
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 14.2.1</h1>
+		<h2>Smith Company</h2>
+		<br>
+		<section id="question">
+			<p>Smith Company has gathered the following information.</p>
+			<table>
+				<tr>
+					<td>Units in beginning work in process</td>
+					<td>$30,000</td>
+				</tr>
+				<tr>
+					<td>Units started into production</td>
+					<td>$260,000</td>
+				</tr>
+				<tr>
+					<td>Units in ending work in process</td>
+					<td>$34,000</td>
+				</tr>
+			</table>
+			<br>
+			<strong>Percentage complete in ending work in process:</strong>
+			<table>
+				<tr>
+					<td>Conversion costs</td>
+					<td>60%</td>
+				</tr>
+				<tr>
+					<td>Materals</td>
+					<td>100%</td>
+				</tr>
+			</table>
+			<br>
+			<strong>Costs incured during current month</strong>
+			<table>
+				<tr>
+					<td>Direct materials</td>
+					<td>$201,200</td>
+				</tr>
+				<tr>
+					<td>Direct labor</td>
+					<td>$264,000</td>
+				</tr>
+				<tr>
+					<td>Overhead</td>
+					<td>$284,000</td>
+				</tr>
+			</table>
+			<strong>Instructions:</strong>
+			<ol>
+				<li>Compute equivalent units of production for materials and for conversion costs</li>
+				<li>Determine the unit costs of production</li>
+				<li>Show the assignment of costs to units transferred out and process</li>
+			</ol>
+			
+		</section>
+		<h3 align="center">Part 1 - Units of Produciton</h3>
+		<section id="problems">
+			<table id="generalJournalTable" align="center">
+				<tr>
+					<th>Equivalent Unit</th>
+					<th>Units</th>
+					<th>Materals</th>
+					<th>Conversion</th>
+				</tr>
+				<tr class="journalRow">
+					<td>
+						<select class="descriptionOne"></select>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="unit">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="mate">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="conv">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+			<h3>Part 2 - Unit Costs of Production</h3>
+				<table id="generalJournalTableAgain" align="center">
+					<tr>
+						<th>Item</th>
+						<th>Materal</th>
+						<th>Conversion</th>
+						<th>Unit Costs of Production</th>
+					</tr>
+					<tr class="journalRow">
+						<td>
+							<select class="descriptionOne"></select>
+						</td>
+						<td>
+							<div class="input-prepend">
+								<span class="add-on">$</span><input type="text" value="" class="mate">
+							</div>
+						</td>
+						<td>
+							<div class="input-prepend">
+								<span class="add-on">$</span><input type="text" value="" class="conv">
+							</div>
+						</td>
+						<td>
+							<div class="input-prepend">
+								<span class="add-on">$</span><input type="text" value="" class="ucop">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" class="journalButton">
+							<button class="btn">Add Row</button>
+						</td>
+					</tr>
+				</table>
+			<h3>Part 3 - Costs to Units</h3>
+				<STRONG>Answer the following questions:</STRONG>
+						<ol>
+							<label>What is the costs to the units transfered out? <input type="text" value="" id="TO"></label>
+							<label>What is the costs to the units in process? <input type="text" value="" id="IP"></label>
+						</ol>
+		</section>
+	</div>
+	</body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 4.2.1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"A/P",
+				"Cash",
+				"Inventory",
+				"Purchases Discount",
+				"Supplies"
+			];
+
+			journalCont = new Journal('#journalTable',
+				options,
+				[
+					{
+						date: {type: 'string', value: '02/01'},
+						descriptionOne: {type: 'option', value: 2},
+						descriptionTwo: {type: 'option', value: 0},
+						credit: {type: 'int', value: 7400},
+						debit: {type: 'int', value: 7400}
+					},
+					{
+						date: {type: 'string', value: '02/01'},
+						descriptionOne: {type: 'option', value: 2},
+						descriptionTwo: {type: 'option', value: 0},
+						credit: {type: 'int', value: 890},
+						debit: {type: 'int', value: 890}
+					},
+					{
+						date: {type: 'string', value: '02/05'},
+						descriptionOne: {type: 'option', value: 0},
+						descriptionTwo: {type: 'option', value: 2},
+						credit: {type: 'int', value: 300},
+						debit: {type: 'int', value: 300}
+					},
+					{
+						date: {type: 'string', value: '02/06'},
+						descriptionOne: {type: 'option', value: 0},
+						descriptionTwo: {type: 'option', value: 2},
+						credit: {type: 'int', value: 60},
+						debit: {type: 'int', value: 50}
+					},
+					{
+						date: {type: 'string', value: '02/09'},
+						descriptionOne: {type: 'option', value: 0},
+						descriptionTwo: {type: 'option', value: 1},
+						credit: {type: 'int', value: 830},
+						debit: {type: 'int', value: 830}
+					},
+					{
+						date: {type: 'string', value: '02/10'},
+						descriptionOne: {type: 'option', value: 0},
+						descriptionTwo: {type: 'option', value: 3},
+						descriptionThree: {type: 'option', value: 1},
+						debit: {type: 'int', value: 7400},
+						credit: {type: 'int', value: 442} // 6958
+					},
+					{
+						date: {type: 'string', value: '02/11'},
+						descriptionOne: {type: 'option', value: 4},
+						descriptionTwo: {type: 'option', value: 1},
+						credit: {type: 'int', value: 800},
+						debit: {type: 'int', value: 800}
+					},
+					{
+						date: {type: 'string', value: '02/12'},
+						descriptionOne: {type: 'option', value: 2},
+						descriptionTwo: {type: 'option', value: 1},
+						credit: {type: 'int', value: 5100},
+						debit: {type: 'int', value: 5100}
+					},
+					{
+						date: {type: 'string', value: '02/15'},
+						descriptionOne: {type: 'option', value: 0},
+						descriptionTwo: {type: 'option', value: 2},
+						credit: {type: 'int', value: 610},
+						debit: {type: 'int', value: 610}
+					},
+					{
+						date: {type: 'string', value: '02/17'},
+						descriptionOne: {type: 'option', value: 2},
+						descriptionTwo: {type: 'option', value: 0},
+						credit: {type: 'int', value: 2450},
+						debit: {type: 'int', value: 2450}
+					},
+					{
+						date: {type: 'string', value: '02/19'},
+						descriptionOne: {type: 'option', value: 2},
+						descriptionTwo: {type: 'option', value: 1},
+						credit: {type: 'int', value: 200},
+						debit: {type: 'int', value: 200}
+					},
+					{
+						date: {type: 'string', value: '02/20'},
+						descriptionOne: {type: 'option', value: 1},
+						descriptionTwo: {type: 'option', value: 0},
+						credit: {type: 'int', value: 720},
+						debit: {type: 'int', value: 720}
+					},
+					{
+						date: {type: 'string', value: '02/25'},
+						descriptionOne: {type: 'option', value: 1},
+						descriptionTwo: {type: 'option', value: 0},
+						credit: {type: 'int', value: 800},
+						debit: {type: 'int', value: 800}
+					},
+					{
+						date: {type: 'string', value: '02/27'},
+						descriptionOne: {type: 'option', value: 0},
+						descriptionTwo: {type: 'option', value: 3},
+						descriptionThree: {type: 'option', value: 1},
+						credit: {type: 'int', value: 2450},
+						debit: {type: 'int', value: 75.50} // 2376.50
+					}
+				]
+			);
+		});
+
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 4.2.1</h1>
+		<h2>Robert's Merchandise</h2>
+		<br>
+		<section id="question">
+			<p>Robert’s Merchandise completed the following merchandise transactions during the month of February.
+				At the beginning of February Robert had $12,800 cash and $6,500 in common stock.
+				Transactions were as follows:</p>
+			
+			<strong>February Transactions:</strong>
+			<ul>
+				<li><strong>1<sup>st</sup>:</strong> Purchased merchandise on account from Wilo Supplies for $7,400 terms 2/10, net 30</li>
+				<li><strong>1<sup>st</sup>:</strong> Purchased merchandise on account for $890 (including freight) from Brooks Co.</li>
+				<li><strong>5<sup>th</sup>:</strong> Received Credit from Wilo Supplies for the return of merchandise $300</li>
+				<li><strong>6<sup>th</sup>:</strong> Received $60 credit for merchandise returned to Brook Co.</li>
+				<li><strong>9<sup>th</sup>:</strong> Paid Brooks Co. in full</li>
+				<li><strong>10<sup>th</sup>:</strong> Paid Wilo supplies in full, less discount</li>
+				<li><strong>11<sup>th</sup>:</strong> Purchased supplies for cash $800</li>
+				<li><strong>12<sup>th</sup>:</strong> Purchased merchandise for cash $5,100</li>
+				<li><strong>15<sup>th</sup>:</strong> Received $610 refund for return of poor-quality merchandise from supplier</li>
+				<li><strong>17<sup>th</sup>:</strong> Purchased merchandise from Strickler Distributor for $2,450, terms 3/110, net 30</li>
+				<li><strong>19<sup>th</sup>:</strong> Paid Freight $200 on merchandise purchased on February 17</li>
+				<li><strong>20<sup>th</sup>:</strong> Purchased merchandise on account for $720</li>
+				<li><strong>25<sup>th</sup>:</strong> Purchased Merchandise from Fasteners Inc. for $800, terms 3/10, net 30</li>
+				<li><strong>27<sup>th</sup>:</strong> Paid Strickler Distributor in full, less discount</li>
+			</ul>
+			
+			<strong>Instructions:</strong>
+			<ol>
+				<li>Journalize the transactions for the month of February using a using a perpetual inventory system.</li>
+			</ol>
+		</section>
+		
+		<section id="problems">
+			<h3>Journal</h3>
+			<table id="journalTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+						<select class="descriptionTwo"></select>
+					</td>
+					<td class="onTop">
+						<div class="row input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="tdDividerBottom input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	</body>
+</html>

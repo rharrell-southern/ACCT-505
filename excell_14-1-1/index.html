@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 14-1-1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+			
+		$(document).ready(function() {
+			var options = [
+				"No Entries",
+				"Work in Process-Cooking",
+				"Work in Process-Canning",
+				"Materials",
+				"Labor",
+				"Manufacturing Overhead"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "int", value: 0},
+							credit: {type: "int", value: 0}
+						},
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 1},
+							debit: {type: "int", value: 22000},
+							credit: {type: "int", value: 0}
+						},
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 2},
+							debit: {type: "int", value: 10000},
+							credit: {type: "int", value: 0}
+						},
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 3},
+							debit: {type: "int", value: 0},
+							credit: {type: "int", value: 32000}
+						},
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 1},
+							debit: {type: "int", value: 9500},
+							credit: {type: "int", value: 0}
+						},
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 2},
+							debit: {type: "int", value: 8000},
+							credit: {type: "int", value: 0}
+						},
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 4},
+							debit: {type: "int", value: 0},
+							credit: {type: "int", value: 17500}
+						},
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 1},
+							debit: {type: "int", value: 32500},
+							credit: {type: "int", value: 0}
+						},
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 2},
+							debit: {type: "int", value: 26800},
+							credit: {type: "int", value: 0}
+						},
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 5},
+							debit: {type: "int", value: 0},
+							credit: {type: "int", value: 59300}
+						},
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 1},
+							debit: {type: "int", value: 54000},
+							credit: {type: "int", value: 0}
+						},
+						{
+							date: {type: "string", value: "05/30"},
+							descriptionOne: {type: "option", value: 2},
+							debit: {type: "int", value: 0},
+							credit: {type: "int", value: 54000}
+						}
+					]
+			);
+	
+			$.each(solutions, function(index, elem) {
+				$("#" + index).on("change focusout", function() {
+					var $this = $(this);
+					var val = $this.val();
+					if(val === "") {
+						$this.removeClass('good').removeClass('bad');
+						return;
+					}
+					val = parseInt(val, 10);
+					if(val === elem) {
+						$this.removeClass('bad').addClass('good');
+					} else {
+						$this.removeClass('good').addClass('bad');
+					}
+				});
+			});
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 14.1.1</h1>
+		<h2>Patterson Company</h2>
+		<br>
+		<section id="question">
+			<h3>Part One</h3>
+			<p>Patterson Company manufactures pizza sauce through two production departments: cooking and canning. In each process, materials and conversion costs are incurred evenly throughout the process. For the month of March, the work in process accounts show the following debits.</p>
+			<table>
+				<tr>
+					<th></th>
+					<th>Cooking</th>
+					<th>Canning</th>
+				</tr>
+				<tr>
+					<td>Beginning work in process</td>
+					<td>$-0-</td>
+					<td>$5,000</td>
+				</tr>
+				<tr>
+					<td>Materals</td>
+					<td>$22,000</td>
+					<td>$10,000</td>
+				</tr>
+				<tr>
+					<td>Labor</td>
+					<td>$9,500</td>
+					<td>$8,000</td>
+				</tr>
+				<tr>
+					<td>Overhead</td>
+					<td>$32,000</td>
+					<td>$26,800</td>
+				</tr>
+				<tr>
+					<td>Costs transfered in</td>
+					<td></td>
+					<td>$54,000</td>
+				</tr>
+			</table>
+			<br>
+			<strong>Instructions:</strong>
+			<p>Journalize the March transactions.</p>
+			
+		</section>
+		
+		<section id="problems">
+			<h3>Part One - General Journal</h3>
+			<table id="generalJournalTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<select class="descriptionOne"></select>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	</body>
+</html>

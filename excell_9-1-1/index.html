@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 9.1.1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"Cash",
+				"Delivery Truck",
+				"Equipment",
+				"Land",
+				"Land Improvements",
+				"Machinery",
+				"Prepaid Insurance",
+				"Vehicle Expense"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "1"},
+							descriptionOne: {type: "option", value: 3},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 6000},
+							credit: {type: "int", value: 6000}
+						},
+						{
+							date: {type: "string", value: "2"},
+							descriptionOne: {type: "option", value: 2},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 100},
+							credit: {type: "int", value: 100}
+						},
+						{
+							date: {type: "string", value: "3"},
+							descriptionOne: {type: "option", value: 1},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 1050},
+							credit: {type: "int", value: 1050}
+						},
+						{
+							date: {type: "string", value: "4"},
+							descriptionOne: {type: "option", value: 4},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 2000},
+							credit: {type: "int", value: 2000}
+						},
+						{
+							date: {type: "string", value: "5"},
+							descriptionOne: {type: "option", value: 1},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 280},
+							credit: {type: "int", value: 280}
+						},
+						{
+							date: {type: "string", value: "6"},
+							descriptionOne: {type: "option", value: 5},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 5000},
+							credit: {type: "int", value: 5000}
+						},
+						{
+							date: {type: "string", value: "7"},
+							descriptionOne: {type: "option", value: 6},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 700},
+							credit: {type: "int", value: 700}
+						},
+						{
+							date: {type: "string", value: "8"},
+							descriptionOne: {type: "option", value: 7},
+							descriptionTwo: {type: "option", value: 0},
+							debit: {type: "int", value: 95},
+							credit: {type: "int", value: 95}
+						}
+					]
+			);
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 9.1.1</h1>
+		<h2>Willow Corporation</h2>
+		<br>
+		<section id="question">
+			<p>The following expenditures relating to plant assets were made by Willow Corporation during the first month of the current year.</p>
+			<ol>
+				<li>Paid $ 6,000 of accrued taxes at the time the plant site was acquired.</li>
+				<li>Paid $ 100 insurance to cover a possible accident loss on new factory machinery while the machinery was in transit.</li>
+				<li>Paid $ 1,050 sales taxes on a new delivery truck.</li>
+				<li>Paid $ 2,000 for parking lots and driveways on the new plant site.</li>
+				<li>Paid $ 280 to have the company name and slogan painted on the new delivery truck.</li>
+				<li>Paid $ 5,000 for installation of new factory machinery.</li>
+				<li>Paid $ 700 for a 1- year accident insurance policy on the new delivery truck.</li>
+				<li>Paid $ 95 motor vehicle license fee on the new truck.</li>
+			</ol>
+			<br>
+			<strong>Instructions:</strong>
+			<ul>
+				<li>Record these transactions in the general journal of Willow Corporation.</li>
+			</ul>
+		</section>
+		
+		<section id="problems">
+			<h3>Answers</h3>
+			<table id="generalJournalTable">
+				<tr>
+					<th>Number</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+						<select class="descriptionTwo"></select>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 3.3.2</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+
+		<style>
+			.questionTable {
+				border: 1px solid lightgray;
+				width: 30em;
+				border-collapse: collapse;
+			}
+			.questionTable td {
+				padding: 0.1em;
+				border: 1px solid lightgray;
+			}
+			td.tableTotal {
+				border-top: 3px double black;
+				border-bottom: 1px solid black;
+			}
+			.questionTable tr td:nth-child(1n+2) {
+				text-align: right;
+			}
+		</style>
+		
+		<script>
+
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 3.3.2</h1>
+		<h2>Kape Verde Supplies</h2>
+		<br>
+		<section id="question">
+			<center>
+			<p>The trial balance of Kape Verde Supplies as of April 30 is as follows:</p>
+			<table class="questionTable">
+				<tr>
+					<th colspan="3">
+					KAPE VERDE SUPPLIES<br>
+					TRIAL BALANCE<br>
+					March 31, 20XX
+					</th>
+				</tr>
+				<tr>
+					<td></td> <td><strong>Debit</strong></td> <td><strong>Credit</strong></td>
+				</tr>
+				<tr><td>Cash</td>								<td>$19,500</td><td></td></tr>
+				<tr><td>Accounts Receivable</td>				<td>7,900</td>	<td></td></tr>
+				<tr><td>Prepaid Insurance</td>					<td>10,500</td>	<td></td></tr>
+				<tr><td>Office Supplies</td>					<td>5,700</td>	<td></td></tr>
+				<tr><td>Equipment</td>							<td>37,000</td> <td></td></tr>
+				<tr><td>Accumulated Depreciation-Equipment</td> <td></td>		<td>$3,900</td></tr>
+				<tr><td>Accounts Payable</td>					<td></td>		<td>9,200</td></tr>
+				<tr><td>Rent Payable</td>						<td></td>		<td>4,100</td></tr>
+				<tr><td>Salaries and Wages Payable</td>			<td></td>		<td>6,500</td></tr>
+				<tr><td>Unearned Revenue</td>					<td></td>		<td>8,620</td></tr>
+				<tr><td>Common Stock</td>						<td></td>		<td>46,280</td></tr>
+				<tr><td>Retained Earnings</td>					<td></td>		<td>18,000</td></tr>
+				<tr><td>Revenue</td>							<td></td>		<td>12,900</td></tr>
+				<tr><td>Dividends</td>							<td>6,400</td>	<td></td></tr>
+				<tr><td>Depreciation Expense</td>				<td>3,400</td>	<td></td></tr>
+				<tr><td>Salaries and Wages Expense</td>			<td>6,500</td>	<td></td></tr>
+				<tr><td>Insurance Expense</td>					<td>3,200</td>	<td></td></tr>
+				<tr><td>Office Supplies Expense</td>			<td>1,600</td>	<td></td></tr>
+				<tr><td>Rent Expense</td>						<td>7,300</td>	<td></td></tr>
+				<tr><td></td>									<td class="tableTotal">$109,500</td><td class="tableTotal">$109,500</td></tr>
+			</table>
+			</center>
+			<strong>Instructions:</strong>
+			<ol>
+				<li>Prepare an Income Statement for month ended July</li>
+				<li>Prepare a Statement of Retained Earnings for month ended July</li>
+				<li>Prepare a Balance sheet for the month ended</li>
+			</ol>
+		</section>
+		
+		<section id="problems">
+			<h3>Closing Entries</h3>
+			<table id="closingEntryTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	</body>
+</html>

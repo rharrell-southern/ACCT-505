@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 3.2.1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../template/css/common.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"Income Summary",
+				"Insurance Expense",
+				"Owner's Capital",
+				"Salaries and Wages Expense",
+				"Sales Revenue",
+				"Supplies Expense"
+			];
+			
+			var closingEntries = new Journal(
+					"#closingEntryTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "12/31"},
+							descriptionOne: {type: "option", value: 4},
+							debit: {type: "int", value: 6400},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 6400}
+						},
+						{
+							date: {type: "string", value: "12/31"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "int", value: 5770},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 3},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 1620}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 1},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 3200}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 5},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 950}
+						},
+						{
+							date: {type: "string", value: "12/31"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "int", value: 630},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 2},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 630}
+						}
+					]
+			);
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="btn-info btn-print" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 3.2.1</h1>
+		<h2>Kudos Supplies Trial Balance</h2>
+		<br>
+		<section id="question">
+			<center>
+			<p>The trial balance of Kudos Supplies as of December 31<sup>st</sup> is as follows:</p>
+
+			<table class="trial-balance">
+				<tr>
+					<th colspan="3">
+					Kudos Supplies<br>
+					Trial Balance<br>
+					December 31, 20XX
+					</th>
+				</tr>
+				<tr><th></th><th>Debit</th><th>Credit</th></tr>
+				<tr>
+					<td>Prepaid Insurance</td>
+					<td>1,460</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Supplies</td>
+					<td>1,200</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Salaries and Wages Payable</td>
+					<td></td>
+					<td>730</td>
+				</tr>
+				<tr>
+					<td>Unearned Revenue</td>
+					<td></td>
+					<td>1,300</td>
+				</tr>
+				<tr>
+					<td>Sales Revenue</td>
+					<td></td>
+					<td>6,400</td>
+				</tr>
+				<tr>
+					<td>Salaries and Wages Expense</td>
+					<td>1,620</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Insurance Expense</td>
+					<td>3,200</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Supplies Expense</td>
+					<td>950</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><strong>Total</strong></td>
+					<td class="tableTotal">$ 8,430</td>
+					<td class="tableTotal">$ 8,430</td>
+				</tr>
+			</table>
+			</center>
+			
+			<strong>Instructions:</strong>
+			<ol>
+				<li>Prepare the closing entries for the year ended December 31, 20XX</li>
+			</ol>
+		</section>
+		
+		<section id="problems">
+			<h3>Closing Entries</h3>
+			<table id="closingEntryTable">
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	</body>
+</html>

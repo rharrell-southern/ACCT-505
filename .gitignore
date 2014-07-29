@@ -1,0 +1,9 @@
+# OS Level Ignores
+.DS_Store
+.directory
+desktop.ini
+Thumbs.db
+
+# Netbeans Ignores
+nbproject/private/
+

@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 10.1.1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			var options = [
+				"Cash",
+				"Common Stock",
+				"Paid-in Capital in Excess of Par Value",
+				"Preferred Stock",
+				"Treasury Stock"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "02/01"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "int", value: 35000},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 1},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 20000}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 2},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 15000}
+						},
+						{
+							date: {type: "string", value: "03/20"},
+							descriptionOne: {type: "option", value: 4},
+							debit: {type: "int", value: 12000},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 12000}
+						},
+						{
+							date: {type: "string", value: "04/30"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "int", value: 110000},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 3},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 100000}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 2},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 10000}
+						},
+						{
+							date: {type: "string", value: "08/08"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "int", value: 3000},
+							credit: {type: "empty"}
+						},
+						{
+							date: {type: "empty"},
+							descriptionOne: {type: "option", value: 4},
+							debit: {type: "empty"},
+							credit: {type: "int", value: 3000}
+						}
+					]
+			);
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="content">
+		<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+		<h1>Supplemental Exercise 10.1.1</h1>
+		<h2>Smith Corporation</h2>
+		<br>
+		<section id="question">
+			<p>The stockholders’ equity accounts of Smith Corporation on January 1, 20XX, were as follows.</p>
+			<table>
+				<tr>
+					<td>Preferred stock (7%, $100 par noncumulative, 5,000 shares authorized)	</td>
+					<td>$400,000</td>
+				</tr>
+				<tr>
+					<td>Common stock ($4 par value, 200,000 shares authorized)</td>
+					<td>1,100,000</td>
+				</tr>
+				<tr>
+					<td>Paid-in Capital in Excess of Par Value - Preferred Stock</td>
+					<td>14,000</td>
+				</tr>
+				<tr>
+					<td>Paid-in Capital in Excess of Par value - Common Stock</td>
+					<td>470,000</td>
+				</tr>
+				<tr>
+					<td>Retained Earnings</td>
+					<td>678,000</td>
+				</tr>
+				<tr>
+					<td>Treasury Stock Common (5,000 shares)</td>
+					<td>30,000</td>
+				</tr>
+			</table>
+			<br>
+			<p>During 20XX, the corporation had the following transactions and events pertaining to its stockholder’s equity.</p>
+			<table>
+				<tr>
+					<td>Feb. 1</td>
+					<td>Issued 5,000 shares of common stock for $35,000</td>
+				</tr>
+				<tr>
+					<td>Mar. 20</td>
+					<td>Purchased 2,000 additional shares of common treasury stock at $6 per share.</td>
+				</tr>
+				<tr>
+					<td>Apr. 30</td>
+					<td>Issued 1,000 shares of preferred stock for $110/share.</td>
+				</tr>
+				<tr>
+					<td>Aug. 8</td>
+					<td>Sold 500 shares of treasury stock.</td>
+				</tr>
+			</table>
+			<br>
+			<strong>Instructions:</strong>
+			<ol>
+				<li>Journalize the transactions.</li>
+			</ol>
+		</section>
+		
+		<section id="problems">
+			<h3>Journal</h3>
+			<table id="generalJournalTable">
+				<tr>
+					<th>Number</th>
+					<th>Description</th>
+					<th>Debit</th>
+					<th>Credit</th>
+				</tr>
+				<tr class="journalRow">
+					<td class="onTop">
+						<input type="text" value='' class='date'>
+					</td>
+					<td>
+						<div class="row"><select class="descriptionOne"></select></div>
+					</td>
+					<td class="onTop">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="debit">
+						</div>
+					</td>
+					<td class="onBottom">
+						<div class="input-prepend">
+							<span class="add-on">$</span><input type="text" value="" class="credit">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="journalButton">
+						<button class="btn">Add Row</button>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	</body>
+</html>

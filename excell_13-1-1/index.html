@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Supplemental Exercise 13.1.1</title>
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/bootstrap.min.js"></script>
+		<script src="../template/js/journal.js"></script>
+		<script>
+		var solutions = {
+			'PIB' 	: 12500,
+			'ORPY'	: 70
+		};
+
+		$(document).ready(function() {
+			var options = [
+				"Work in process inventory",
+				"Raw materials inventory",
+				"Factory labor",
+				"Manufacturing overload",
+				"Finished goods inventory"
+			];
+			
+			new Journal(
+					"#generalJournalTable",
+					options,
+					[
+						{
+							date: {type: "string", value: "01/31"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "int", value: 35500},
+							credit: {type: "int", value: 0}
+						},
+						{
+							date: {type: "string", value: "01/31"},
+							descriptionOne: {type: "option", value: 1},
+							debit: {type: "int", value: 0},
+							credit: {type: "int", value: 10000}
+						},
+						{
+							date: {type: "string", value: "01/31"},
+							descriptionOne: {type: "option", value: 2},
+							debit: {type: "int", value: 0},
+							credit: {type: "int", value: 15000}
+						},
+						{
+							date: {type: "string", value: "01/31"},
+							descriptionOne: {type: "option", value: 3},
+							debit: {type: "int", value: 0},
+							credit: {type: "int", value: 10500}
+						},
+						{
+							date: {type: "string", value: "01/31"},
+							descriptionOne: {type: "option", value: 4},
+							debit: {type: "int", value: 35500},
+							credit: {type: "int", value: 0}
+						},
+						{
+							date: {type: "string", value: "01/31"},
+							descriptionOne: {type: "option", value: 0},
+							debit: {type: "int", value: 0},
+							credit: {type: "int", value: 35500}
+						}
+					]
+			);
+			$.each(solutions, function(index, elem) {
+				$("#" + index).on("change focusout", function() {
+					var $this = $(this);
+					var val = $this.val();
+					if(val === "") {
+						$this.removeClass('good').removeClass('bad');
+						return;
+					}
+					val = parseInt(val, 10);
+					if(val === elem) {
+						$this.removeClass('bad').addClass('good');
+					} else {
+						$this.removeClass('good').addClass('bad');
+					}
+				});
+			});
+
+		});
+		</script>
+	</head>
+	<body>
+		<div id="content">
+			<section id = "question">
+				<button class="printBtn btn-info" onclick="window.print();">Print this Page</button>
+				<h1>Supplemental Exercise 13.1.1</h1>
+				<h2>Wilson Company</h2>
+				<p>A job order cost sheet for Wilson Company is shown below.</p>
+				<table>
+					<tr>
+						<th colspan = "2">Job No. 90</th>
+						<th colspan = "2">For 1,000 units</th>
+					</tr>
+					<tr><td><br></td></tr>
+					<tr>
+						<tr>
+							<th>Date</th>
+							<th>Direct Materials</th>
+							<th>Direct Labor</th>
+							<th>Manufacturing Overhead</th>
+						</tr>
+						<tr>
+							<td>Beg. Bal. Jan. 1</td>
+							<td>$4,000</td>
+							<td>$5,000</td>
+							<td>$3,500</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>$5,000</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>12</td>
+							<td></td>
+							<td>$7,000</td>
+							<td>$4,900</td>
+						</tr>
+						<tr>
+							<td>24</td>
+							<td>$1,000</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<tr>
+								<td>28</td>
+								<td></td>
+								<td>$3,000</td>
+								<td>$2,100</td>
+							</tr>
+						</tr>
+						<tr>
+							<td></td>
+							<td>$10,000</td>
+							<td>$15,000</td>
+							<td>$10,500</td>
+						</tr>
+					</tr>
+					<tr><td><br></td></tr>
+					<tr>
+						<tr><th>Cost of completed job:</th></tr>
+						<tr>
+							<td colspan = "2">Direct Materals</td>
+							<td colspan = "2">$10,000</td>
+						</tr>
+						<tr>
+							<td colspan = "2">Direct labor</td>
+							<td colspan = "2">$15,000</td>
+						</tr>
+						<tr>
+							<td colspan = "2">Manufacturing overhead</td>
+							<td colspan = "2">$10,500</td>
+						</tr>
+						<tr>
+							<th colspan = "2">Total Cost</th>
+							<th colspan = "2">$35,500</th>
+						</tr>
+						<tr><td><br></td></tr>
+						<tr>
+							<th colspan = "2">Unit Costs ($35,500/1,000)</th>
+							<th colspan = "2">$35.50</th>
+						</tr>
+					</tr>
+				</table>
+				<br>
+				<h3>Part One</h3>
+				<ol>
+					<li>What was the balance in Work in Process inventory on January 1 if this was the only unfinished job?</li>
+					<li>If manufacturing overhead is applied on the basis of direct labor cost, what overhead rate was used in each year?</li>
+				</ol>
+				<h3>Part Two</h3>
+				<p>Prepare summary entries at January 31 to record the current year’s transactions pertaining to Job No. 90.</p>
+			</section>
+			<section id="problems">
+				<h3>Part One - Balances and Rates</h3>
+				<label>Process inventory balance ($): <input type="text" value="" id="PIB"></label>
+				<label>Overhead rate per year (%): <input type="text" value="" id="ORPY"></label>
+				<h3>Part Two - General Journal</h3>
+					<table id="generalJournalTable">
+						<tr>
+							<th>Date</th>
+							<th>Description</th>
+							<th>Debit</th>
+							<th>Credit</th>
+						</tr>
+						<tr class="journalRow">
+							<td class="onTop">
+								<input type="text" value='' class='date'>
+							</td>
+							<td>
+								<div class="row"><select class="descriptionOne"></select></div>
+							</td>
+							<td class="onTop">
+								<div class="input-prepend">
+									<span class="add-on">$</span><input type="text" value="" class="debit">
+								</div>
+							</td>
+							<td class="onBottom">
+								<div class="input-prepend">
+									<span class="add-on">$</span><input type="text" value="" class="credit">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4" class="journalButton">
+								<button class="btn">Add Row</button>
+							</td>
+						</tr>
+					</table>
+			</section>
+		</div>
+	</body>
